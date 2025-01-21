@@ -2318,7 +2318,7 @@ h1 {
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-01-21 16:06:28" itemprop="dateModified" datetime="2025-01-21T16:06:28+08:00">2025-01-21</time>
+      <time title="修改时间：2025-01-21 19:18:58" itemprop="dateModified" datetime="2025-01-21T19:18:58+08:00">2025-01-21</time>
     </span>
 
   
@@ -2362,7 +2362,7 @@ h1 {
 <h2 id="实战问题大全和解决方法"><a href="#实战问题大全和解决方法" class="headerlink" title="实战问题大全和解决方法"></a>实战问题大全和解决方法</h2><h3 id="在designer里设置的背景图片和icon在python里打开看不到"><a href="#在designer里设置的背景图片和icon在python里打开看不到" class="headerlink" title="在designer里设置的背景图片和icon在python里打开看不到"></a>在designer里设置的背景图片和icon在python里打开看不到</h3><p>因为uic.loadUi 这个方法已经把背景图片和icon加载进去了<br>其实你可以换另一种方法，就是Designer里面不设置icon和背景图片，但在py里面设置<br>外部的图片 icon 资源不要在ui文件中引用 应在外部的py文件里写入。这么做有三个好处，一是分离资源，方便后续的管理，二是方便调试和自定义操作，三是可以减少ui文件的体积</p>
 <h3 id="解决未铺满问题"><a href="#解决未铺满问题" class="headerlink" title="解决未铺满问题"></a>解决未铺满问题</h3><p><img src="fluent-layout.png" alt="alt text"><br>首先要用布局器进行布局 而不是frame<br><img src="fluent-layout2.png" alt="alt text"><br>虽然frame一定程度上能对控件进行分类，但是效果不如布局器的好<br>尽量用Widget作为新建窗口 使用MainWindow的话，一是语义不符，二是有些臃肿<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在每个窗体的py文件里面加上 这三行代码 保证布局的稳定</span></span><br><span class="line">QApplication.setHighDpiScaleFactorRoundingPolicy(Qt.HighDpiScaleFactorRoundingPolicy.PassThrough)</span><br><span class="line">QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)</span><br><span class="line">QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps)</span><br></pre></td></tr></table></figure></p>
 <h3 id="聊天气泡框"><a href="#聊天气泡框" class="headerlink" title="聊天气泡框"></a>聊天气泡框</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_59452630/article/details/134481680">csdn博客介绍</a><br><a target="_blank" rel="noopener" href="https://gitcode.com/LC044/pyqt_component_library">gitcode开源链接</a></p>
-<h3 id="pyinstaller和pipenv：py打包"><a href="#pyinstaller和pipenv：py打包" class="headerlink" title="pyinstaller和pipenv：py打包"></a>pyinstaller和pipenv：py打包</h3><p>踩坑记录：<br>首先用conda不知道为什么会出错。用了Virtualenv。<br>其次，它有一些import问题。<br>还是打包简单的项目文件比较好。后面我使用cx_Freeze配合bat后缀文件打包，解决了打包问题。可以看我的另一篇<a target="_blank" rel="noopener" href="https://misaka-xxw.github.io/2024/11/04/cx_Freeze">博客</a></p>
+<h3 id="pyinstaller和pipenv：py打包"><a href="#pyinstaller和pipenv：py打包" class="headerlink" title="pyinstaller和pipenv：py打包"></a>pyinstaller和pipenv：py打包</h3><p>踩坑记录：<br>首先用conda不知道为什么会出错。用了Virtualenv。<br>其次，它有一些import问题。<br>还是打包简单的项目文件比较好。后面我使用cx_Freeze配合bat后缀文件打包，解决了打包问题。可以看我的另一篇<a target="_blank" rel="noopener" href="https://misaka-xxw.github.io/2024/11/04/cx-Freeze/">博客</a></p>
 
       
     </div>
