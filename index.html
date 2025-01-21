@@ -232,18 +232,18 @@ mjx-container[display="true"] + br {
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -2190,6 +2190,491 @@ h1 {
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.misaka-xxw.github.io/2024/11/04/cx-Freeze/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Misaka-xxw">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Misaka-xxw的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Misaka-xxw的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/11/04/cx-Freeze/" class="post-title-link" itemprop="url">cx_Freeze:Python打包成可执行文件</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-11-04 18:20:46" itemprop="dateCreated datePublished" datetime="2024-11-04T18:20:46+08:00">2024-11-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-01-21 19:04:59" itemprop="dateModified" datetime="2025-01-21T19:04:59+08:00">2025-01-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>之前Pyinstaller打包失败，所以换成cx-Freeze打包。</p>
+<p><a target="_blank" rel="noopener" href="https://cx-freeze.readthedocs.io/en/latest/script.html">官网</a>写的很清楚。<br>最简单粗暴的打包是这样的，可执行文件和pyinstaller一样生成在dist文件夹里</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cxFreeze main.py</span><br></pre></td></tr></table></figure>
+<p>例如：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">cxfreeze --script hello.py --target-dir dist</span><br><span class="line"></span><br><span class="line">--script=要打包的主py文件</span><br><span class="line">--init-script=开始启动的文件，如果没写绝对路径的话，会去cx_Freeze package的根目录里找</span><br><span class="line">--base=NAME, --base-name=NAME</span><br><span class="line">--target-name=生成可执行文件的名字，不要包含路径</span><br><span class="line">--target-dir=生成可执行文件所在目录，默认为dist</span><br><span class="line">--icon=图标</span><br><span class="line">--shortcut-name=快捷方式的名字（MSI）</span><br><span class="line">--shortcut-dir=MSI安装包</span><br></pre></td></tr></table></figure>
+<p>如果不想出现控制台窗口的话：就加上<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--base-name=&quot;win32gui&quot;</span><br></pre></td></tr></table></figure><br>e.g.<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cxfreeze --script main.py --target-dir dist --base-name=&quot;win32gui&quot;</span><br></pre></td></tr></table></figure></p>
+<p>只打包了main.py,其它文件没有被打包上。copy到<br>每次都要敲命令行非常麻烦，新建一个bat文件批量复制，例如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> <span class="string">&quot;root_path=%~dp0&quot;</span></span><br><span class="line">cxFreeze --script main.py --icon=%root_path%Assets\icons\logo_orange.ico  --target-dir dist --base-name=<span class="string">&quot;win32gui&quot;</span></span><br><span class="line"><span class="built_in">set</span> exe_path=%root_path%dist</span><br><span class="line">XCOPY %root_path%\Assets\ %exe_path%\Assets\ /E /I</span><br><span class="line">XCOPY %root_path%\Temp\ %exe_path%\Temp\ /E /I</span><br><span class="line">XCOPY %root_path%\Templates\ %exe_path%\Templates\ /E /I</span><br><span class="line">XCOPY %root_path%\Views\ %exe_path%\Views\ /E /I</span><br><span class="line">XCOPY %root_path%\Sqlite\ %exe_path%\Sqlite\ /E /I</span><br><span class="line">XCOPY %root_path%\.venv\Lib\site-packages\sqlalchemy\ %exe_path%\lib\sqlalchemy\/E /I</span><br><span class="line"><span class="built_in">echo</span> END!</span><br><span class="line">pause</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.misaka-xxw.github.io/2024/11/04/pyqt-fluent/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Misaka-xxw">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Misaka-xxw的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Misaka-xxw的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/11/04/pyqt-fluent/" class="post-title-link" itemprop="url">pyqt5前端框架与Fluent Design 风格组件库小记录</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-11-04 18:20:46" itemprop="dateCreated datePublished" datetime="2024-11-04T18:20:46+08:00">2024-11-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-01-21 16:06:28" itemprop="dateModified" datetime="2025-01-21T16:06:28+08:00">2025-01-21</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="原生pyqt"><a href="#原生pyqt" class="headerlink" title="原生pyqt"></a>原生pyqt</h1><ul>
+<li>直接去github上clone个<a target="_blank" rel="noopener" href="https://github.com/thetheorange">thetheorange</a>大佬的项目，再看他在博客园上发的<a target="_blank" rel="noopener" href="https://www.cnblogs.com/thetheorange">博客</a>，跟着依葫芦画瓢，你就学会了</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/ChatGPTNextWeb/ChatGPT-Next-Web">不是qt开发，是web开发，但是好看的ai应用界面，github链接</a></li>
+<li><a target="_blank" rel="noopener" href="https://app.nextchat.dev/">上述所说的nextchat预览</a></li>
+</ul>
+<hr>
+<h1 id="fluent"><a href="#fluent" class="headerlink" title="fluent"></a>fluent</h1><ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV12c411L73q/?share_source=copy_web&amp;vd_source=e0feca00b56a0c70f595151ad941f81d">bilibili【PyQt-Fluent-Widgets: 基于 PyQt/PySide 的 Fluent Design 风格组件库】</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://pyqt-fluent-widgets.readthedocs.io/zh-cn/latest/quick-start.html">fluent组件库的官方文档</a><br>安装读官方文档即可。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install &quot;PyQt-Fluent-Widgets[full]&quot; -i https://pypi.org/simple/</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="添加designer-fluent启动的外部工具"><a href="#添加designer-fluent启动的外部工具" class="headerlink" title="添加designer-fluent启动的外部工具"></a>添加designer-fluent启动的外部工具</h2><ul>
+<li>学到了一个很好的脚本打开方式，新建一个这样的txt记事本文件，然后把后缀名改成.bat,最后放到外部工具里，</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@echo off</span><br><span class="line">start cmd /k &quot;cd /【你放Fluent组件的盘符】 【你clone这个PyQt-Fluent-Widgets的文件夹】 &amp;&amp; conda activate 【你的conda环境】  &amp;&amp; python tools/designer.py&quot;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>比如说，我的是这样的：</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@echo off</span><br><span class="line">start cmd /k &quot;cd /d D:\GitHub\PyQt-Fluent-Widgets &amp;&amp; conda activate D:\python\envs\qt5_env  &amp;&amp; python tools/designer.py&quot;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>如果报错了，那么就一句一句复制贴贴到cmd里，看看哪里出问题。比如说，我们那时候，作者似乎不小心把tools文件夹给删了。。。这时候切换分支即可。<br>例子：</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/d</span><br><span class="line">cd D:\GitHub\PyQt-Fluent-Widgets</span><br><span class="line">conda activate D:\python\envs\qt5_env</span><br><span class="line">python tools/designer.py</span><br></pre></td></tr></table></figure>
+<ul>
+<li>没问题的话可以添加到pycharm里：<br>文件/设置/工具/外部工具/+<br>写上你工具的路径名，起个顺眼的名字。<br><img src="pycharm-tool.png" alt="alt text"><br>当然你也可以用c/c++等语言写出来，编译，然后放exe文件。</li>
+</ul>
+<h2 id="实战问题大全和解决方法"><a href="#实战问题大全和解决方法" class="headerlink" title="实战问题大全和解决方法"></a>实战问题大全和解决方法</h2><h3 id="在designer里设置的背景图片和icon在python里打开看不到"><a href="#在designer里设置的背景图片和icon在python里打开看不到" class="headerlink" title="在designer里设置的背景图片和icon在python里打开看不到"></a>在designer里设置的背景图片和icon在python里打开看不到</h3><p>因为uic.loadUi 这个方法已经把背景图片和icon加载进去了<br>其实你可以换另一种方法，就是Designer里面不设置icon和背景图片，但在py里面设置<br>外部的图片 icon 资源不要在ui文件中引用 应在外部的py文件里写入。这么做有三个好处，一是分离资源，方便后续的管理，二是方便调试和自定义操作，三是可以减少ui文件的体积</p>
+<h3 id="解决未铺满问题"><a href="#解决未铺满问题" class="headerlink" title="解决未铺满问题"></a>解决未铺满问题</h3><p><img src="fluent-layout.png" alt="alt text"><br>首先要用布局器进行布局 而不是frame<br><img src="fluent-layout2.png" alt="alt text"><br>虽然frame一定程度上能对控件进行分类，但是效果不如布局器的好<br>尽量用Widget作为新建窗口 使用MainWindow的话，一是语义不符，二是有些臃肿<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在每个窗体的py文件里面加上 这三行代码 保证布局的稳定</span></span><br><span class="line">QApplication.setHighDpiScaleFactorRoundingPolicy(Qt.HighDpiScaleFactorRoundingPolicy.PassThrough)</span><br><span class="line">QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)</span><br><span class="line">QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps)</span><br></pre></td></tr></table></figure></p>
+<h3 id="聊天气泡框"><a href="#聊天气泡框" class="headerlink" title="聊天气泡框"></a>聊天气泡框</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_59452630/article/details/134481680">csdn博客介绍</a><br><a target="_blank" rel="noopener" href="https://gitcode.com/LC044/pyqt_component_library">gitcode开源链接</a></p>
+<h3 id="pyinstaller和pipenv：py打包"><a href="#pyinstaller和pipenv：py打包" class="headerlink" title="pyinstaller和pipenv：py打包"></a>pyinstaller和pipenv：py打包</h3><p>踩坑记录：<br>首先用conda不知道为什么会出错。用了Virtualenv。<br>其次，它有一些import问题。<br>还是打包简单的项目文件比较好。后面我使用cx_Freeze配合bat后缀文件打包，解决了打包问题。可以看我的另一篇<a target="_blank" rel="noopener" href="https://misaka-xxw.github.io/2024/11/04/cx_Freeze">博客</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.misaka-xxw.github.io/2024/09/27/markdown/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Misaka-xxw">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Misaka-xxw的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Misaka-xxw的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/09/27/markdown/" class="post-title-link" itemprop="url">Markdown最基础格式</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-09-27 09:15:36" itemprop="dateCreated datePublished" datetime="2024-09-27T09:15:36+08:00">2024-09-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-01-21 15:34:24" itemprop="dateModified" datetime="2025-01-21T15:34:24+08:00">2025-01-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Markdown/" itemprop="url" rel="index"><span itemprop="name">Markdown</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><del>年少不懂事，做mikumikudance时期，用记事本打开readme点md</del><br>我一般用vscode看，其实用jetbrain的软件也可以<br>vscode配这三个插件：<img src="markdown-plugins.png" alt="alt text"><br>完美。<a target="_blank" rel="noopener" href="https://www.runoob.com/markdown/md-tutorial.html">下载安装和学习这个就可以了</a><br><del>既然这就是个md文件，所以还要简单记录一下格式吗？</del><br><del>要的，我抄一下</del><br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"># 一级标题</span></span><br><span class="line"><span class="section">## 二级标题</span></span><br><span class="line"><span class="section">### 三级标题</span></span><br><span class="line"><span class="section">#### 四级标题</span></span><br><span class="line"><span class="section">##### 五级标题</span></span><br><span class="line"><span class="section">###### 六级标题</span></span><br><span class="line"></span><br><span class="line">---</span><br><span class="line">上面是划线，如果划线上有字会变成二级标题。一堆=上面有字是一级标题。</span><br><span class="line">各种分割线</span><br><span class="line"><span class="strong">***</span></span><br><span class="line"><span class="strong"></span></span><br><span class="line"><span class="strong">* * *</span></span><br><span class="line"><span class="strong"></span></span><br><span class="line"><span class="strong">**</span><span class="strong">***</span></span><br><span class="line"><span class="strong"></span></span><br><span class="line"><span class="strong">- - -</span></span><br><span class="line"><span class="strong"></span></span><br><span class="line"><span class="strong">----------</span></span><br><span class="line"><span class="strong"><span class="emphasis">*斜体文本*</span></span></span><br><span class="line"><span class="strong"><span class="emphasis">_斜体文本_</span></span></span><br><span class="line"><span class="strong">**</span>粗体文本**</span><br><span class="line"><span class="strong">__粗体文本__</span></span><br><span class="line"><span class="strong">**<span class="emphasis">*粗斜体文本*</span>**</span></span><br><span class="line"><span class="strong">__<span class="emphasis">_粗斜体文本_</span>__</span></span><br><span class="line">~浅一点的字体~</span><br><span class="line">~~删除线，非常爱用~~</span><br><span class="line">==高光==</span><br><span class="line"></span><br><span class="line"><span class="bullet">*</span> 第一项</span><br><span class="line"><span class="bullet">*</span> 第二项</span><br><span class="line"><span class="bullet">*</span> 第三项</span><br><span class="line"></span><br><span class="line"><span class="bullet">+</span> 第一项</span><br><span class="line"><span class="bullet">+</span> 第二项</span><br><span class="line"><span class="bullet">+</span> 第三项</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> 第一项</span><br><span class="line"><span class="bullet">-</span> 第二项</span><br><span class="line"><span class="bullet">-</span> 第三项</span><br><span class="line"></span><br><span class="line"><span class="bullet">1.</span> 第一项</span><br><span class="line"><span class="bullet">2.</span> 第二项</span><br><span class="line"><span class="bullet">3.</span> 第三项</span><br><span class="line"></span><br><span class="line"><span class="quote">&gt; 最外层</span></span><br><span class="line"><span class="quote">&gt; &gt; 第一层嵌套</span></span><br><span class="line"><span class="quote">&gt; &gt; &gt; 第二层嵌套</span></span><br><span class="line"></span><br><span class="line">还有现在在用的是区块。算了不抄了，直接看菜鸟教程吧。</span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.misaka-xxw.github.io/2024/05/16/git-standard/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Misaka-xxw">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Misaka-xxw的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Misaka-xxw的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/05/16/git-standard/" class="post-title-link" itemprop="url">git速查表和提交标准</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-05-16 23:44:56" itemprop="dateCreated datePublished" datetime="2024-05-16T23:44:56+08:00">2024-05-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-01-21 15:45:53" itemprop="dateModified" datetime="2025-01-21T15:45:53+08:00">2025-01-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="git分支操作"><a href="#git分支操作" class="headerlink" title="git分支操作"></a>git分支操作</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/chen134225/article/details/95475960">git分支操作 可以当速查表看看</a></p>
+<p>新建一个空白分支</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout --orphan newBranchName</span><br></pre></td></tr></table></figure>
+<h1 id="签名认证"><a href="#签名认证" class="headerlink" title="签名认证"></a>签名认证</h1><p>待填坑</p>
+<h1 id="git-commit-message标准"><a href="#git-commit-message标准" class="headerlink" title="git commit message标准"></a>git commit message标准</h1><h2 id="基本格式"><a href="#基本格式" class="headerlink" title="基本格式"></a>基本格式</h2><p><strong>type</strong> + 描述</p>
+<h2 id="type类型"><a href="#type类型" class="headerlink" title="type类型"></a>type类型</h2><ul>
+<li><strong>feat</strong> 新功能</li>
+<li>fix/to <ul>
+<li>fix <strong>产生diff</strong>并自动修复问题。适合一次提交直接修复格式</li>
+<li>to <strong>只产生diff</strong>不自动修复此问题。适合于多次提交。最终修复问题提交时使用fix</li>
+</ul>
+</li>
+<li>docs 提交文档</li>
+<li>style 格式 不影响代码运行的变动 </li>
+<li>refactor 重构</li>
+<li>perf 优化</li>
+<li>test 测试 单元测试</li>
+<li>chore 构建过程或辅助工具的变动</li>
+<li>revert 回滚到上一个版本</li>
+<li>merge 代码合并</li>
+<li>sync 同步主线或分支的bug</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.misaka-xxw.github.io/2024/05/16/pip/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Misaka-xxw">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Misaka-xxw的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Misaka-xxw的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/05/16/pip/" class="post-title-link" itemprop="url">pip微记录：更新、设置镜像源和依赖</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-05-16 23:44:56" itemprop="dateCreated datePublished" datetime="2024-05-16T23:44:56+08:00">2024-05-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-01-21 15:49:39" itemprop="dateModified" datetime="2025-01-21T15:49:39+08:00">2025-01-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="更新pip"><a href="#更新pip" class="headerlink" title="更新pip"></a>更新pip</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python.exe -m pip install --upgrade pip</span><br></pre></td></tr></table></figure>
+<h1 id="镜像源"><a href="#镜像源" class="headerlink" title="镜像源"></a>镜像源</h1><ul>
+<li>经常install时卡顿，一般会用<a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn">清华大学镜像源</a>。</li>
+<li>单个安装使用镜像源<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install 【要安装的库名】 -i https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure></li>
+<li>永久设置镜像源<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
+<h1 id="requirement-txt"><a href="#requirement-txt" class="headerlink" title="requirement.txt"></a>requirement.txt</h1></li>
+<li>有一堆要安装的，要一个一个pip Install？</li>
+<li>不，把requirement.txtre放到一个文件夹里，cd到这个文件夹，然后<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install -r requirements.txt</span><br></pre></td></tr></table></figure>
+导出分享给别人：<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip list --format=freeze &gt; requirements.txt</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://www.misaka-xxw.github.io/2024/05/16/NineChapterDreamland/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2316,115 +2801,9 @@ h1 {
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.misaka-xxw.github.io/2024/05/16/delete_commit/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Misaka-xxw">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Misaka-xxw的博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Misaka-xxw的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/05/16/delete_commit/" class="post-title-link" itemprop="url">删commit记录</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-05-16 14:45:51" itemprop="dateCreated datePublished" datetime="2024-05-16T14:45:51+08:00">2024-05-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-01-21 14:37:13" itemprop="dateModified" datetime="2025-01-21T14:37:13+08:00">2025-01-21</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="记录一次收拾“把超大库放进仓库”的烂摊子"><a href="#记录一次收拾“把超大库放进仓库”的烂摊子" class="headerlink" title="记录一次收拾“把超大库放进仓库”的烂摊子"></a>记录一次收拾“把超大库放进仓库”的烂摊子</h1><h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>git是放代码的地方，但是我很蠢地把Unity的库给放进去，而且每次提交把全部有用没用的更改全交了。<del>这就是不好好看新手教程的下场啊。</del><br>首先，要是直接在github里删除的话，历史记录还在那儿，.git文件依然会特别大。<br>删了一个library文件夹，.git文件大小: <mark> 1.71GB -&gt; 633 MB </mark>。而library自己有多大呢？<mark>2.04 GB</mark>。。。<br>于是搜查资料，查到了，按教程做，结果————</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> git filter-branch --force --index-filter &#x27;git rm --cached --ignore-unmatch Library&#x27; --prune-empty --tag-name-filter cat -- --all</span><br><span class="line">WARNING: git-filter-branch has a glut of gotchas generating mangled history</span><br><span class="line">         rewrites.  Hit Ctrl-C before proceeding to abort, then use an</span><br><span class="line">         alternative filtering tool such as &#x27;git filter-repo&#x27;</span><br><span class="line">         (https://github.com/newren/git-filter-repo/) instead.  See the</span><br><span class="line">         filter-branch manual page for more details; to squelch this warning,</span><br><span class="line">         set FILTER_BRANCH_SQUELCH_WARNING=1.</span><br><span class="line">Proceeding with filter-branch...</span><br><span class="line"></span><br><span class="line">Cannot rewrite branches: You have unstaged changes.</span><br></pre></td></tr></table></figure>
-<p>嗯。。。但是我没保存的那些没用的东西，真是又多又没用。</p>
-<h2 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h2><p>那就按这他给的<a target="_blank" rel="noopener" href="https://github.com/newren/git-filter-repo/">链接</a>搜索了。</p>
-<p>在保证什么什么环境变量没问题的情况下。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install git-filter-repo</span><br></pre></td></tr></table></figure>
-<p>接下来，cd或者进入到文件夹，右键git bash。<br>这里教程也写了备份，但是我胆子大，没备份。不能这样。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cp</span> -r your_repo your_repo_backup</span><br></pre></td></tr></table></figure>
-<p>然后就可以愉快地删除了。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git filter-repo --force --invert-paths --path <span class="string">&#x27;Library&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>清理并优化本地仓库</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git reflog expire --all --expire-unreachable=now --update-reflogs</span><br><span class="line">git gc --prune=now --aggressive</span><br></pre></td></tr></table></figure>
-<p>推送更改到远程仓库</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin &lt;仓库URL&gt;</span><br><span class="line">或者</span><br><span class="line">git remote set-url origin &lt;仓库URL&gt;</span><br><span class="line"></span><br><span class="line">git push origin --force --all</span><br><span class="line">git push origin --force --tags</span><br></pre></td></tr></table></figure>
-<p>重新clone，好好设置gitignore啊喂！终于理解去年为什么学长禁止我把美术资源的工程文件也push上了，唉。。。</p>
-<p>于是去copy了学长的gitignore文件，以后就不会这么逆天了。仅针对unity引擎。</p>
-<details>
-<summary>Unity gitignore模板</summary>
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># This .gitignore file should be placed at the root of your Unity project directory</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">/[Ll]ibrary/</span><br><span class="line">/[Tt]emp/</span><br><span class="line">/[Oo]bj/</span><br><span class="line">/[Bb]uild/</span><br><span class="line">/[Bb]uilds/</span><br><span class="line">/[Ll]ogs/</span><br><span class="line">/[Uu]ser[Ss]ettings/</span><br><span class="line"></span><br><span class="line"><span class="comment"># MemoryCaptures can get excessive in size.</span></span><br><span class="line"><span class="comment"># They also could contain extremely sensitive data</span></span><br><span class="line">/[Mm]emoryCaptures/</span><br><span class="line"></span><br><span class="line"><span class="comment"># Recordings can get excessive in size</span></span><br><span class="line">/[Rr]ecordings/</span><br><span class="line"></span><br><span class="line"><span class="comment"># Uncomment this line if you wish to ignore the asset store tools plugin</span></span><br><span class="line"><span class="comment"># /[Aa]ssets/AssetStoreTools*</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Autogenerated Jetbrains Rider plugin</span></span><br><span class="line">/[Aa]ssets/Plugins/Editor/JetBrains*</span><br><span class="line"></span><br><span class="line"><span class="comment"># Visual Studio cache directory</span></span><br><span class="line">.vs/</span><br><span class="line"></span><br><span class="line"><span class="comment"># Gradle cache directory</span></span><br><span class="line">.gradle/</span><br><span class="line"></span><br><span class="line"><span class="comment"># Autogenerated VS/MD/Consulo solution and project files</span></span><br><span class="line">ExportedObj/</span><br><span class="line">.consulo/</span><br><span class="line">*.csproj</span><br><span class="line">*.unityproj</span><br><span class="line">*.sln</span><br><span class="line">*.suo</span><br><span class="line">*.tmp</span><br><span class="line">*.user</span><br><span class="line">*.userprefs</span><br><span class="line">*.pidb</span><br><span class="line">*.booproj</span><br><span class="line">*.svd</span><br><span class="line">*.pdb</span><br><span class="line">*.mdb</span><br><span class="line">*.opendb</span><br><span class="line">*.VC.db</span><br><span class="line"></span><br><span class="line"><span class="comment"># Unity3D generated meta files</span></span><br><span class="line">*.pidb.meta</span><br><span class="line">*.pdb.meta</span><br><span class="line">*.mdb.meta</span><br><span class="line"></span><br><span class="line"><span class="comment"># Unity3D generated file on crash reports</span></span><br><span class="line">sysinfo.txt</span><br><span class="line"></span><br><span class="line"><span class="comment"># Builds</span></span><br><span class="line">*.apk</span><br><span class="line">*.aab</span><br><span class="line">*.unitypackage</span><br><span class="line">*.app</span><br><span class="line"><span class="comment"># Crashlytics generated file</span></span><br><span class="line">crashlytics-build.properties</span><br><span class="line"></span><br><span class="line"><span class="comment"># Packed Addressables</span></span><br><span class="line">/[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*</span><br><span class="line"></span><br><span class="line"><span class="comment"># Temporary auto-generated Android Assets</span></span><br><span class="line">/[Aa]ssets/[Ss]treamingAssets/aa.meta</span><br><span class="line">/[Aa]ssets/[Ss]treamingAssets/aa/*</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-</details>
-
-<h2 id="小剧场"><a href="#小剧场" class="headerlink" title="小剧场"></a>小剧场</h2><p>大佬：不过这 直接把library放进去了有点离谱<br>小w：草率了QAQ<br>大佬：其实有一个比较稳妥的办法，就是新创一个分支，没问题了再合并。这样做还可以减少多余的commit，就是比较麻烦。<br>小w：我多余的commit估计有几千个文件改动。。。毕竟那可是把library装进去了<br>大佬：哈哈</p>
-<h2 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h2><p><a target="_blank" rel="noopener" href="https://github.com/newren/git-filter-repo/blob/main/INSTALL.md">github上的安装说明</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44871531/article/details/136802516?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522171586782016800213099308%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&amp;request_id=171586782016800213099308&amp;biz_id=0&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduend~default-1-136802516-null-null.142^v100^pc_search_result_base7&amp;utm_term=git-filter-repo&amp;spm=1018.2226.3001.4187">csdn的一篇博客</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/52885189">知乎教怎么用gitignore的</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
 
 </div>
   </main>
