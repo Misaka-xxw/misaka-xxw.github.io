@@ -259,7 +259,7 @@ mjx-container[display="true"] + br {
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -270,7 +270,7 @@ mjx-container[display="true"] + br {
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-count">22</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -287,6 +287,121 @@ mjx-container[display="true"] + br {
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.misaka-xxw.github.io/2025/02/04/dsu/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Misaka-xxw">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Misaka-xxw的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Misaka-xxw的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/02/04/dsu/" class="post-title-link" itemprop="url">并查集</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-02-04 19:09:55 / 修改时间：21:54:57" itemprop="dateCreated datePublished" datetime="2025-02-04T19:09:55+08:00">2025-02-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>843</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="【模板】并查集"><a href="#【模板】并查集" class="headerlink" title="【模板】并查集"></a>【模板】并查集</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>如题，现在有一个并查集，你需要完成合并和查询操作。</p>
+<h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>第一行包含两个整数 $N,M$ ,表示共有 $N$ 个元素和 $M$ 个操作。</p>
+<p>接下来 $M$ 行，每行包含三个整数 $Z_i,X_i,Y_i$ 。</p>
+<p>当 $Z_i=1$ 时，将 $X_i$ 与 $Y_i$ 所在的集合合并。</p>
+<p>当 $Z_i=2$ 时，输出 $X_i$ 与 $Y_i$ 是否在同一集合内，是的输出<br> <code>Y</code> ；否则输出 <code>N</code> 。</p>
+<h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>对于每一个 $Z_i=2$ 的操作，都有一行输出，每行包含一个大写字母，为 <code>Y</code> 或者 <code>N</code> 。</p>
+<h2 id="样例-1"><a href="#样例-1" class="headerlink" title="样例 #1"></a>样例 #1</h2><h3 id="样例输入-1"><a href="#样例输入-1" class="headerlink" title="样例输入 #1"></a>样例输入 #1</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">4 7</span><br><span class="line">2 1 2</span><br><span class="line">1 1 2</span><br><span class="line">2 1 2</span><br><span class="line">1 3 4</span><br><span class="line">2 1 4</span><br><span class="line">1 2 3</span><br><span class="line">2 1 4</span><br></pre></td></tr></table></figure>
+<h3 id="样例输出-1"><a href="#样例输出-1" class="headerlink" title="样例输出 #1"></a>样例输出 #1</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">N</span><br><span class="line">Y</span><br><span class="line">N</span><br><span class="line">Y</span><br></pre></td></tr></table></figure>
+<h2 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h2><p>对于 $15\%$ 的数据，$N \le 10$，$M \le 20$。</p>
+<p>对于 $35\%$ 的数据，$N \le 100$，$M \le 10^3$。</p>
+<p>对于 $50\%$ 的数据，$1\le N \le 10^4$，$1\le M \le 2\times 10^5$。</p>
+<p>对于 $100\%$ 的数据，$1\le N\le 2\times 10^5$，$1\le M\le 10^6$，$1 \le X_i, Y_i \le N$，$Z_i \in \{ 1, 2 \}$。</p>
+<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=(<span class="number">1e5</span>)<span class="number">+5</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">dsu</span>&#123;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; parent,size;</span><br><span class="line">    <span class="comment">//Single-argument constructors must be marked explicit to avoid unintentional implicit conversions</span></span><br><span class="line">    <span class="function"><span class="keyword">explicit</span> <span class="title">dsu</span><span class="params">(<span class="type">int</span> s)</span>:parent(s<span class="number">+1</span>),size(s<span class="number">+1</span>,<span class="number">1</span>)&#123;</span></span><br><span class="line">        <span class="built_in">iota</span>(parent.<span class="built_in">begin</span>(),parent.<span class="built_in">end</span>(),<span class="number">0</span>);<span class="comment">//1,2,...,s-1</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 查询</span></span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">find</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> parent[x]==x?x:parent[x]=<span class="built_in">find</span>(parent[x]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 启发式合并</span></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">unite</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y)</span></span>&#123;</span><br><span class="line">        x=<span class="built_in">find</span>(x),y=<span class="built_in">find</span>(y);</span><br><span class="line">        <span class="keyword">if</span>(x==y)</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">if</span>(size[x]&lt;size[y])</span><br><span class="line">            <span class="built_in">swap</span>(x,y);</span><br><span class="line">        parent[y]=x;</span><br><span class="line">        size[x]+=size[y];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);</span><br><span class="line">    cin.<span class="built_in">tie</span>(<span class="literal">nullptr</span>),cout.<span class="built_in">tie</span>(<span class="literal">nullptr</span>);</span><br><span class="line">    <span class="type">int</span> n,m;</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">    dsu s=<span class="built_in">dsu</span>(n);</span><br><span class="line">    <span class="type">int</span> x,y,z;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;m;i++)&#123;</span><br><span class="line">        cin&gt;&gt;z&gt;&gt;x&gt;&gt;y;</span><br><span class="line">        <span class="keyword">if</span>(z==<span class="number">1</span>)&#123;</span><br><span class="line">            s.<span class="built_in">unite</span>(x,y);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(s.<span class="built_in">find</span>(x)==s.<span class="built_in">find</span>(y))&#123;</span><br><span class="line">                cout&lt;&lt;<span class="string">&#x27;Y&#x27;</span>&lt;&lt;endl;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                cout&lt;&lt;<span class="string">&#x27;N&#x27;</span>&lt;&lt;endl;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="并查集介绍"><a href="#并查集介绍" class="headerlink" title="并查集介绍"></a>并查集介绍</h1><p>并查集是一种数据结构，用于处理一些不交集合并及查询的问题。<br>并查集是森林，每个集合用一个树结构表示，树的根节点代表整个集合。</p>
+<h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">dsu</span>&#123;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; parent,size;</span><br><span class="line">    <span class="comment">// 单参数构造函数必须使用 explicit 关键字进行标记，以避免发生不必要的隐式类型转换。在&lt;numeric&gt;库里</span></span><br><span class="line">    <span class="comment">//这里节点是从1开始到s</span></span><br><span class="line">    <span class="function"><span class="keyword">explicit</span> <span class="title">dsu</span><span class="params">(<span class="type">int</span> s)</span>:parent(s<span class="number">+1</span>),size(s<span class="number">+1</span>,<span class="number">1</span>)&#123;</span></span><br><span class="line">        <span class="built_in">iota</span>(parent.<span class="built_in">begin</span>(),parent.<span class="built_in">end</span>(),<span class="number">0</span>);<span class="comment">//1,2,...,s-1</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="合并"><a href="#合并" class="headerlink" title="合并"></a>合并</h2><p><img src="unite.gif" alt="动画"></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 简单合并</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">simple_unite</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span> </span>&#123;</span><br><span class="line">    parent[<span class="built_in">find</span>(x)] = <span class="built_in">find</span>(y);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 启发式合并</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">unite</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y)</span></span>&#123;</span><br><span class="line">    x=<span class="built_in">find</span>(x),y=<span class="built_in">find</span>(y);</span><br><span class="line">    <span class="keyword">if</span>(x==y)<span class="comment">//在同一个集合里</span></span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">if</span>(size[x]&lt;size[y])</span><br><span class="line">        <span class="built_in">swap</span>(x,y);</span><br><span class="line">    parent[y]=x;</span><br><span class="line">    size[x]+=size[y];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h2><p><img src="find.gif" alt="动画"></p>
+<p>找到了根节点，就顺便把父节点都更新成根节点</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">find</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> parent[x]==x?x:parent[x]=<span class="built_in">find</span>(parent[x]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">erase</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">    --size[<span class="built_in">find</span>(x)];</span><br><span class="line">    parent[x] = x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="移动"><a href="#移动" class="headerlink" title="移动"></a>移动</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">move</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> fx = <span class="built_in">find</span>(x), fy = <span class="built_in">find</span>(y);</span><br><span class="line">    <span class="keyword">if</span> (fx == fy) <span class="keyword">return</span>;</span><br><span class="line">    parent[x] = fy;</span><br><span class="line">    --size[fx], ++size[fy];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="总代码"><a href="#总代码" class="headerlink" title="总代码"></a>总代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">dsu</span>&#123;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; parent,size;</span><br><span class="line">    <span class="function"><span class="keyword">explicit</span> <span class="title">dsu</span><span class="params">(<span class="type">int</span> s)</span>:parent(s<span class="number">+1</span>),size(s<span class="number">+1</span>,<span class="number">1</span>)&#123;</span></span><br><span class="line">        <span class="built_in">iota</span>(parent.<span class="built_in">begin</span>(),parent.<span class="built_in">end</span>(),<span class="number">0</span>);<span class="comment">//1,2,...,s-1</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 查询</span></span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">find</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> parent[x]==x?x:parent[x]=<span class="built_in">find</span>(parent[x]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 合并</span></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">simple_unite</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span> </span>&#123;</span><br><span class="line">        parent[<span class="built_in">find</span>(x)] = <span class="built_in">find</span>(y);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 启发式合并</span></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">unite</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y)</span></span>&#123;</span><br><span class="line">        <span class="comment">//找到根结点</span></span><br><span class="line">        x=<span class="built_in">find</span>(x),y=<span class="built_in">find</span>(y);</span><br><span class="line">        <span class="comment">//在同一个集合里</span></span><br><span class="line">        <span class="keyword">if</span>(x==y)</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">if</span>(size[x]&lt;size[y])</span><br><span class="line">            <span class="built_in">swap</span>(x,y);</span><br><span class="line">        parent[y]=x;</span><br><span class="line">        size[x]+=size[y];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//删除</span></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">erase</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">        --size[<span class="built_in">find</span>(x)];</span><br><span class="line">        parent[x] = x;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//移动</span></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">move</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> fx = <span class="built_in">find</span>(x), fy = <span class="built_in">find</span>(y);</span><br><span class="line">        <span class="keyword">if</span> (fx == fy) <span class="keyword">return</span>;</span><br><span class="line">        parent[x] = fy;</span><br><span class="line">        --size[fx], ++size[fy];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -3324,113 +3439,6 @@ h1 {
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.misaka-xxw.github.io/2024/11/04/cx-Freeze/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Misaka-xxw">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Misaka-xxw的博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Misaka-xxw的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/11/04/cx-Freeze/" class="post-title-link" itemprop="url">cx_Freeze:Python打包成可执行文件</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-11-04 18:20:46" itemprop="dateCreated datePublished" datetime="2024-11-04T18:20:46+08:00">2024-11-04</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-01-21 19:04:59" itemprop="dateModified" datetime="2025-01-21T19:04:59+08:00">2025-01-21</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>305</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>之前Pyinstaller打包失败，所以换成cx-Freeze打包。</p>
-<p><a target="_blank" rel="noopener" href="https://cx-freeze.readthedocs.io/en/latest/script.html">官网</a>写的很清楚。<br>最简单粗暴的打包是这样的，可执行文件和pyinstaller一样生成在dist文件夹里</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cxFreeze main.py</span><br></pre></td></tr></table></figure>
-<p>例如：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">cxfreeze --script hello.py --target-dir dist</span><br><span class="line"></span><br><span class="line">--script=要打包的主py文件</span><br><span class="line">--init-script=开始启动的文件，如果没写绝对路径的话，会去cx_Freeze package的根目录里找</span><br><span class="line">--base=NAME, --base-name=NAME</span><br><span class="line">--target-name=生成可执行文件的名字，不要包含路径</span><br><span class="line">--target-dir=生成可执行文件所在目录，默认为dist</span><br><span class="line">--icon=图标</span><br><span class="line">--shortcut-name=快捷方式的名字（MSI）</span><br><span class="line">--shortcut-dir=MSI安装包</span><br></pre></td></tr></table></figure>
-<p>如果不想出现控制台窗口的话：就加上<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--base-name=&quot;win32gui&quot;</span><br></pre></td></tr></table></figure><br>e.g.<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cxfreeze --script main.py --target-dir dist --base-name=&quot;win32gui&quot;</span><br></pre></td></tr></table></figure></p>
-<p>只打包了main.py,其它文件没有被打包上。copy到<br>每次都要敲命令行非常麻烦，新建一个bat文件批量复制，例如：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> <span class="string">&quot;root_path=%~dp0&quot;</span></span><br><span class="line">cxFreeze --script main.py --icon=%root_path%Assets\icons\logo_orange.ico  --target-dir dist --base-name=<span class="string">&quot;win32gui&quot;</span></span><br><span class="line"><span class="built_in">set</span> exe_path=%root_path%dist</span><br><span class="line">XCOPY %root_path%\Assets\ %exe_path%\Assets\ /E /I</span><br><span class="line">XCOPY %root_path%\Temp\ %exe_path%\Temp\ /E /I</span><br><span class="line">XCOPY %root_path%\Templates\ %exe_path%\Templates\ /E /I</span><br><span class="line">XCOPY %root_path%\Views\ %exe_path%\Views\ /E /I</span><br><span class="line">XCOPY %root_path%\Sqlite\ %exe_path%\Sqlite\ /E /I</span><br><span class="line">XCOPY %root_path%\.venv\Lib\site-packages\sqlalchemy\ %exe_path%\lib\sqlalchemy\/E /I</span><br><span class="line"><span class="built_in">echo</span> END!</span><br><span class="line">pause</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
@@ -3455,14 +3463,14 @@ h1 {
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">30k</span>
+    <span title="站点总字数">31k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">1:49</span>
+    <span title="站点阅读时长">1:52</span>
   </span>
 </div>
 <div class="busuanzi-count">
