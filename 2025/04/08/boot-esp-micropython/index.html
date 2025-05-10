@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.misaka-xxw.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="网上的教程，包括官方的教程不太适用，自己摸索了一遍 下载安装驱动有两种芯片，看你的小芯片上写的是CP2102还是CH340G👀（两个小按键之间），选择不同的驱动。 CP2102芯片CP2102驱动下载地址：https:&#x2F;&#x2F;www.silabs.com&#x2F;developer-tools&#x2F;usb-to-uart-bridge-vcp-drivers?tab&#x3D;downloads选择CP210x Wind">
+<meta property="og:type" content="article">
+<meta property="og:title" content="windows环境下给esp8266刷Micropython">
+<meta property="og:url" content="http://www.misaka-xxw.github.io/2025/04/08/boot-esp-micropython/index.html">
+<meta property="og:site_name" content="Misaka-xxw的博客">
+<meta property="og:description" content="网上的教程，包括官方的教程不太适用，自己摸索了一遍 下载安装驱动有两种芯片，看你的小芯片上写的是CP2102还是CH340G👀（两个小按键之间），选择不同的驱动。 CP2102芯片CP2102驱动下载地址：https:&#x2F;&#x2F;www.silabs.com&#x2F;developer-tools&#x2F;usb-to-uart-bridge-vcp-drivers?tab&#x3D;downloads选择CP210x Wind">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://www.misaka-xxw.github.io/2025/04/08/boot-esp-micropython/cp210.png">
+<meta property="og:image" content="http://www.misaka-xxw.github.io/2025/04/08/boot-esp-micropython/com.png">
+<meta property="og:image" content="http://www.misaka-xxw.github.io/2025/04/08/boot-esp-micropython/firmware.png">
+<meta property="og:image" content="http://www.misaka-xxw.github.io/2025/04/08/boot-esp-micropython/thonny1.png">
+<meta property="og:image" content="http://www.misaka-xxw.github.io/2025/04/08/boot-esp-micropython/thonny2.png">
+<meta property="og:image" content="http://www.misaka-xxw.github.io/2025/04/08/boot-esp-micropython/blink.png">
+<meta property="article:published_time" content="2025-04-08T01:31:57.000Z">
+<meta property="article:modified_time" content="2025-05-10T14:17:49.513Z">
+<meta property="article:author" content="Misaka-xxw">
+<meta property="article:tag" content="MicroPython">
+<meta property="article:tag" content="esp">
+<meta property="article:tag" content="嵌入式">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.misaka-xxw.github.io/2025/04/08/boot-esp-micropython/cp210.png">
+
+
+<link rel="canonical" href="http://www.misaka-xxw.github.io/2025/04/08/boot-esp-micropython/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://www.misaka-xxw.github.io/2025/04/08/boot-esp-micropython/","path":"2025/04/08/boot-esp-micropython/","title":"windows环境下给esp8266刷Micropython"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>windows环境下给esp8266刷Micropython | Misaka-xxw的博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Misaka-xxw的博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">昨日种种，皆成今我</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E9%A9%B1%E5%8A%A8"><span class="nav-number">1.</span> <span class="nav-text">下载安装驱动</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CP2102%E8%8A%AF%E7%89%87"><span class="nav-number">1.1.</span> <span class="nav-text">CP2102芯片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CH340G%E8%8A%AF%E7%89%87"><span class="nav-number">1.2.</span> <span class="nav-text">CH340G芯片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tips"><span class="nav-number">1.3.</span> <span class="nav-text">Tips</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%9E%E6%8E%A5%E8%AE%BE%E5%A4%87"><span class="nav-number">2.</span> <span class="nav-text">连接设备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E5%9B%BA%E4%BB%B6"><span class="nav-number">3.</span> <span class="nav-text">下载固件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BDpython"><span class="nav-number">4.</span> <span class="nav-text">下载python</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%94%A8pip%E5%AE%89%E8%A3%85esptool"><span class="nav-number">5.</span> <span class="nav-text">用pip安装esptool</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85ide"><span class="nav-number">6.</span> <span class="nav-text">下载安装ide</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hello-world"><span class="nav-number">7.</span> <span class="nav-text">Hello world!</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Blink"><span class="nav-number">8.</span> <span class="nav-text">Blink!</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">8.1.</span> <span class="nav-text"></span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Misaka-xxw</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">34</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.misaka-xxw.github.io/2025/04/08/boot-esp-micropython/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Misaka-xxw">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Misaka-xxw的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="windows环境下给esp8266刷Micropython | Misaka-xxw的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          windows环境下给esp8266刷Micropython
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-04-08 09:31:57" itemprop="dateCreated datePublished" datetime="2025-04-08T09:31:57+08:00">2025-04-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-05-10 22:17:49" itemprop="dateModified" datetime="2025-05-10T22:17:49+08:00">2025-05-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>867</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>网上的教程，包括官方的教程不太适用，自己摸索了一遍</p>
+<h1 id="下载安装驱动"><a href="#下载安装驱动" class="headerlink" title="下载安装驱动"></a>下载安装驱动</h1><p>有两种芯片，看你的小芯片上写的是CP2102还是CH340G👀（两个小按键之间），选择不同的驱动。</p>
+<h2 id="CP2102芯片"><a href="#CP2102芯片" class="headerlink" title="CP2102芯片"></a>CP2102芯片</h2><p>CP2102驱动下载地址：<br><a target="_blank" rel="noopener" href="https://www.silabs.com/developer-tools/usb-to-uart-bridge-vcp-drivers?tab=downloads">https://www.silabs.com/developer-tools/usb-to-uart-bridge-vcp-drivers?tab=downloads</a><br>选择<code>CP210x Windows Drivers</code>下载，解压。<br><img src="cp210.png" alt="图片"><br>然后安装。<br>笔记本电脑选：CP210xVCPInstaller_x64.exe<br>台式电脑（诶？）选：CP210xVCPInstaller_x86.exe</p>
+<h2 id="CH340G芯片"><a href="#CH340G芯片" class="headerlink" title="CH340G芯片"></a>CH340G芯片</h2><p>驱动下载地址：<br><a target="_blank" rel="noopener" href="https://www.arduined.eu/ch340-windows-10-driver-download/">https://www.arduined.eu/ch340-windows-10-driver-download/</a><br>点击蓝字CH340 driver for Windows 10下载，解压。点SETUP.EXE安装。</p>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><p>如果你没有放大镜，看不清楚的话，你也可以两个都装，因为非常好装。</p>
+<h1 id="连接设备"><a href="#连接设备" class="headerlink" title="连接设备"></a>连接设备</h1><p>长按Esp板子上的<code>boot</code>按键，同时插上电脑，并抬起按键。<br>同时按下组合键：“Win + R”，打开“运行”对话框，在其中输入“devmgmt.msc”，点击“确定”即可打开“设备管理器”。点开端口。应该能看到包含芯片名称的一个端口，如图<br><img src="com.png" alt="图片"><br>如果没有的话，首先不要怀疑驱动，建议你先多换几个USB线，我换了<strong>三根</strong>啊<strong>三根</strong>。。。<br>然后记住是COM几，我的是COM4，下面的步骤记得替换。</p>
+<h1 id="下载固件"><a href="#下载固件" class="headerlink" title="下载固件"></a>下载固件</h1><p>最新固件网址：<br><a target="_blank" rel="noopener" href="https://micropython.org/download/ESP8266_GENERIC/">https://micropython.org/download/ESP8266_GENERIC/</a><br>直接找到<br><strong>Firmware</strong><br><strong>Releases</strong><br>初学者下载最上方的bin文件即可（带latest标识）。本人下载的时候版本是v1.24.1 (2024-11-29) .bin<br><img src="firmware.png" alt="图片"></p>
+<h1 id="下载python"><a href="#下载python" class="headerlink" title="下载python"></a>下载python</h1><p>确保已安装Python 3.7或更高版本。虽然官网说， Python 2.7和Python 3.4以上都可以，但是你也不希望被同学知道你还在用老版本的Python吧（不是）。</p>
+<p>Python官网：<a target="_blank" rel="noopener" href="https://www.python.org/">https://www.python.org/</a></p>
+<h1 id="用pip安装esptool"><a href="#用pip安装esptool" class="headerlink" title="用pip安装esptool"></a>用pip安装esptool</h1><p>首先你有可能要更新pip。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python.exe -m pip install --upgrade pip</span><br></pre></td></tr></table></figure></p>
+<p>接着<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install esptool</span><br></pre></td></tr></table></figure></p>
+<p>找到你Python的<code>Scripts</code>文件夹（里面应该有个<code>esptool.exe</code>），加上记住它的路径。再在后面加上<code>esptool</code>。</p>
+<details>
+<summary>找到esptool的一种方式</summary>
+
+<details>
+<summary>cmd怎么打开</summary>
+    win+R打开运行，输入cmd，回车
+</details>
+
+<p>在cmd，或者Vscode bash或者Pycharm bash或者powershell或者别的里，输入<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip --version</span><br></pre></td></tr></table></figure></p>
+<p>我这里显示了<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip 25.0.1 from D:\GitHub\Smart-Aquaculture-esp8266\.venv\lib\site-packages\pip (python 3.10)</span><br></pre></td></tr></table></figure></p>
+<p>看到这个<code>D:\GitHub\Smart-Aquaculture-esp8266\.venv\lib\site-packages\pip</code>，去掉<code>lib\site-packages\pip</code>，换成<code>Scripts\esptool</code>，即<code>D:\GitHub\Smart-Aquaculture-esp8266\.venv\Scripts\esptool</code>。等会儿要用。</p>
+<p>&lt;/details&gt;</p>
+<p>下面的<code>.venv/Scripts/esptool</code>替换成你的路径<br>因为我建了虚拟环境，就用相对路径了，所以后面就用<code>.venv/Scripts/esptool</code>简化写了。</p>
+<p>对于以下两个命令，你需要更改三个地方：</p>
+<ol>
+<li><code>.venv/Scripts/esptool</code>改成你在<strong>用pip安装esptool</strong>一步找到esptool的路径。</li>
+<li><code>COM4</code>改成在<strong>连接设备</strong>一步找到的COM几</li>
+<li><code>D:\software\ESP8266_GENERIC-20241129-v1.24.1.bin</code>改成你在<strong>下载固件</strong>一步下载的固件的路径。</li>
+</ol>
+<p>打开cmd，先擦除闪存<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.venv/Scripts/esptool --port COM4 erase_flash</span><br></pre></td></tr></table></figure><br>然后烧录固件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.venv/Scripts/esptool --port COM4  --baud 460800 write_flash --flash_size=detect 0  D:\software\ESP8266_GENERIC-20241129-v1.24.1.bin</span><br></pre></td></tr></table></figure></p>
+<h1 id="下载安装ide"><a href="#下载安装ide" class="headerlink" title="下载安装ide"></a>下载安装ide</h1><p>推荐thonny。<br>下载地址：<a target="_blank" rel="noopener" href="https://thonny.org/">https://thonny.org/</a><br>虽然这个软件某不可言说的方面有点抽象，但是是确实好用。也可以选择别的ide。</p>
+<p>如图：<br><img src="thonny1.png" alt="图片"></p>
+<p><img src="thonny2.png" alt="图片"></p>
+<h1 id="Hello-world"><a href="#Hello-world" class="headerlink" title="Hello world!"></a>Hello world!</h1><p>成功打开之后，Ctrl+N新建main.py文件，到了喜闻乐见的Hello world环节<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;hello world!&quot;</span>)</span><br></pre></td></tr></table></figure></p>
+<p>F5运行，看看能不能hello world。</p>
+<h1 id="Blink"><a href="#Blink" class="headerlink" title="Blink!"></a>Blink!</h1><h2 id=""><a href="#" class="headerlink" title=""></a><img src="blink.png" alt="图片"></h2><p>参考网址：<br><a target="_blank" rel="noopener" href="https://docs.micropython.org/en/latest/esp8266/tutorial/intro.html">https://docs.micropython.org/en/latest/esp8266/tutorial/intro.html</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/MicroPython/" rel="tag"># MicroPython</a>
+              <a href="/tags/esp/" rel="tag"># esp</a>
+              <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" rel="tag"># 嵌入式</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/04/02/zi2zi-chain/" rel="prev" title="zi2zi-chain:字体机器学习环境配置">
+                  <i class="fa fa-angle-left"></i> zi2zi-chain:字体机器学习环境配置
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/10/LanqiaoCupProvince2025A1/" rel="next" title="2025年蓝桥杯省赛C/C++大学A1组代码">
+                  2025年蓝桥杯省赛C/C++大学A1组代码 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Misaka-xxw</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">53k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">3:13</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/Misaka-xxw" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"misaka-xxw","repo":"misaka-xxw.github.io","client_id":"Ov23liNWqCyoWMWQ8Qrm","client_secret":"2972e4f4b47100b82f2aaf4023919d3f8d22b7cd","admin_user":"misaka-xxw","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"72b70a8e9b623ac8d8b36809a83e4e1e"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

@@ -147,7 +147,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -158,7 +158,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-count">34</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -175,6 +175,486 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.misaka-xxw.github.io/2024/09/27/markdown/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Misaka-xxw">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Misaka-xxw的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Misaka-xxw的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/09/27/markdown/" class="post-title-link" itemprop="url">Markdown最基础格式</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-09-27 09:15:36" itemprop="dateCreated datePublished" datetime="2024-09-27T09:15:36+08:00">2024-09-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-01-21 15:34:24" itemprop="dateModified" datetime="2025-01-21T15:34:24+08:00">2025-01-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Markdown/" itemprop="url" rel="index"><span itemprop="name">Markdown</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>262</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><del>年少不懂事，做mikumikudance时期，用记事本打开readme点md</del><br>我一般用vscode看，其实用jetbrain的软件也可以<br>vscode配这三个插件：<img src="markdown-plugins.png" alt="alt text"><br>完美。<a target="_blank" rel="noopener" href="https://www.runoob.com/markdown/md-tutorial.html">下载安装和学习这个就可以了</a><br><del>既然这就是个md文件，所以还要简单记录一下格式吗？</del><br><del>要的，我抄一下</del><br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"># 一级标题</span></span><br><span class="line"><span class="section">## 二级标题</span></span><br><span class="line"><span class="section">### 三级标题</span></span><br><span class="line"><span class="section">#### 四级标题</span></span><br><span class="line"><span class="section">##### 五级标题</span></span><br><span class="line"><span class="section">###### 六级标题</span></span><br><span class="line"></span><br><span class="line">---</span><br><span class="line">上面是划线，如果划线上有字会变成二级标题。一堆=上面有字是一级标题。</span><br><span class="line">各种分割线</span><br><span class="line"><span class="strong">***</span></span><br><span class="line"><span class="strong"></span></span><br><span class="line"><span class="strong">* * *</span></span><br><span class="line"><span class="strong"></span></span><br><span class="line"><span class="strong">**</span><span class="strong">***</span></span><br><span class="line"><span class="strong"></span></span><br><span class="line"><span class="strong">- - -</span></span><br><span class="line"><span class="strong"></span></span><br><span class="line"><span class="strong">----------</span></span><br><span class="line"><span class="strong"><span class="emphasis">*斜体文本*</span></span></span><br><span class="line"><span class="strong"><span class="emphasis">_斜体文本_</span></span></span><br><span class="line"><span class="strong">**</span>粗体文本**</span><br><span class="line"><span class="strong">__粗体文本__</span></span><br><span class="line"><span class="strong">**<span class="emphasis">*粗斜体文本*</span>**</span></span><br><span class="line"><span class="strong">__<span class="emphasis">_粗斜体文本_</span>__</span></span><br><span class="line">~浅一点的字体~</span><br><span class="line">~~删除线，非常爱用~~</span><br><span class="line">==高光==</span><br><span class="line"></span><br><span class="line"><span class="bullet">*</span> 第一项</span><br><span class="line"><span class="bullet">*</span> 第二项</span><br><span class="line"><span class="bullet">*</span> 第三项</span><br><span class="line"></span><br><span class="line"><span class="bullet">+</span> 第一项</span><br><span class="line"><span class="bullet">+</span> 第二项</span><br><span class="line"><span class="bullet">+</span> 第三项</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> 第一项</span><br><span class="line"><span class="bullet">-</span> 第二项</span><br><span class="line"><span class="bullet">-</span> 第三项</span><br><span class="line"></span><br><span class="line"><span class="bullet">1.</span> 第一项</span><br><span class="line"><span class="bullet">2.</span> 第二项</span><br><span class="line"><span class="bullet">3.</span> 第三项</span><br><span class="line"></span><br><span class="line"><span class="quote">&gt; 最外层</span></span><br><span class="line"><span class="quote">&gt; &gt; 第一层嵌套</span></span><br><span class="line"><span class="quote">&gt; &gt; &gt; 第二层嵌套</span></span><br><span class="line"></span><br><span class="line">还有现在在用的是区块。算了不抄了，直接看菜鸟教程吧。</span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.misaka-xxw.github.io/2024/05/16/git-standard/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Misaka-xxw">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Misaka-xxw的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Misaka-xxw的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/05/16/git-standard/" class="post-title-link" itemprop="url">git速查表和提交标准</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-05-16 23:44:56" itemprop="dateCreated datePublished" datetime="2024-05-16T23:44:56+08:00">2024-05-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-01-21 15:45:53" itemprop="dateModified" datetime="2025-01-21T15:45:53+08:00">2025-01-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>182</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="git分支操作"><a href="#git分支操作" class="headerlink" title="git分支操作"></a>git分支操作</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/chen134225/article/details/95475960">git分支操作 可以当速查表看看</a></p>
+<p>新建一个空白分支</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout --orphan newBranchName</span><br></pre></td></tr></table></figure>
+<h1 id="签名认证"><a href="#签名认证" class="headerlink" title="签名认证"></a>签名认证</h1><p>待填坑</p>
+<h1 id="git-commit-message标准"><a href="#git-commit-message标准" class="headerlink" title="git commit message标准"></a>git commit message标准</h1><h2 id="基本格式"><a href="#基本格式" class="headerlink" title="基本格式"></a>基本格式</h2><p><strong>type</strong> + 描述</p>
+<h2 id="type类型"><a href="#type类型" class="headerlink" title="type类型"></a>type类型</h2><ul>
+<li><strong>feat</strong> 新功能</li>
+<li>fix/to <ul>
+<li>fix <strong>产生diff</strong>并自动修复问题。适合一次提交直接修复格式</li>
+<li>to <strong>只产生diff</strong>不自动修复此问题。适合于多次提交。最终修复问题提交时使用fix</li>
+</ul>
+</li>
+<li>docs 提交文档</li>
+<li>style 格式 不影响代码运行的变动 </li>
+<li>refactor 重构</li>
+<li>perf 优化</li>
+<li>test 测试 单元测试</li>
+<li>chore 构建过程或辅助工具的变动</li>
+<li>revert 回滚到上一个版本</li>
+<li>merge 代码合并</li>
+<li>sync 同步主线或分支的bug</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.misaka-xxw.github.io/2024/05/16/pip/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Misaka-xxw">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Misaka-xxw的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Misaka-xxw的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/05/16/pip/" class="post-title-link" itemprop="url">pip微记录：更新、设置镜像源和依赖</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-05-16 23:44:56" itemprop="dateCreated datePublished" datetime="2024-05-16T23:44:56+08:00">2024-05-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-01-21 15:49:39" itemprop="dateModified" datetime="2025-01-21T15:49:39+08:00">2025-01-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>121</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="更新pip"><a href="#更新pip" class="headerlink" title="更新pip"></a>更新pip</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python.exe -m pip install --upgrade pip</span><br></pre></td></tr></table></figure>
+<h1 id="镜像源"><a href="#镜像源" class="headerlink" title="镜像源"></a>镜像源</h1><ul>
+<li>经常install时卡顿，一般会用<a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn">清华大学镜像源</a>。</li>
+<li>单个安装使用镜像源<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install 【要安装的库名】 -i https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure></li>
+<li>永久设置镜像源<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
+<h1 id="requirement-txt"><a href="#requirement-txt" class="headerlink" title="requirement.txt"></a>requirement.txt</h1></li>
+<li>有一堆要安装的，要一个一个pip Install？</li>
+<li>不，把requirement.txtre放到一个文件夹里，cd到这个文件夹，然后<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install -r requirements.txt</span><br></pre></td></tr></table></figure>
+导出分享给别人：<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip list --format=freeze &gt; requirements.txt</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.misaka-xxw.github.io/2024/05/16/NineChapterDreamland/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Misaka-xxw">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Misaka-xxw的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Misaka-xxw的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/05/16/NineChapterDreamland/" class="post-title-link" itemprop="url">《九章绮梦》游戏初开发日记（一）</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-05-16 23:36:53" itemprop="dateCreated datePublished" datetime="2024-05-16T23:36:53+08:00">2024-05-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-01-21 14:36:37" itemprop="dateModified" datetime="2025-01-21T14:36:37+08:00">2025-01-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Unity/" itemprop="url" rel="index"><span itemprop="name">Unity</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.7k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>6 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>写在前面：<br>我的第一次游戏开发。这里是当年的记录，都是新手踩坑，确实没有什么技术含量。尽可能地保留原汁原味😂。</p>
+<p>游戏名：九章绮梦<br>unity引擎版本：2022.3.23f1<br>注意：润色部分要在保证程序编完的情况下，再润色。<br>Unity调用命令行，另开新的一篇写。</p>
+<h2 id="程序开发备忘录"><a href="#程序开发备忘录" class="headerlink" title="程序开发备忘录"></a>程序开发备忘录</h2><h3 id="开始任务"><a href="#开始任务" class="headerlink" title="开始任务"></a>开始任务</h3><ol>
+<li>导入图片（重要）<br>像素素材，为了防止像素模糊，一定要勾选这两项：<br>Filter Mode: Point(No filter)<br>Compression: None</li>
+<li><del>润色：第一章还没有做速度控制器。主速度变量在PlayerController。要更改MoveLandscape和SceneScroller</del>已完成</li>
+<li>重要：主摄像头，要固定下来，现在比例不对！据说要用GUI什么的。</li>
+<li>场景滚动，是用我建立的滚动材料Scroller.mat，再加上滚动脚本即可。注意图片素材模式要是multiple，不能是simple。</li>
+<li>panel（暂停后的UI）还没做。先写逻辑，这里估计要放点儿知识文字。</li>
+<li>美术缺很多素材！</li>
+<li>音频准备了一点点，最后可能还要收集，去找免版权的，我买了一点。</li>
+<li>润色：加一个跑步公里数。古代单位估计得。</li>
+<li>重要：游戏玩法设计、存档系统。使用json还是……还有一个剧情系统。剧情估计要用json存，但是在脚本存也可以吧。</li>
+<li><del>捡到金币的音频已经找到了，还没绑定。</del>还有跳跃的音频还没找到合适的。</li>
+<li>说明：tree绑定了随风摇动的shader。</li>
+<li>说明：看剧本，想一下如何融入数学元素。</li>
+<li>润色：live2D系统，chatGLM调用。</li>
+<li><del>未修正：角色和场景速度不对</del>2023/4/6已写速度</li>
+</ol>
+<h3 id="2024-4-6"><a href="#2024-4-6" class="headerlink" title="2024/4/6"></a><mark>2024/4/6</mark></h3><ol>
+<li>学到了oop里的“单例”用法。虽然还没用。</li>
+</ol>
+<h3 id="2024-4-11"><a href="#2024-4-11" class="headerlink" title="2024/4/11"></a><mark>2024/4/11</mark></h3><h4 id="L要做的部分"><a href="#L要做的部分" class="headerlink" title="L要做的部分"></a>L要做的部分</h4><ol>
+<li>看懂已经写的ButtonPause.cs,MoveLandscape.cs,PlayerController.cs,RandomObject.cs,SpeedController.cs,SceneScroller.cs,TextCoin.cs仿照FangTianScence.unity，做后面的场景：SuMi粟米，Junshu均输，GouGu勾股。其中勾股部分是用屋顶素材拼的，和其它关不一样，经常跳跃。在PlayerController.cs中仿照金币写一个被敌人碰扣血的函数。后面可能要做一个主人公发起攻击的。</li>
+<li>看上面的记录内容。</li>
+<li>收集物品的脚本。</li>
+<li>做一个存档脚本，存下关卡通关情况，每一关的最高纪录、人物金币收集情况、人物“知识点”。</li>
+<li>准备做UI。网上能找到代码怎么写。<h4 id="未来一周规划"><a href="#未来一周规划" class="headerlink" title="未来一周规划"></a>未来一周规划</h4></li>
+</ol>
+<h5 id="程序"><a href="#程序" class="headerlink" title="程序"></a>程序</h5><ol>
+<li>把剧情写进脚本，不用json了，直接用list数据结构包一个class。一个一个读取。然而为了美好的未来，我还是用了json()</li>
+</ol>
+<h5 id="美术"><a href="#美术" class="headerlink" title="美术"></a>美术</h5><ol>
+<li>画几张聊天背景图，好，就拍照再加滤镜！</li>
+<li>主页图，经费充足的话用live2d吗？</li>
+<li>地图，这个重要捏</li>
+<li>商店</li>
+<li>像素风：第一关要收集的四个物品，第二关收集的米袋，第四关飞镖。一个暂停界面，只需要个框！最好和按钮一个色卡<h4 id="unity-live2d使用笔记"><a href="#unity-live2d使用笔记" class="headerlink" title="unity live2d使用笔记"></a>unity live2d使用笔记</h4>建模过程踩的坑不用提了，因为我忘记记录了<br>目线跟踪、眨眼、动画播放要挂载的脚本<br><img src="image-1.png" alt="图片"><br>其中脸部参数可以再调大一点<br><img src="image-2.png" alt="图片"><br><img src="image-3.png" alt="图片"><br><img src="image-4.png" alt="图片"><br>这个系列：<a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_68267247/article/details/132415298">Unity制作Live2D（三）头部眼睛跟随鼠标</a><br>总之要把动画全部k帧k出来再导入。<h3 id="2024-4-12"><a href="#2024-4-12" class="headerlink" title="2024/4/12"></a><mark>2024/4/12</mark></h3><h4 id="关于JSON"><a href="#关于JSON" class="headerlink" title="关于JSON"></a>关于JSON</h4>感觉难用，但是就这样吧。<br>在老C那儿查到这些避雷的地方：</li>
+<li>用于接收的JSON实体类需要声明[Serializable] 序列化。</li>
+<li>使用Unity自带方法时，实体类如果是属性成员（public bool has_more{get;set;}）的话，在序列化的时候会缺失这些成员，导致解析不出来。将属性改为字段即可。</li>
+<li>如果解析的对象是数组，自带的不能成功解析，可以人为将其封装为JSON对象。 <mark>对！数组xx的不能不能解析！（愤怒）根本改不好！！！</mark><br>但是改着改着它就从这样<img src="b49bb24c6da2b1c83004c885d481ea73.png" alt="图片">变成了这样<img src="image-5.png" alt="图片"><br>我不理解，完全忘记自己改了什么，并且大受震撼。。。<del>unity我的祖宗，你编译快一点儿</del><br>所以这个有什么用来着？<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="keyword">get</span>;<span class="keyword">set</span>;&#125;</span><br></pre></td></tr></table></figure>
+2024/4/15补充：<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">某个人工智能“主动”跟我说：</span><br><span class="line">In C<span class="meta">#, the &#123; get; set; &#125; syntax is used to <span class="keyword">define</span> a property. Let’s break it down:</span></span><br><span class="line"><span class="keyword">get</span>: This part defines the getter <span class="keyword">for</span> the property. It allows you to retrieve the <span class="keyword">value</span> of the property. When you access the property, the code inside the <span class="keyword">get</span> block <span class="keyword">is</span> executed, <span class="keyword">and</span> the result <span class="keyword">is</span> returned.</span><br><span class="line"><span class="keyword">set</span>: This part defines the setter <span class="keyword">for</span> the property. It allows you to assign a <span class="keyword">value</span> to the property. When you assign a <span class="keyword">value</span> to the property, the code inside the <span class="keyword">set</span> block <span class="keyword">is</span> executed, <span class="keyword">and</span> the <span class="keyword">value</span> <span class="keyword">is</span> stored.</span><br><span class="line">Here’s an example of how you might use <span class="keyword">this</span> syntax to create a simple property <span class="keyword">in</span> C<span class="meta">#:</span></span><br><span class="line">;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Person</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// Private field to store the value</span></span><br><span class="line">    <span class="keyword">private</span> <span class="built_in">string</span> _name;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Property with getter and setter</span></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> Name</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">get</span> &#123; <span class="keyword">return</span> _name; &#125;</span><br><span class="line">        <span class="keyword">set</span> &#123; _name = <span class="keyword">value</span>; &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">In <span class="keyword">this</span> example:</span><br><span class="line"></span><br><span class="line">The Name property has both a getter <span class="keyword">and</span> a setter.</span><br><span class="line">When you read person.Name, it calls the <span class="keyword">get</span> block <span class="keyword">and</span> returns the stored _name <span class="keyword">value</span>.</span><br><span class="line">When you assign a <span class="keyword">value</span> to person.Name, it calls the <span class="keyword">set</span> block <span class="keyword">and</span> updates the _name field.</span><br><span class="line">Feel free to adapt <span class="keyword">this</span> pattern to your specific use <span class="keyword">case</span>! 😊</span><br></pre></td></tr></table></figure>
+于是莫名其妙的，我们就可以SetTrigger播放人物动画了，好耶！<br>顺便一提，不知道哪儿冲突了，小九的微笑眯眯眼和什么冲突了，悲()<br>假如此时，能来个很厉害的美工就太美妙了，再来亿点儿live2D模型吧！！<h3 id="2024-4-14"><a href="#2024-4-14" class="headerlink" title="2024/4/14"></a><mark>2024/4/14</mark></h3>做了剧本一个字一个字播放<h4 id="关于c-的oop"><a href="#关于c-的oop" class="headerlink" title="关于c#的oop"></a>关于c#的oop</h4>我忘记我要记什么oop了。。。<h3 id="2024-4-15"><a href="#2024-4-15" class="headerlink" title="2024/4/15"></a><mark>2024/4/15</mark></h3></li>
+<li>摄像头比例是Camera.main.aspect。但我还是搞不好啊！</li>
+<li>重新测试了python chatglm角色ai聊天，写了unity和python通信的脚本。<br>为什么要用cmd.exe呢？因为太菜了，看到socket的代码望而生畏，觉得cmd比较好搞，遂学之。python那边就是用我们的老朋友sys了。<br>这里是用Thread类，网上说不用的话会报错。查了一下概念：<br>线程(Thread)是进程中一个单一的顺序控制流程。线程是进程中的实体。一个进程可以有多个线程，一个线程必须有一个父进程。<h3 id="2024-4-19"><a href="#2024-4-19" class="headerlink" title="2024/4/19"></a><mark>2024/4/19</mark></h3>这几天都在画画。但这是程序开发备忘录。<h3 id="2024-4-20"><a href="#2024-4-20" class="headerlink" title="2024/4/20"></a><mark>2024/4/20</mark></h3></li>
+<li>video的导入遇到了困难。还好格式转换解决了。（后面补充一下，还是不行，有bug）</li>
+<li>添加了游戏知识卡，虽然丑丑的。</li>
+<li>比例还是有问题。</li>
+<li>找了画手朋友画了些东西。<h3 id="2024-4-忘了"><a href="#2024-4-忘了" class="headerlink" title="2024/4/忘了"></a><mark>2024/4/忘了</mark></h3>记得时间戳暂停了恢复回来啊喂！还有ai板块编译出来就寄了，以后要想办法解决！</li>
+</ol>
+<h2 id="程序心得记录"><a href="#程序心得记录" class="headerlink" title="程序心得记录"></a>程序心得记录</h2><p>累死了，最后一天疯狂修bug，不写啦</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -482,14 +962,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">38k</span>
+    <span title="站点总字数">53k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">2:19</span>
+    <span title="站点阅读时长">3:13</span>
   </span>
 </div>
 <div class="busuanzi-count">
