@@ -259,7 +259,7 @@ mjx-container[display="true"] + br {
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-count">33</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -270,7 +270,7 @@ mjx-container[display="true"] + br {
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">37</span>
+        <span class="site-state-item-count">39</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -287,6 +287,892 @@ mjx-container[display="true"] + br {
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.misaka-xxw.github.io/2025/01/31/ffmpeg/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Misaka-xxw">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Misaka-xxw的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Misaka-xxw的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/01/31/ffmpeg/" class="post-title-link" itemprop="url">ffmpeg处理视频、音频等多媒体文件笔记</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-01-31 20:35:44" itemprop="dateCreated datePublished" datetime="2025-01-31T20:35:44+08:00">2025-01-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-05-10 21:28:33" itemprop="dateModified" datetime="2025-05-10T21:28:33+08:00">2025-05-10</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>233</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>一边使用，一边记录。</p>
+<h1 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h1><h2 id="windows"><a href="#windows" class="headerlink" title="windows"></a>windows</h2><p>官网下载位置：<a target="_blank" rel="noopener" href="https://www.gyan.dev/ffmpeg/builds/">https://www.gyan.dev/ffmpeg/builds/</a><br>按Ctrl-F，找到ffmpeg-release-essentials.zip，下载解压<br>设置环境变量为“【ffmpeg-release-essentials所在的路径】/bin”</p>
+<h2 id="linux"><a href="#linux" class="headerlink" title="linux"></a>linux</h2><p>ubuntu<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install FFmpeg</span><br></pre></td></tr></table></figure><br>其它：<a target="_blank" rel="noopener" href="https://linux.cn/article-14716-1.html">https://linux.cn/article-14716-1.html</a></p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="将某一文件夹的flac文件全部转化成wav文件"><a href="#将某一文件夹的flac文件全部转化成wav文件" class="headerlink" title="将某一文件夹的flac文件全部转化成wav文件"></a>将某一文件夹的flac文件全部转化成wav文件</h2><p>假设参数：16位PCM，采样率为44100Hz，双声道<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> %%f <span class="keyword">in</span> (*.flac) <span class="keyword">do</span> (ffmpeg -i <span class="string">&quot;%%f&quot;</span> -acodec pcm_s16le -ar 44100 -ac 2 <span class="string">&quot;%%~nf.wav&quot;</span>)</span><br></pre></td></tr></table></figure><br>检查无误，批量删除原flac文件<br>如果要进行确认，就不加<code>/q</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">del /q *.flac</span><br></pre></td></tr></table></figure></p>
+<h2 id="提高亮度或者对比度"><a href="#提高亮度或者对比度" class="headerlink" title="提高亮度或者对比度"></a>提高亮度或者对比度</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i in.png -vf <span class="string">&quot;eq=brightness=0.1&quot;</span> out.png </span><br><span class="line">ffmpeg -i in.png -vf <span class="string">&quot;eq=brightness=0.1:contrast=1.1&quot;</span> out.png </span><br></pre></td></tr></table></figure>
+<p>其中亮度的基准为0，对比度的基准为1.0</p>
+<h2 id="将MP4视频去掉音频"><a href="#将MP4视频去掉音频" class="headerlink" title="将MP4视频去掉音频"></a>将MP4视频去掉音频</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i input.mp4 -c:v copy -an output.mp4</span><br></pre></td></tr></table></figure>
+<h2 id="将MP4视频每秒6帧转为800x480的bmp图片"><a href="#将MP4视频每秒6帧转为800x480的bmp图片" class="headerlink" title="将MP4视频每秒6帧转为800x480的bmp图片"></a>将MP4视频每秒6帧转为800x480的bmp图片</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i input.mp4 -f image2 -vcodec bmp -s 800x480 -r 6 %d.bmp</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.misaka-xxw.github.io/2025/01/09/c_exam_note1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Misaka-xxw">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Misaka-xxw的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Misaka-xxw的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/01/09/c_exam_note1/" class="post-title-link" itemprop="url">C语言期末笔记（一）</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-01-09 21:52:07" itemprop="dateCreated datePublished" datetime="2025-01-09T21:52:07+08:00">2025-01-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-01-21 12:16:13" itemprop="dateModified" datetime="2025-01-21T12:16:13+08:00">2025-01-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/C-C/" itemprop="url" rel="index"><span itemprop="name">C&&C++</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.4k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>C语言复习过几遍，所以这里记录一些有点难记的东西。</p>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><h3 id="大小"><a href="#大小" class="headerlink" title="大小"></a>大小</h3><ol>
+<li><p>整数类型：<br> short 2字节<br> int 4字节<br> long 8字节</p>
+</li>
+<li><p>浮点类型：<br> double 8字节<br> float 4字节<br> 定义float类型时需写成：float num = 0.5f;（小数默认是double）</p>
+</li>
+<li><p>字符类型：<br> char 1字节<br> 可以表示ASCLL码中所有的字符，不能表示中文等</p>
+</li>
+</ol>
+<h3 id="占位（p73）"><a href="#占位（p73）" class="headerlink" title="占位（p73）"></a>占位（p73）</h3><p>%占位：<br>printf格式化输出函数，%占位时有以下参数：<code>%[占位长度][.精确位数（四舍五入）]</code>占位格式</p>
+<ul>
+<li>%d  为整数占位</li>
+<li>%hd 为short整数占位</li>
+<li>%ld 为long整数占位</li>
+<li>%u  为unsigned整数占位<br>  %lu，%hu..<br>  对unsigned赋值负数，补码的首位依然被认为是1，但输出时这个1是会带入二进制计算的</li>
+<li>%e  指数<br>  例：<code>printf(&quot;%e&quot;,123.456);</code> 输出：<code>1.234560e+002</code><br>  例：<code>printf(&quot;%13.2e&quot;,123.456);</code> 输出：<code>(四个空格）1.23e+002</code></li>
+<li>%E %e的大写</li>
+<li>%i  等同于%d</li>
+<li>%o 八进制输出</li>
+<li>%x 十六进制输出，小写</li>
+<li>%X 十六进制输出，大写</li>
+<li>%g 自动选择%f或者%e输出，小写</li>
+<li>%G 自动选择%f或者%E输出，大写</li>
+<li>%s 字符串</li>
+</ul>
+<h3 id="科学计数法"><a href="#科学计数法" class="headerlink" title="科学计数法"></a>科学计数法</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lf\n&quot;</span>, <span class="number">123000000.0</span>);      <span class="comment">// 123000000.000000</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%.2e\n&quot;</span>, <span class="number">123000000.0</span>);     <span class="comment">// 1.23e+008</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%.2e\n&quot;</span>, <span class="number">-123000000.0</span>);    <span class="comment">//-1.23e+008</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lf\n&quot;</span>, <span class="number">0.0000000123</span>);     <span class="comment">// 0.000000</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%e\n&quot;</span>, <span class="number">0.0000000123</span>);      <span class="comment">// 1.230000e-008</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%g\n&quot;</span>, <span class="number">0.0000000123</span>);      <span class="comment">// 1.23e-008</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%.2e\n&quot;</span>, <span class="number">0.0000000123</span>);    <span class="comment">// 1.23e-008</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%.2e\n&quot;</span>, <span class="number">-0.0000000123</span>);   <span class="comment">//-1.23e-008</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lf, %e\n&quot;</span>, <span class="number">.1e-2</span>, <span class="number">.1e-2</span>); <span class="comment">// 0.001000, 1.000000e-003</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="舍入舍出"><a href="#舍入舍出" class="headerlink" title="舍入舍出"></a>舍入舍出</h3><p>浮点型格式化输出，四舍五入：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">float</span> a;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%f\t%.2f\n&quot;</span>, a, a);</span><br></pre></td></tr></table></figure>
+<p>浮点型强制转化，直接丢小数点后的</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%f\t%d\n&quot;</span>, a, (<span class="type">int</span>)a);</span><br></pre></td></tr></table></figure>
+<h2 id="转义字符"><a href="#转义字符" class="headerlink" title="转义字符"></a>转义字符</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>转义字符</th>
+<th>字符值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>\&#39;</code></td>
+<td>‘</td>
+</tr>
+<tr>
+<td><code>\&quot;</code></td>
+<td>“</td>
+</tr>
+<tr>
+<td><code>\?</code></td>
+<td>?</td>
+</tr>
+<tr>
+<td><code>\\</code></td>
+<td><code>\</code></td>
+</tr>
+<tr>
+<td><code>\a</code></td>
+<td>警告</td>
+</tr>
+<tr>
+<td><code>\b</code></td>
+<td>退格</td>
+</tr>
+<tr>
+<td><code>\f</code></td>
+<td>换页</td>
+</tr>
+<tr>
+<td><code>\n</code></td>
+<td>换行</td>
+</tr>
+<tr>
+<td><code>\r</code></td>
+<td>回车</td>
+</tr>
+<tr>
+<td><code>\t</code></td>
+<td>水平制表符</td>
+</tr>
+<tr>
+<td><code>\v</code></td>
+<td>垂直制表符</td>
+</tr>
+<tr>
+<td><code>\o、\oo、\ooo</code>，o代表一个八进制数字</td>
+<td>与该八进制码对应的ASCLL字符</td>
+</tr>
+<tr>
+<td><code>\xh[h..]</code>，h代表一个十六进制数字</td>
+<td>与该十六进制码对应的ASCLL字符</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="ASCII码"><a href="#ASCII码" class="headerlink" title="ASCII码"></a>ASCII码</h2><p>常见ASCII码：<br>‘ ‘: 32<br>‘0’: 48<br>‘A’: 65<br>‘a’: 97</p>
+<h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><table>
+    <tr>
+        <th>优先级</th>
+        <th>运算符</th>
+        <th>含义</th>
+        <th>运算对象个数</th>
+        <th>结合方向</th>
+    </tr>
+    <tr>
+        <td rowspan=4>1</td>
+        <td>( )</td>
+        <td></td>
+        <td rowspan=4></td>
+        <td rowspan=4>→👉</td>
+    <tr>
+        <td>[ ]</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td> -> </td>
+        <td></td>
+    </tr>
+    <tr>
+        <td> . </td>
+        <td></td>
+    </tr>
+    <tr>
+        <td rowspan=9>2</td>
+        <td>!</td>
+        <td></td>
+        <td rowspan=9>1</td>
+        <td rowspan=9><mark>←👈</mark></td>
+    <tr>
+        <td>~</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>++</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>--</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>-</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>(类型)</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>*</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>&</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>sizeof</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td rowspan=3>3</td>
+        <td>*</td>
+        <td></td>
+        <td rowspan=3>2</td>
+        <td rowspan=3>→👉</td>
+    </tr>
+    <tr>
+        <td>/</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>%</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td rowspan=2>4</td>
+        <td>+</td>
+        <td></td>
+        <td rowspan=2>2</td>
+        <td rowspan=2>→👉</td>
+    </tr>
+    <tr>
+        <td>-</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td rowspan=2>5</td>
+        <td><<</td>
+        <td></td>
+        <td rowspan=2>2</td>
+        <td rowspan=2>→👉</td>
+    </tr>
+    <tr>
+        <td>>></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>< <= > >=</td>
+        <td></td>
+        <td>2</td>
+        <td>→👉</td>
+    </tr>
+    <tr>
+        <td rowspan=2>7</td>
+        <td>==</td>
+        <td></td>
+        <td rowspan=2>2</td>
+        <td rowspan=2>→👉</td>
+    </tr>
+    <tr>
+        <td>!=</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>8</td>
+        <td>&</td>
+        <td></td>
+        <td>2</td>
+        <td>→👉</td>
+    </tr>
+    <tr>
+        <td>9</td>
+        <td>^</td>
+        <td></td>
+        <td>2</td>
+        <td>→👉</td>
+    </tr>
+    <tr>
+        <td>10</td>
+        <td>|</td>
+        <td></td>
+        <td>2</td>
+        <td>→👉</td>
+    </tr>
+    <tr>
+        <td>11</td>
+        <td>&&</td>
+        <td></td>
+        <td>2</td>
+        <td>→👉</td>
+    </tr>
+    <tr>
+        <td>12</td>
+        <td>||</td>
+        <td></td>
+        <td>2</td>
+        <td>→👉</td>
+    </tr>
+    <tr>
+        <td>13</td>
+        <td>? : </td>
+        <td></td>
+        <td>3</td>
+        <td><mark>←👈</mark></td>
+    </tr>
+    <tr>
+        <td>14</td>
+        <td>= += -= *= /= %= >>= <<= &= ^= |=</td>
+        <td></td>
+        <td>2</td>
+        <td>→👉</td>
+    </tr>
+     <tr>
+        <td>15</td>
+        <td>,</td>
+        <td></td>
+        <td></td>
+        <td>→👉</td>
+    </tr>
+</table>
+
+<h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><h3 id="1-文件类型指针"><a href="#1-文件类型指针" class="headerlink" title="1. 文件类型指针"></a>1. 文件类型指针</h3><p>(p333)</p>
+<p>用纸质笔记记录了。准备在C语言期末笔记（二）里面写</p>
+<h3 id="文件操作例子"><a href="#文件操作例子" class="headerlink" title="文件操作例子"></a>文件操作例子</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    FILE *fp;</span><br><span class="line">    <span class="type">int</span> e;</span><br><span class="line">    <span class="type">long</span> len;</span><br><span class="line">    <span class="type">char</span> c;</span><br><span class="line">    <span class="type">int</span> status;</span><br><span class="line">    fp = fopen(<span class="string">&quot;pi.tmp&quot;</span>, <span class="string">&quot;w&quot;</span>);</span><br><span class="line">    <span class="built_in">fputs</span>(<span class="string">&quot;3.1415926&quot;</span>, fp); <span class="comment">// len=8,SEEK_SET=&gt;0,SEEK_END=&gt;9</span></span><br><span class="line">    fclose(fp);</span><br><span class="line">    fp = fopen(<span class="string">&quot;pi.tmp&quot;</span>, <span class="string">&quot;r&quot;</span>);</span><br><span class="line">    <span class="built_in">fscanf</span>(fp, <span class="string">&quot;%d%c&quot;</span>, &amp;e, &amp;c);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;e=%d,c=%c\n&quot;</span>, e, c); <span class="comment">// e=3,c=.</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//=============== fseek &amp; ftell test start ===============</span></span><br><span class="line">    len = ftell(fp);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;before fseek:%ld\n&quot;</span>, len); <span class="comment">// 2，指向&#x27;1&#x27;之前</span></span><br><span class="line">    status = fseek(fp, <span class="number">-1L</span>, SEEK_END);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;fseek -1 end:%ld (%d)\n&quot;</span>, ftell(fp), status); <span class="comment">// 8</span></span><br><span class="line">    rewind(fp);                                           <span class="comment">// void函数，没有返回值</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;rewind:%ld\n&quot;</span>, ftell(fp));                    <span class="comment">// 0</span></span><br><span class="line">    status = fseek(fp, <span class="number">-1L</span>, SEEK_SET);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;fseek -1 set:%ld (%d)\n&quot;</span>, ftell(fp), status); <span class="comment">// 0，fseek失败</span></span><br><span class="line">    status = fseek(fp, <span class="number">111L</span>, SEEK_SET);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;fseek 111 set:%ld (%d)\n&quot;</span>, ftell(fp), status); <span class="comment">// 111，虽然比文件长了很多，但是fseek成功</span></span><br><span class="line">    status = fseek(fp, <span class="number">-121L</span>, SEEK_CUR);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;fseek -121 cur:%ld (%d)\n&quot;</span>, ftell(fp), status); <span class="comment">// 111，fseek失败</span></span><br><span class="line">    status = fseek(fp, <span class="number">-111L</span>, SEEK_CUR);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;fseek -111 cur:%ld (%d)\n&quot;</span>, ftell(fp), status); <span class="comment">// 0</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><h3 id="魔法阵"><a href="#魔法阵" class="headerlink" title="魔法阵"></a>魔法阵</h3><p>思路</p>
+<table>
+    <tr>
+        <td colspan=2>第一排：if is middle: init 1;<br/>else: {row = a - 1;//<u> ↓</u><br/>col++;//→}</td>
+        <td>右上角：row++;//↓</td>
+    </tr>
+    <tr>
+        <td>row--;//↓<br/>
+    col++;//→</td>
+        <td>row--;//↓<br/>
+    col++;//→</td>
+        <td rowspan=2>最右列：<br/>row--;//↑<br/>
+                col = 0;//|←</td>
+    </tr>
+    <tr>
+        <td>row--;//↓<br/>
+    col++;//→</td>
+        <td>row--;//↓<br/>
+    col++;//→</td>
+    </tr>
+</table>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> 已占数字:</span><br><span class="line">    row = (row + <span class="number">2</span>) % a;<span class="comment">//→→2，超出则|←</span></span><br><span class="line">    col = (col + a - <span class="number">1</span>) % a;<span class="comment">//←1，超出则→|</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> n = <span class="number">3</span>, num, row, col, a, a2;</span><br><span class="line">    <span class="type">int</span> arr[<span class="number">101</span>][<span class="number">101</span>];</span><br><span class="line">    <span class="keyword">for</span> (a = <span class="number">1</span>; a &lt;= n; a+=<span class="number">2</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">memset</span>(arr, <span class="number">0</span>, <span class="keyword">sizeof</span> arr);</span><br><span class="line">        row = <span class="number">0</span>;</span><br><span class="line">        col = a / <span class="number">2</span>;</span><br><span class="line">        a2 = a * a;</span><br><span class="line">        <span class="keyword">for</span> (num = <span class="number">1</span>; num &lt;= a2; num ++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// printf(&quot;row: %d col: %d num: %d\n&quot;,row,col,num);</span></span><br><span class="line">            arr[row][col] = num;</span><br><span class="line">            <span class="keyword">if</span> (row == <span class="number">0</span> &amp;&amp; col == a - <span class="number">1</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                row++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (row == <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                row = a - <span class="number">1</span>;</span><br><span class="line">                col++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (col == n - <span class="number">1</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                row--;</span><br><span class="line">                col = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                row--;</span><br><span class="line">                col++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (arr[row][col] != <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                row = (row + <span class="number">2</span>) % a;</span><br><span class="line">                col = (col + a - <span class="number">1</span>) % a;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (row = <span class="number">0</span>; row &lt; a; row++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span> (col = <span class="number">0</span>; col &lt; a; col++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;%2d &quot;</span>, arr[row][col]);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">putchar</span>(<span class="string">&#x27;\n&#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">putchar</span>(<span class="string">&#x27;\n&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="易错点"><a href="#易错点" class="headerlink" title="易错点"></a>易错点</h2><ul>
+<li><p>默认输出六位</p>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%f&quot;</span>,f);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>反常识define</p>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> true 0</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> false 1</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>switch</code>不<code>break</code>就继续走</p>
+</li>
+<li><code>fseek(fp, 0L, 2);</code>中，最后那个才是指示从哪儿开始的，即<code>SEEK_END=2</code></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.misaka-xxw.github.io/2025/01/09/computer-composition-exam-note/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Misaka-xxw">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Misaka-xxw的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Misaka-xxw的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/01/09/computer-composition-exam-note/" class="post-title-link" itemprop="url">计算机组成原理期末笔记（简答题）</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-01-09 09:21:40" itemprop="dateCreated datePublished" datetime="2025-01-09T09:21:40+08:00">2025-01-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-05-12 21:33:25" itemprop="dateModified" datetime="2025-05-12T21:33:25+08:00">2025-05-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">计算机组成原理</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.5k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>9 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="第二章"><a href="#第二章" class="headerlink" title="第二章"></a>第二章</h1><ul>
+<li>小阶向大阶对齐的原因：<br>  减小误差</li>
+<li>什么叫溢出？<br>  超出了机器的表示范围</li>
+<li>计算机内部为什么大部分</li>
+<li>全加器公式<br><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.188ex;" xmlns="http://www.w3.org/2000/svg" width="15.141ex" height="1.808ex" role="img" focusable="false" viewBox="0 -716 6692.4 799"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D446" d="M308 24Q367 24 416 76T466 197Q466 260 414 284Q308 311 278 321T236 341Q176 383 176 462Q176 523 208 573T273 648Q302 673 343 688T407 704H418H425Q521 704 564 640Q565 640 577 653T603 682T623 704Q624 704 627 704T632 705Q645 705 645 698T617 577T585 459T569 456Q549 456 549 465Q549 471 550 475Q550 478 551 494T553 520Q553 554 544 579T526 616T501 641Q465 662 419 662Q362 662 313 616T263 510Q263 480 278 458T319 427Q323 425 389 408T456 390Q490 379 522 342T554 242Q554 216 546 186Q541 164 528 137T492 78T426 18T332 -20Q320 -22 298 -22Q199 -22 144 33L134 44L106 13Q83 -14 78 -18T65 -22Q52 -22 52 -14Q52 -11 110 221Q112 227 130 227H143Q149 221 149 216Q149 214 148 207T144 186T142 153Q144 114 160 87T203 47T255 29T308 24Z"></path></g><g data-mml-node="mo" transform="translate(922.8,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mi" transform="translate(1978.6,0)"><path data-c="1D434" d="M208 74Q208 50 254 46Q272 46 272 35Q272 34 270 22Q267 8 264 4T251 0Q249 0 239 0T205 1T141 2Q70 2 50 0H42Q35 7 35 11Q37 38 48 46H62Q132 49 164 96Q170 102 345 401T523 704Q530 716 547 716H555H572Q578 707 578 706L606 383Q634 60 636 57Q641 46 701 46Q726 46 726 36Q726 34 723 22Q720 7 718 4T704 0Q701 0 690 0T651 1T578 2Q484 2 455 0H443Q437 6 437 9T439 27Q443 40 445 43L449 46H469Q523 49 533 63L521 213H283L249 155Q208 86 208 74ZM516 260Q516 271 504 416T490 562L463 519Q447 492 400 412L310 260L413 259Q516 259 516 260Z"></path></g><g data-mml-node="mo" transform="translate(2950.8,0)"><path data-c="2295" d="M56 250Q56 394 156 488T384 583Q530 583 626 485T722 250Q722 110 625 14T390 -83Q249 -83 153 14T56 250ZM364 542Q308 539 251 509T148 418T96 278V270H369V542H364ZM681 278Q675 338 650 386T592 462T522 509T458 535T412 542H409V270H681V278ZM96 222Q104 150 139 95T219 12T302 -29T366 -42H369V230H96V222ZM681 222V230H409V-42H412Q429 -42 456 -36T521 -10T590 37T649 113T681 222Z"></path></g><g data-mml-node="mi" transform="translate(3951,0)"><path data-c="1D435" d="M231 637Q204 637 199 638T194 649Q194 676 205 682Q206 683 335 683Q594 683 608 681Q671 671 713 636T756 544Q756 480 698 429T565 360L555 357Q619 348 660 311T702 219Q702 146 630 78T453 1Q446 0 242 0Q42 0 39 2Q35 5 35 10Q35 17 37 24Q42 43 47 45Q51 46 62 46H68Q95 46 128 49Q142 52 147 61Q150 65 219 339T288 628Q288 635 231 637ZM649 544Q649 574 634 600T585 634Q578 636 493 637Q473 637 451 637T416 636H403Q388 635 384 626Q382 622 352 506Q352 503 351 500L320 374H401Q482 374 494 376Q554 386 601 434T649 544ZM595 229Q595 273 572 302T512 336Q506 337 429 337Q311 337 310 336Q310 334 293 263T258 122L240 52Q240 48 252 48T333 46Q422 46 429 47Q491 54 543 105T595 229Z"></path></g><g data-mml-node="mo" transform="translate(4932.2,0)"><path data-c="2295" d="M56 250Q56 394 156 488T384 583Q530 583 626 485T722 250Q722 110 625 14T390 -83Q249 -83 153 14T56 250ZM364 542Q308 539 251 509T148 418T96 278V270H369V542H364ZM681 278Q675 338 650 386T592 462T522 509T458 535T412 542H409V270H681V278ZM96 222Q104 150 139 95T219 12T302 -29T366 -42H369V230H96V222ZM681 222V230H409V-42H412Q429 -42 456 -36T521 -10T590 37T649 113T681 222Z"></path></g><g data-mml-node="mi" transform="translate(5932.4,0)"><path data-c="1D436" d="M50 252Q50 367 117 473T286 641T490 704Q580 704 633 653Q642 643 648 636T656 626L657 623Q660 623 684 649Q691 655 699 663T715 679T725 690L740 705H746Q760 705 760 698Q760 694 728 561Q692 422 692 421Q690 416 687 415T669 413H653Q647 419 647 422Q647 423 648 429T650 449T651 481Q651 552 619 605T510 659Q484 659 454 652T382 628T299 572T226 479Q194 422 175 346T156 222Q156 108 232 58Q280 24 350 24Q441 24 512 92T606 240Q610 253 612 255T628 257Q648 257 648 248Q648 243 647 239Q618 132 523 55T319 -22Q206 -22 128 53T50 252Z"></path></g></g></g></svg></mjx-container><br><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.186ex;" xmlns="http://www.w3.org/2000/svg" width="20.535ex" height="1.805ex" role="img" focusable="false" viewBox="0 -716 9076.4 798"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D436" d="M50 252Q50 367 117 473T286 641T490 704Q580 704 633 653Q642 643 648 636T656 626L657 623Q660 623 684 649Q691 655 699 663T715 679T725 690L740 705H746Q760 705 760 698Q760 694 728 561Q692 422 692 421Q690 416 687 415T669 413H653Q647 419 647 422Q647 423 648 429T650 449T651 481Q651 552 619 605T510 659Q484 659 454 652T382 628T299 572T226 479Q194 422 175 346T156 222Q156 108 232 58Q280 24 350 24Q441 24 512 92T606 240Q610 253 612 255T628 257Q648 257 648 248Q648 243 647 239Q618 132 523 55T319 -22Q206 -22 128 53T50 252Z"></path></g><g data-mml-node="mo" transform="translate(1037.8,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mi" transform="translate(2093.6,0)"><path data-c="1D434" d="M208 74Q208 50 254 46Q272 46 272 35Q272 34 270 22Q267 8 264 4T251 0Q249 0 239 0T205 1T141 2Q70 2 50 0H42Q35 7 35 11Q37 38 48 46H62Q132 49 164 96Q170 102 345 401T523 704Q530 716 547 716H555H572Q578 707 578 706L606 383Q634 60 636 57Q641 46 701 46Q726 46 726 36Q726 34 723 22Q720 7 718 4T704 0Q701 0 690 0T651 1T578 2Q484 2 455 0H443Q437 6 437 9T439 27Q443 40 445 43L449 46H469Q523 49 533 63L521 213H283L249 155Q208 86 208 74ZM516 260Q516 271 504 416T490 562L463 519Q447 492 400 412L310 260L413 259Q516 259 516 260Z"></path></g><g data-mml-node="mi" transform="translate(2843.6,0)"><path data-c="1D435" d="M231 637Q204 637 199 638T194 649Q194 676 205 682Q206 683 335 683Q594 683 608 681Q671 671 713 636T756 544Q756 480 698 429T565 360L555 357Q619 348 660 311T702 219Q702 146 630 78T453 1Q446 0 242 0Q42 0 39 2Q35 5 35 10Q35 17 37 24Q42 43 47 45Q51 46 62 46H68Q95 46 128 49Q142 52 147 61Q150 65 219 339T288 628Q288 635 231 637ZM649 544Q649 574 634 600T585 634Q578 636 493 637Q473 637 451 637T416 636H403Q388 635 384 626Q382 622 352 506Q352 503 351 500L320 374H401Q482 374 494 376Q554 386 601 434T649 544ZM595 229Q595 273 572 302T512 336Q506 337 429 337Q311 337 310 336Q310 334 293 263T258 122L240 52Q240 48 252 48T333 46Q422 46 429 47Q491 54 543 105T595 229Z"></path></g><g data-mml-node="mo" transform="translate(3824.8,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path></g><g data-mml-node="mi" transform="translate(4825,0)"><path data-c="1D435" d="M231 637Q204 637 199 638T194 649Q194 676 205 682Q206 683 335 683Q594 683 608 681Q671 671 713 636T756 544Q756 480 698 429T565 360L555 357Q619 348 660 311T702 219Q702 146 630 78T453 1Q446 0 242 0Q42 0 39 2Q35 5 35 10Q35 17 37 24Q42 43 47 45Q51 46 62 46H68Q95 46 128 49Q142 52 147 61Q150 65 219 339T288 628Q288 635 231 637ZM649 544Q649 574 634 600T585 634Q578 636 493 637Q473 637 451 637T416 636H403Q388 635 384 626Q382 622 352 506Q352 503 351 500L320 374H401Q482 374 494 376Q554 386 601 434T649 544ZM595 229Q595 273 572 302T512 336Q506 337 429 337Q311 337 310 336Q310 334 293 263T258 122L240 52Q240 48 252 48T333 46Q422 46 429 47Q491 54 543 105T595 229Z"></path></g><g data-mml-node="mi" transform="translate(5584,0)"><path data-c="1D436" d="M50 252Q50 367 117 473T286 641T490 704Q580 704 633 653Q642 643 648 636T656 626L657 623Q660 623 684 649Q691 655 699 663T715 679T725 690L740 705H746Q760 705 760 698Q760 694 728 561Q692 422 692 421Q690 416 687 415T669 413H653Q647 419 647 422Q647 423 648 429T650 449T651 481Q651 552 619 605T510 659Q484 659 454 652T382 628T299 572T226 479Q194 422 175 346T156 222Q156 108 232 58Q280 24 350 24Q441 24 512 92T606 240Q610 253 612 255T628 257Q648 257 648 248Q648 243 647 239Q618 132 523 55T319 -22Q206 -22 128 53T50 252Z"></path></g><g data-mml-node="mo" transform="translate(6566.2,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path></g><g data-mml-node="mi" transform="translate(7566.4,0)"><path data-c="1D434" d="M208 74Q208 50 254 46Q272 46 272 35Q272 34 270 22Q267 8 264 4T251 0Q249 0 239 0T205 1T141 2Q70 2 50 0H42Q35 7 35 11Q37 38 48 46H62Q132 49 164 96Q170 102 345 401T523 704Q530 716 547 716H555H572Q578 707 578 706L606 383Q634 60 636 57Q641 46 701 46Q726 46 726 36Q726 34 723 22Q720 7 718 4T704 0Q701 0 690 0T651 1T578 2Q484 2 455 0H443Q437 6 437 9T439 27Q443 40 445 43L449 46H469Q523 49 533 63L521 213H283L249 155Q208 86 208 74ZM516 260Q516 271 504 416T490 562L463 519Q447 492 400 412L310 260L413 259Q516 259 516 260Z"></path></g><g data-mml-node="mi" transform="translate(8316.4,0)"><path data-c="1D436" d="M50 252Q50 367 117 473T286 641T490 704Q580 704 633 653Q642 643 648 636T656 626L657 623Q660 623 684 649Q691 655 699 663T715 679T725 690L740 705H746Q760 705 760 698Q760 694 728 561Q692 422 692 421Q690 416 687 415T669 413H653Q647 419 647 422Q647 423 648 429T650 449T651 481Q651 552 619 605T510 659Q484 659 454 652T382 628T299 572T226 479Q194 422 175 346T156 222Q156 108 232 58Q280 24 350 24Q441 24 512 92T606 240Q610 253 612 255T628 257Q648 257 648 248Q648 243 647 239Q618 132 523 55T319 -22Q206 -22 128 53T50 252Z"></path></g></g></g></svg></mjx-container></li>
+<li>全加器的时间延迟</li>
+<li>行波进位补码加法器为什么m=0为加法，m=1为减法？</li>
+<li>默写对2求补电路</li>
+</ul>
+<p><img src="bu2.png" alt="alt text"></p>
+<ul>
+<li>直接补码阵列乘法器<br>  最高位权值-1</li>
+<li>间接补码阵列乘法器<br>  算前求补的目的：补码变原码，扣掉符号位<br>  算后求补的目的：原码变补码，存入计算器</li>
+<li>原码除法：符号位单独运算</li>
+<li>阵列除法器CAS用的是加减交替法</li>
+<li>ALU电路的基本概念</li>
+<li>先行进位</li>
+<li>流水线特点：并行进行运算，速度快</li>
+</ul>
+<h2 id="x-补-y-补-x-y-补的证明"><a href="#x-补-y-补-x-y-补的证明" class="headerlink" title="[x]补+[y]补=[x+y]补的证明"></a>[x]补+[y]补=[x+y]补的证明</h2><p>补码加法的公式为：</p>
+<p><span></span></p>
+<p><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.72ex;" xmlns="http://www.w3.org/2000/svg" width="29.642ex" height="2.417ex" role="img" focusable="false" viewBox="0 -750 13101.8 1068.2"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="5B" d="M118 -250V750H255V710H158V-210H255V-250H118Z"></path></g><g data-mml-node="mi" transform="translate(278,0)"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path></g><g data-mml-node="msub" transform="translate(850,0)"><g data-mml-node="mo"><path data-c="5D" d="M22 710V750H159V-250H22V-210H119V710H22Z"></path></g><g data-mml-node="mi" transform="translate(311,-176.7) scale(0.707)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">补</text></g></g><g data-mml-node="mo" transform="translate(2140.3,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path></g><g data-mml-node="mo" transform="translate(3140.6,0)"><path data-c="5B" d="M118 -250V750H255V710H158V-210H255V-250H118Z"></path></g><g data-mml-node="mi" transform="translate(3418.6,0)"><path data-c="1D466" d="M21 287Q21 301 36 335T84 406T158 442Q199 442 224 419T250 355Q248 336 247 334Q247 331 231 288T198 191T182 105Q182 62 196 45T238 27Q261 27 281 38T312 61T339 94Q339 95 344 114T358 173T377 247Q415 397 419 404Q432 431 462 431Q475 431 483 424T494 412T496 403Q496 390 447 193T391 -23Q363 -106 294 -155T156 -205Q111 -205 77 -183T43 -117Q43 -95 50 -80T69 -58T89 -48T106 -45Q150 -45 150 -87Q150 -107 138 -122T115 -142T102 -147L99 -148Q101 -153 118 -160T152 -167H160Q177 -167 186 -165Q219 -156 247 -127T290 -65T313 -9T321 21L315 17Q309 13 296 6T270 -6Q250 -11 231 -11Q185 -11 150 11T104 82Q103 89 103 113Q103 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="msub" transform="translate(3908.6,0)"><g data-mml-node="mo"><path data-c="5D" d="M22 710V750H159V-250H22V-210H119V710H22Z"></path></g><g data-mml-node="mi" transform="translate(311,-176.7) scale(0.707)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">补</text></g></g><g data-mml-node="mo" transform="translate(5254.4,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mo" transform="translate(6310.2,0)"><path data-c="5B" d="M118 -250V750H255V710H158V-210H255V-250H118Z"></path></g><g data-mml-node="mi" transform="translate(6588.2,0)"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path></g><g data-mml-node="mo" transform="translate(7382.4,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path></g><g data-mml-node="mi" transform="translate(8382.7,0)"><path data-c="1D466" d="M21 287Q21 301 36 335T84 406T158 442Q199 442 224 419T250 355Q248 336 247 334Q247 331 231 288T198 191T182 105Q182 62 196 45T238 27Q261 27 281 38T312 61T339 94Q339 95 344 114T358 173T377 247Q415 397 419 404Q432 431 462 431Q475 431 483 424T494 412T496 403Q496 390 447 193T391 -23Q363 -106 294 -155T156 -205Q111 -205 77 -183T43 -117Q43 -95 50 -80T69 -58T89 -48T106 -45Q150 -45 150 -87Q150 -107 138 -122T115 -142T102 -147L99 -148Q101 -153 118 -160T152 -167H160Q177 -167 186 -165Q219 -156 247 -127T290 -65T313 -9T321 21L315 17Q309 13 296 6T270 -6Q250 -11 231 -11Q185 -11 150 11T104 82Q103 89 103 113Q103 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="msub" transform="translate(8872.7,0)"><g data-mml-node="mo"><path data-c="5D" d="M22 710V750H159V-250H22V-210H119V710H22Z"></path></g><g data-mml-node="mi" transform="translate(311,-176.7) scale(0.707)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">补</text></g></g><g data-mml-node="mo" transform="translate(9940.8,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="mi" transform="translate(10329.8,0)"><path data-c="1D45A" d="M21 287Q22 293 24 303T36 341T56 388T88 425T132 442T175 435T205 417T221 395T229 376L231 369Q231 367 232 367L243 378Q303 442 384 442Q401 442 415 440T441 433T460 423T475 411T485 398T493 385T497 373T500 364T502 357L510 367Q573 442 659 442Q713 442 746 415T780 336Q780 285 742 178T704 50Q705 36 709 31T724 26Q752 26 776 56T815 138Q818 149 821 151T837 153Q857 153 857 145Q857 144 853 130Q845 101 831 73T785 17T716 -10Q669 -10 648 17T627 73Q627 92 663 193T700 345Q700 404 656 404H651Q565 404 506 303L499 291L466 157Q433 26 428 16Q415 -11 385 -11Q372 -11 364 -4T353 8T350 18Q350 29 384 161L420 307Q423 322 423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 181Q151 335 151 342Q154 357 154 369Q154 405 129 405Q107 405 92 377T69 316T57 280Q55 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mi" transform="translate(11207.8,0)"><path data-c="1D45C" d="M201 -11Q126 -11 80 38T34 156Q34 221 64 279T146 380Q222 441 301 441Q333 441 341 440Q354 437 367 433T402 417T438 387T464 338T476 268Q476 161 390 75T201 -11ZM121 120Q121 70 147 48T206 26Q250 26 289 58T351 142Q360 163 374 216T388 308Q388 352 370 375Q346 405 306 405Q243 405 195 347Q158 303 140 230T121 120Z"></path></g><g data-mml-node="mi" transform="translate(11692.8,0)"><path data-c="1D451" d="M366 683Q367 683 438 688T511 694Q523 694 523 686Q523 679 450 384T375 83T374 68Q374 26 402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487H491Q506 153 506 145Q506 140 503 129Q490 79 473 48T445 8T417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157Q33 205 53 255T101 341Q148 398 195 420T280 442Q336 442 364 400Q369 394 369 396Q370 400 396 505T424 616Q424 629 417 632T378 637H357Q351 643 351 645T353 664Q358 683 366 683ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z"></path></g><g data-mml-node="mn" transform="translate(12212.8,0)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="mo" transform="translate(12712.8,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g></g></g></svg></mjx-container></p>
+<p>&lt;/span&gt;</p>
+<p>证明：设x和y均为定点小数，且运算结果没有溢出。即<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.464ex;" xmlns="http://www.w3.org/2000/svg" width="35.852ex" height="2.161ex" role="img" focusable="false" viewBox="0 -750 15846.4 955"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mo"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">︱</text></g></g><g data-mml-node="mi" transform="translate(1000,0)"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path></g><g data-mml-node="TeXAtom" data-mjx-texclass="ORD" transform="translate(1572,0)"><g data-mml-node="mo"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">︱</text></g></g><g data-mml-node="TeXAtom" data-mjx-texclass="ORD" transform="translate(2572,0)"><g data-mml-node="mo"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">﹤</text></g></g><g data-mml-node="mn" transform="translate(3572,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g><g data-mml-node="mi" transform="translate(4072,0)"><text data-variant="italic" transform="scale(1,-1)" font-size="884px" font-family="serif" font-style="italic">，</text></g><g data-mml-node="TeXAtom" data-mjx-texclass="ORD" transform="translate(5072,0)"><g data-mml-node="mo"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">︱</text></g></g><g data-mml-node="mi" transform="translate(6072,0)"><path data-c="1D466" d="M21 287Q21 301 36 335T84 406T158 442Q199 442 224 419T250 355Q248 336 247 334Q247 331 231 288T198 191T182 105Q182 62 196 45T238 27Q261 27 281 38T312 61T339 94Q339 95 344 114T358 173T377 247Q415 397 419 404Q432 431 462 431Q475 431 483 424T494 412T496 403Q496 390 447 193T391 -23Q363 -106 294 -155T156 -205Q111 -205 77 -183T43 -117Q43 -95 50 -80T69 -58T89 -48T106 -45Q150 -45 150 -87Q150 -107 138 -122T115 -142T102 -147L99 -148Q101 -153 118 -160T152 -167H160Q177 -167 186 -165Q219 -156 247 -127T290 -65T313 -9T321 21L315 17Q309 13 296 6T270 -6Q250 -11 231 -11Q185 -11 150 11T104 82Q103 89 103 113Q103 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="TeXAtom" data-mjx-texclass="ORD" transform="translate(6562,0)"><g data-mml-node="mo"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">︱</text></g></g><g data-mml-node="TeXAtom" data-mjx-texclass="ORD" transform="translate(7562,0)"><g data-mml-node="mo"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">﹤</text></g></g><g data-mml-node="mn" transform="translate(8562,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g><g data-mml-node="mi" transform="translate(9062,0)"><text data-variant="italic" transform="scale(1,-1)" font-size="884px" font-family="serif" font-style="italic">，</text></g><g data-mml-node="TeXAtom" data-mjx-texclass="ORD" transform="translate(10062,0)"><g data-mml-node="mo"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">︱</text></g></g><g data-mml-node="mi" transform="translate(11062,0)"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path></g><g data-mml-node="mo" transform="translate(11856.2,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path></g><g data-mml-node="mi" transform="translate(12856.4,0)"><path data-c="1D466" d="M21 287Q21 301 36 335T84 406T158 442Q199 442 224 419T250 355Q248 336 247 334Q247 331 231 288T198 191T182 105Q182 62 196 45T238 27Q261 27 281 38T312 61T339 94Q339 95 344 114T358 173T377 247Q415 397 419 404Q432 431 462 431Q475 431 483 424T494 412T496 403Q496 390 447 193T391 -23Q363 -106 294 -155T156 -205Q111 -205 77 -183T43 -117Q43 -95 50 -80T69 -58T89 -48T106 -45Q150 -45 150 -87Q150 -107 138 -122T115 -142T102 -147L99 -148Q101 -153 118 -160T152 -167H160Q177 -167 186 -165Q219 -156 247 -127T290 -65T313 -9T321 21L315 17Q309 13 296 6T270 -6Q250 -11 231 -11Q185 -11 150 11T104 82Q103 89 103 113Q103 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="TeXAtom" data-mjx-texclass="ORD" transform="translate(13346.4,0)"><g data-mml-node="mo"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">︱</text></g></g><g data-mml-node="TeXAtom" data-mjx-texclass="ORD" transform="translate(14346.4,0)"><g data-mml-node="mo"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">﹤</text></g></g><g data-mml-node="mn" transform="translate(15346.4,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g></g></g></svg></mjx-container></p>
+<ul>
+<li>（1）x﹥0，y﹥0，则x+y﹥0。正数的补码和原码是一样的，可得：</li>
+</ul>
+<p>[x]补+[y]补=x+y=[x+y]补 (mod 2)</p>
+<ul>
+<li>（2）x﹥0，y﹤0，x+y≥0或x+y﹤0。<br>[x]补=x，<br>[y]补=2+y<br>[x]补+[y]补=x+2+y=2+(x+y)<ul>
+<li>当x+y≥0时，2 +(x+y) ≥2，对于模2来说，2被丢掉，于是<br>[x]补+[y]补=x+y=[x+y]补 (mod 2)</li>
+<li>当x+y﹤0时，2 +(x+y) ﹤2，于是<br>[x]补+[y]补=2+(x+y)=[x+y]补<br>(mod 2)</li>
+</ul>
+</li>
+<li>（3）x﹤0，y﹥0。<br>这种情况和第2种情况证明方法相同。</li>
+<li>（4）x﹤0，y﹤0，则x+y﹤0。<br>[x]补=2+x，<br>[y]补=2+y<br>[x]补+[y]补=2+x+2+y=2+(2+x+y)<br>(2+x+y) 小于2而大于1的数，第一个2作为进位被舍弃。于是<br>[x]补+[y]补=2+(x+y)=[x+y]补 (mod 2)<br>至此我们证明了在模2意义下，两数的补码之和等于这两个数之和的补码。</li>
+</ul>
+<hr>
+<h1 id="第三章"><a href="#第三章" class="headerlink" title="第三章"></a>第三章</h1><ul>
+<li>高速缓冲存储器cache的目的<br>  提升访问速度，使存取速度和CPU的运算相匹配</li>
+<li>双译码结构优点<br>  减少线的数目</li>
+<li>刷新-&gt;行</li>
+<li>地址复用技术</li>
+<li>CDRAM DRAM里放一个SRAM<br>  SRAM-&gt;静态存储器，比较小但快<br>  DRAM-&gt;动态存储器<br>  读取时高位不变，低9位连续变化<br>  在SRAM读出期间同时对DRAM阵列进行刷新<br>  写和读可以同时</li>
+<li>SDRAM：同步DRAM-CPU在SDRAM执行请求CPU同时，CPU能先去做别的</li>
+<li>DDR SDRAM：上升沿和下降沿均可读数据</li>
+<li>SRAM和DRAM</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>SRAM</th>
+<th>DRAM</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>存储容量</td>
+<td>小</td>
+<td>大</td>
+</tr>
+<tr>
+<td>功率</td>
+<td>小</td>
+<td>大</td>
+</tr>
+<tr>
+<td>速度</td>
+<td>快</td>
+<td>慢</td>
+</tr>
+<tr>
+<td>集成率</td>
+<td>低</td>
+<td>高</td>
+</tr>
+<tr>
+<td>价格</td>
+<td>贵</td>
+<td>便宜</td>
+</tr>
+<tr>
+<td>缓冲</td>
+<td>高速缓冲</td>
+<td>需要定期刷新</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>解决CPU和贮存之间速度差异的主要途径<ul>
+<li>CPU内部设置更多通用寄存器</li>
+<li>CPU和主存之间插入高速缓冲存储器（cache）</li>
+<li>采用并行操作的存储器（如双端口存储器）</li>
+<li>主存储器采用更高速的技术来缩短读出时间，或加长存储器的字长</li>
+</ul>
+</li>
+<li>相连存储器：按内容访问所有存储器，主要用来存放cache的行地址</li>
+<li>程序局部性：时间局部性和空间局部性<ul>
+<li>时间局部性：如果一个存储单元被访问，则可能该单元会很快被再次访问（因为程序存在着循环）</li>
+<li>空间局部性：如果一个存储单元被访问，则该单元邻近的单元也可能很快被访问。（因为程序中大部分指令是顺序存储、顺序执行的，数据也是以向量、数组、树、表等形式簇聚地存储在一起的。）</li>
+</ul>
+</li>
+<li>主存与cache的地址映射(p94)<ul>
+<li>全相联映射方式</li>
+<li>直接映射方式</li>
+<li>级相连映射方式</li>
+</ul>
+</li>
+<li>cache的替换策略(p100)<ul>
+<li>最不经常使用(LFU)算法</li>
+<li>近期最少使用(LRU)算法</li>
+<li>随机替换</li>
+</ul>
+</li>
+</ul>
+<h2 id="主存与cache的地址映射-p94"><a href="#主存与cache的地址映射-p94" class="headerlink" title="主存与cache的地址映射(p94)"></a>主存与cache的地址映射(p94)</h2><table>
+<tr>
+<td></td>
+<th>全相联映射方式</th>
+<th>直接映射方式</th>
+<th>组相联映射方式</th>
+</tr>
+<tr>
+<td>主存地址长度</td>
+<td colspan="3">(s+w)位</td>
+</tr>
+<tr>
+<td>页内地址</td>
+<td colspan="3">w位</td>
+</tr>
+<tr>
+<td>寻址单元数</td>
+<td colspan="3">2<sup>s+w</sup>字</td>
+</tr>
+<tr>
+<td>块大小</td>
+<td colspan="3" rowspan="2">2<sup>w</sup>字</td>
+</tr>
+<tr>
+<td>行大小</td>
+</tr>
+<tr>
+<td>主存的块数</td>
+<td colspan="3">2<sup>s</sup></td>
+</tr>
+<tr>
+<td>标记位数</td>
+<td>s位</td>
+<td>(s-r)位</td>
+<td>(s-d)位</td>
+</tr>
+<tr>
+<td>组内块号</td>
+<td></td>
+<td>r位</td>
+<td>d位</td>
+</tr>
+<tr>
+<td>cache的行数</td>
+<td>不由地址格式确定</td>
+<td>m=2<sup>r</sup></td>
+<td>m=uv</td>
+</tr>
+<tr>
+<td>主存区内块号</td>
+<td></td>
+<td>cache行号</td>
+<td>cache组号</td>
+</tr>
+<tr>
+<td>每组的行数</td>
+<td></td>
+<td></td>
+<td>v</td>
+</tr>
+<tr>
+<td>cache的组数</td>
+<td></td>
+<td></td>
+<td>u=2<sup>d</sup></td>
+</tr>
+</table>
+
+<p>PPT例题</p>
+<p>一个四路组相联的Cache共有64行，主存有8192块，每块32个字，则主存地址中的主存字块标记(tag)为<strong>_位，组地址(组号)为_</strong>位，字块内地址为___位。<br>v=4<br>m=64=uv =&gt;u=16<br>u=2^d =&gt; d=4<br>2^w=32 =&gt; w=5<br>2^s=8192=2^13 =&gt; s=13<br>∴ans: 9 4 5</p>
+<p>某8位机主存1M字节，分成512块，Cache分8行，地址采用全相联映像方式，如图。</p>
+<ol>
+<li>Cache容量多大？ 16KB<br>2^(s+w)=1M=2^20<br>s+w=20<br>2^s=512<br>s=9<br>w=20-9=11<br>2^w*8=2^14=16k</li>
+<li>Cache的页内地址有多少位？ 11位<br>w=11</li>
+<li>Cache的标记有多少位？ 9位<br>s=9</li>
+</ol>
+<hr>
+<h1 id="第四章"><a href="#第四章" class="headerlink" title="第四章"></a>第四章</h1><ul>
+<li>RISC和CISC的区别<br>  CISC：复杂指令系统计算机<br>  RISC：精简指令系统计算机<br>  CISC比RISC指令系统庞大</li>
+<li>为什么不同指令执行不同？<br>  OP字段(操作码)不同。不同的op对应不同的指令<h2 id="第四章拓展知识"><a href="#第四章拓展知识" class="headerlink" title="第四章拓展知识"></a>第四章拓展知识</h2>|比较|RISC|CISC|<br>|-|-|-|<br>|名称|精简指令系统计算机|复杂指令系统计算机|<br>|时钟周期|通常1个|更多|<br>|控制|硬布线逻辑|微程序控制|<br>|指令种类|少|多|<br>|寻指方式|少|多|</li>
+</ul>
+<p><mark>两者都可以采用流水线技术</mark>，RISC更适合而已。</p>
+<hr>
+<h1 id="第五章"><a href="#第五章" class="headerlink" title="第五章"></a>第五章</h1><ul>
+<li>CPU的功能(p145)<ul>
+<li>指令控制</li>
+<li>操作控制</li>
+<li>时间控制</li>
+<li>数据加工</li>
+</ul>
+</li>
+<li>同步/异步控制方式<ul>
+<li>各项操作采用/不采用统一的时钟信号控制</li>
+</ul>
+</li>
+<li>PC为什么加1？<br>  为下一条指令做准备。</li>
+<li>方框图中，为什么第一个方框能共用，后面的不行？<br>  第一个方框是取指周期。</li>
+<li>一个方框代表一个CPU周期</li>
+<li>为什么取完指令后会有一个菱形框<br>  判定测试，做的是指令译码，根据OP字段不同分析测试</li>
+<li>微指令：在机器的一个CPU周期中，一组实现一定操作功能的微命令的组合</li>
+<li>微程序：一条机器指令的功能是用许多条微指令组成的序列来实现的</li>
+<li>为什么软件可以控制硬件？<br>  指令的OP字段不一样。</li>
+<li>为什么机器指令码的OP字段不一样？<br>  地址转移后，强制置1的位置不一样，后面的分支和跳转不一样</li>
+<li><mark>机器指令和微程序的关系</mark><ul>
+<li>一条机器指令对应的一个微程序，这个微程序由若干条微指令序列组成的</li>
+<li>指令存放在存储器中；微指令存放在控制器中</li>
+<li>一个CPU周期对应一条微指令，一个指令周期至少包含两个CPU周期（取指令，执行）</li>
+</ul>
+</li>
+<li>RISC的全称和特点<ul>
+<li>全称：精简指令系统计算机</li>
+<li>一个有限的简单的指令系统</li>
+<li>CPU配备大量的通用寄存器</li>
+<li>强调对指令流水线的优化</li>
+</ul>
+</li>
+</ul>
+<h2 id="第五章拓展知识"><a href="#第五章拓展知识" class="headerlink" title="第五章拓展知识"></a>第五章拓展知识</h2><ul>
+<li>同步/异步传输<ul>
+<li>同步传输：CPU↔内存储器、CPU↔PCI、CPU↔I/O</li>
+<li>异步传输：I/O↔打印设备（基于缓存池）</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="第六章"><a href="#第六章" class="headerlink" title="第六章"></a>第六章</h1><ul>
+<li>总线分类(p189)<ul>
+<li>内部总线：CPU内部连接各寄存器及运算部件之间的总线，称为内部总线</li>
+<li>系统总线：CPU同计算机系统的其他高速功能部件，如存储器、通道等互相连接的总线</li>
+<li>I/O总线：中、低速I/O设备之间相互连接的总线</li>
+</ul>
+</li>
+<li>总线带宽=总线位宽×总线工作频率<ul>
+<li>总线带宽：单位时间内总线上可传送的数据量</li>
+<li>总线位宽：总线上能同时传送的数据位数。1/8/16/32位</li>
+<li>总线工作频率：用于控制总线操作周期的时钟信号的频率</li>
+</ul>
+</li>
+<li>单总线结构特点：简单，易于扩充</li>
+<li>双总线结构：ppt7</li>
+<li>直接存储器DMA(Direct Memory Access)<br>  如果由外围设备指定的地址对应于一个主存单元，则主存予以响应，于是在主存和外设之间将进行直接存储器传送</li>
+<li>简单总线结构的不足之处<ul>
+<li>CPU是总线上唯一的主控者</li>
+<li>总线结构紧密与CPU相关，通用性较差</li>
+</ul>
+</li>
+<li>信息传送方式(p195)<ul>
+<li>串行传送</li>
+<li>并行传送</li>
+<li>分时传送</li>
+</ul>
+</li>
+<li>总线仲裁部件：以某种方式选择其中一个主设备作为总线的下一个主方(p198)</li>
+<li>集中式仲裁：每个功能模块都有两条线连到总线控制器<ul>
+<li>总线请求信号线BR：送往仲裁器</li>
+<li>总线授权信号线BG：仲裁器送出</li>
+</ul>
+</li>
+<li>在查询链中，离总线仲裁器最近的设备具有<strong>最高优先级</strong></li>
+<li>分布式仲裁：不需要集中的总线仲裁器</li>
+<li>同步总线必须按最慢的模块来设计时钟</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -332,7 +1218,7 @@ mjx-container[display="true"] + br {
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-05-10 22:54:13" itemprop="dateModified" datetime="2025-05-10T22:54:13+08:00">2025-05-10</time>
+      <time title="修改时间：2025-05-12 21:51:05" itemprop="dateModified" datetime="2025-05-12T21:51:05+08:00">2025-05-12</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -351,14 +1237,14 @@ mjx-container[display="true"] + br {
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>5.8k</span>
+      <span>6k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>21 分钟</span>
+      <span>22 分钟</span>
     </span>
 </div>
 
@@ -370,7 +1256,14 @@ mjx-container[display="true"] + br {
     
     <div class="post-body" itemprop="articleBody">
           <p>Not just for exam. 后期不断补充新的知识。</p>
-<h1 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h1><h2 id="网络协议"><a href="#网络协议" class="headerlink" title="网络协议"></a>网络协议</h2><p>网络协议是为进行网络中的数据交换而建立的规则、标准或约定。由语法、语义和时序（或顺序或同步）三个要素组成。<br>语法，即数据与控制信息的结构或格式。<br>语义，即需要发出何种控制信息，完成何种动作以及做出何种响应。<br>时序，即事件实现顺序的详细说明。</p>
+<h1 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h1><h2 id="OSI-RM参考模型"><a href="#OSI-RM参考模型" class="headerlink" title="OSI/RM参考模型"></a>OSI/RM参考模型</h2><p><em>🚧施工中🚧</em></p>
+<ul>
+<li>物理层：利用传输介质为数据链路层提供物理连接，负责处理数据传输并监控数据出错率，以便数据流的透明传输</li>
+<li>数据链路层：在物理层提供的服务基础上，在通信的实体间建立数据链路连接，传输以“帧”为单位的数据包，并采用差错控制与流量控制方法，使有差错的物理线路变成<strong>无差错</strong>的数据链路</li>
+<li>网络层：为数据在节点之间传输创建逻辑链路，通过路由选择算法为分组通过通信子网选择最适当的路径，以及实现拥塞控制、网络互联等功能</li>
+<li>应用层：为应用软件提供了很多服务，实现具体的应用功能</li>
+</ul>
+<h2 id="网络协议"><a href="#网络协议" class="headerlink" title="网络协议"></a>网络协议</h2><p>网络协议是为进行网络中的数据交换而建立的规则、标准或约定。由语法、语义和时序（或顺序或同步）三个要素组成。<br>语法，即数据与控制信息的结构或格式。<br>语义，即需要发出何种控制信息，完成何种动作以及做出何种响应。<br>时序，即事件实现顺序的详细说明。</p>
 <h2 id="各种协议"><a href="#各种协议" class="headerlink" title="各种协议"></a>各种协议</h2><h3 id="首部"><a href="#首部" class="headerlink" title="首部"></a>首部</h3><div class="table-container">
 <table>
 <thead>
@@ -2082,439 +2975,8 @@ h1 {
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.misaka-xxw.github.io/2024/05/16/NineChapterDreamland/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Misaka-xxw">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Misaka-xxw的博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Misaka-xxw的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/05/16/NineChapterDreamland/" class="post-title-link" itemprop="url">《九章绮梦》游戏初开发日记（一）</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-05-16 23:36:53" itemprop="dateCreated datePublished" datetime="2024-05-16T23:36:53+08:00">2024-05-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-01-21 14:36:37" itemprop="dateModified" datetime="2025-01-21T14:36:37+08:00">2025-01-21</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Unity/" itemprop="url" rel="index"><span itemprop="name">Unity</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.7k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>6 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>写在前面：<br>我的第一次游戏开发。这里是当年的记录，都是新手踩坑，确实没有什么技术含量。尽可能地保留原汁原味😂。</p>
-<p>游戏名：九章绮梦<br>unity引擎版本：2022.3.23f1<br>注意：润色部分要在保证程序编完的情况下，再润色。<br>Unity调用命令行，另开新的一篇写。</p>
-<h2 id="程序开发备忘录"><a href="#程序开发备忘录" class="headerlink" title="程序开发备忘录"></a>程序开发备忘录</h2><h3 id="开始任务"><a href="#开始任务" class="headerlink" title="开始任务"></a>开始任务</h3><ol>
-<li>导入图片（重要）<br>像素素材，为了防止像素模糊，一定要勾选这两项：<br>Filter Mode: Point(No filter)<br>Compression: None</li>
-<li><del>润色：第一章还没有做速度控制器。主速度变量在PlayerController。要更改MoveLandscape和SceneScroller</del>已完成</li>
-<li>重要：主摄像头，要固定下来，现在比例不对！据说要用GUI什么的。</li>
-<li>场景滚动，是用我建立的滚动材料Scroller.mat，再加上滚动脚本即可。注意图片素材模式要是multiple，不能是simple。</li>
-<li>panel（暂停后的UI）还没做。先写逻辑，这里估计要放点儿知识文字。</li>
-<li>美术缺很多素材！</li>
-<li>音频准备了一点点，最后可能还要收集，去找免版权的，我买了一点。</li>
-<li>润色：加一个跑步公里数。古代单位估计得。</li>
-<li>重要：游戏玩法设计、存档系统。使用json还是……还有一个剧情系统。剧情估计要用json存，但是在脚本存也可以吧。</li>
-<li><del>捡到金币的音频已经找到了，还没绑定。</del>还有跳跃的音频还没找到合适的。</li>
-<li>说明：tree绑定了随风摇动的shader。</li>
-<li>说明：看剧本，想一下如何融入数学元素。</li>
-<li>润色：live2D系统，chatGLM调用。</li>
-<li><del>未修正：角色和场景速度不对</del>2023/4/6已写速度</li>
-</ol>
-<h3 id="2024-4-6"><a href="#2024-4-6" class="headerlink" title="2024/4/6"></a><mark>2024/4/6</mark></h3><ol>
-<li>学到了oop里的“单例”用法。虽然还没用。</li>
-</ol>
-<h3 id="2024-4-11"><a href="#2024-4-11" class="headerlink" title="2024/4/11"></a><mark>2024/4/11</mark></h3><h4 id="L要做的部分"><a href="#L要做的部分" class="headerlink" title="L要做的部分"></a>L要做的部分</h4><ol>
-<li>看懂已经写的ButtonPause.cs,MoveLandscape.cs,PlayerController.cs,RandomObject.cs,SpeedController.cs,SceneScroller.cs,TextCoin.cs仿照FangTianScence.unity，做后面的场景：SuMi粟米，Junshu均输，GouGu勾股。其中勾股部分是用屋顶素材拼的，和其它关不一样，经常跳跃。在PlayerController.cs中仿照金币写一个被敌人碰扣血的函数。后面可能要做一个主人公发起攻击的。</li>
-<li>看上面的记录内容。</li>
-<li>收集物品的脚本。</li>
-<li>做一个存档脚本，存下关卡通关情况，每一关的最高纪录、人物金币收集情况、人物“知识点”。</li>
-<li>准备做UI。网上能找到代码怎么写。<h4 id="未来一周规划"><a href="#未来一周规划" class="headerlink" title="未来一周规划"></a>未来一周规划</h4></li>
-</ol>
-<h5 id="程序"><a href="#程序" class="headerlink" title="程序"></a>程序</h5><ol>
-<li>把剧情写进脚本，不用json了，直接用list数据结构包一个class。一个一个读取。然而为了美好的未来，我还是用了json()</li>
-</ol>
-<h5 id="美术"><a href="#美术" class="headerlink" title="美术"></a>美术</h5><ol>
-<li>画几张聊天背景图，好，就拍照再加滤镜！</li>
-<li>主页图，经费充足的话用live2d吗？</li>
-<li>地图，这个重要捏</li>
-<li>商店</li>
-<li>像素风：第一关要收集的四个物品，第二关收集的米袋，第四关飞镖。一个暂停界面，只需要个框！最好和按钮一个色卡<h4 id="unity-live2d使用笔记"><a href="#unity-live2d使用笔记" class="headerlink" title="unity live2d使用笔记"></a>unity live2d使用笔记</h4>建模过程踩的坑不用提了，因为我忘记记录了<br>目线跟踪、眨眼、动画播放要挂载的脚本<br><img src="image-1.png" alt="图片"><br>其中脸部参数可以再调大一点<br><img src="image-2.png" alt="图片"><br><img src="image-3.png" alt="图片"><br><img src="image-4.png" alt="图片"><br>这个系列：<a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_68267247/article/details/132415298">Unity制作Live2D（三）头部眼睛跟随鼠标</a><br>总之要把动画全部k帧k出来再导入。<h3 id="2024-4-12"><a href="#2024-4-12" class="headerlink" title="2024/4/12"></a><mark>2024/4/12</mark></h3><h4 id="关于JSON"><a href="#关于JSON" class="headerlink" title="关于JSON"></a>关于JSON</h4>感觉难用，但是就这样吧。<br>在老C那儿查到这些避雷的地方：</li>
-<li>用于接收的JSON实体类需要声明[Serializable] 序列化。</li>
-<li>使用Unity自带方法时，实体类如果是属性成员（public bool has_more{get;set;}）的话，在序列化的时候会缺失这些成员，导致解析不出来。将属性改为字段即可。</li>
-<li>如果解析的对象是数组，自带的不能成功解析，可以人为将其封装为JSON对象。 <mark>对！数组xx的不能不能解析！（愤怒）根本改不好！！！</mark><br>但是改着改着它就从这样<img src="b49bb24c6da2b1c83004c885d481ea73.png" alt="图片">变成了这样<img src="image-5.png" alt="图片"><br>我不理解，完全忘记自己改了什么，并且大受震撼。。。<del>unity我的祖宗，你编译快一点儿</del><br>所以这个有什么用来着？<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="keyword">get</span>;<span class="keyword">set</span>;&#125;</span><br></pre></td></tr></table></figure>
-2024/4/15补充：<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">某个人工智能“主动”跟我说：</span><br><span class="line">In C<span class="meta">#, the &#123; get; set; &#125; syntax is used to <span class="keyword">define</span> a property. Let’s break it down:</span></span><br><span class="line"><span class="keyword">get</span>: This part defines the getter <span class="keyword">for</span> the property. It allows you to retrieve the <span class="keyword">value</span> of the property. When you access the property, the code inside the <span class="keyword">get</span> block <span class="keyword">is</span> executed, <span class="keyword">and</span> the result <span class="keyword">is</span> returned.</span><br><span class="line"><span class="keyword">set</span>: This part defines the setter <span class="keyword">for</span> the property. It allows you to assign a <span class="keyword">value</span> to the property. When you assign a <span class="keyword">value</span> to the property, the code inside the <span class="keyword">set</span> block <span class="keyword">is</span> executed, <span class="keyword">and</span> the <span class="keyword">value</span> <span class="keyword">is</span> stored.</span><br><span class="line">Here’s an example of how you might use <span class="keyword">this</span> syntax to create a simple property <span class="keyword">in</span> C<span class="meta">#:</span></span><br><span class="line">;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Person</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// Private field to store the value</span></span><br><span class="line">    <span class="keyword">private</span> <span class="built_in">string</span> _name;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Property with getter and setter</span></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> Name</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">get</span> &#123; <span class="keyword">return</span> _name; &#125;</span><br><span class="line">        <span class="keyword">set</span> &#123; _name = <span class="keyword">value</span>; &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">In <span class="keyword">this</span> example:</span><br><span class="line"></span><br><span class="line">The Name property has both a getter <span class="keyword">and</span> a setter.</span><br><span class="line">When you read person.Name, it calls the <span class="keyword">get</span> block <span class="keyword">and</span> returns the stored _name <span class="keyword">value</span>.</span><br><span class="line">When you assign a <span class="keyword">value</span> to person.Name, it calls the <span class="keyword">set</span> block <span class="keyword">and</span> updates the _name field.</span><br><span class="line">Feel free to adapt <span class="keyword">this</span> pattern to your specific use <span class="keyword">case</span>! 😊</span><br></pre></td></tr></table></figure>
-于是莫名其妙的，我们就可以SetTrigger播放人物动画了，好耶！<br>顺便一提，不知道哪儿冲突了，小九的微笑眯眯眼和什么冲突了，悲()<br>假如此时，能来个很厉害的美工就太美妙了，再来亿点儿live2D模型吧！！<h3 id="2024-4-14"><a href="#2024-4-14" class="headerlink" title="2024/4/14"></a><mark>2024/4/14</mark></h3>做了剧本一个字一个字播放<h4 id="关于c-的oop"><a href="#关于c-的oop" class="headerlink" title="关于c#的oop"></a>关于c#的oop</h4>我忘记我要记什么oop了。。。<h3 id="2024-4-15"><a href="#2024-4-15" class="headerlink" title="2024/4/15"></a><mark>2024/4/15</mark></h3></li>
-<li>摄像头比例是Camera.main.aspect。但我还是搞不好啊！</li>
-<li>重新测试了python chatglm角色ai聊天，写了unity和python通信的脚本。<br>为什么要用cmd.exe呢？因为太菜了，看到socket的代码望而生畏，觉得cmd比较好搞，遂学之。python那边就是用我们的老朋友sys了。<br>这里是用Thread类，网上说不用的话会报错。查了一下概念：<br>线程(Thread)是进程中一个单一的顺序控制流程。线程是进程中的实体。一个进程可以有多个线程，一个线程必须有一个父进程。<h3 id="2024-4-19"><a href="#2024-4-19" class="headerlink" title="2024/4/19"></a><mark>2024/4/19</mark></h3>这几天都在画画。但这是程序开发备忘录。<h3 id="2024-4-20"><a href="#2024-4-20" class="headerlink" title="2024/4/20"></a><mark>2024/4/20</mark></h3></li>
-<li>video的导入遇到了困难。还好格式转换解决了。（后面补充一下，还是不行，有bug）</li>
-<li>添加了游戏知识卡，虽然丑丑的。</li>
-<li>比例还是有问题。</li>
-<li>找了画手朋友画了些东西。<h3 id="2024-4-忘了"><a href="#2024-4-忘了" class="headerlink" title="2024/4/忘了"></a><mark>2024/4/忘了</mark></h3>记得时间戳暂停了恢复回来啊喂！还有ai板块编译出来就寄了，以后要想办法解决！</li>
-</ol>
-<h2 id="程序心得记录"><a href="#程序心得记录" class="headerlink" title="程序心得记录"></a>程序心得记录</h2><p>累死了，最后一天疯狂修bug，不写啦</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.misaka-xxw.github.io/2024/05/16/delete_commit/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Misaka-xxw">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Misaka-xxw的博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Misaka-xxw的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/05/16/delete_commit/" class="post-title-link" itemprop="url">删commit记录</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-05-16 14:45:51" itemprop="dateCreated datePublished" datetime="2024-05-16T14:45:51+08:00">2024-05-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-01-21 14:37:13" itemprop="dateModified" datetime="2025-01-21T14:37:13+08:00">2025-01-21</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>797</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>3 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="记录一次收拾“把超大库放进仓库”的烂摊子"><a href="#记录一次收拾“把超大库放进仓库”的烂摊子" class="headerlink" title="记录一次收拾“把超大库放进仓库”的烂摊子"></a>记录一次收拾“把超大库放进仓库”的烂摊子</h1><h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>git是放代码的地方，但是我很蠢地把Unity的库给放进去，而且每次提交把全部有用没用的更改全交了。<del>这就是不好好看新手教程的下场啊。</del><br>首先，要是直接在github里删除的话，历史记录还在那儿，.git文件依然会特别大。<br>删了一个library文件夹，.git文件大小: <mark> 1.71GB -&gt; 633 MB </mark>。而library自己有多大呢？<mark>2.04 GB</mark>。。。<br>于是搜查资料，查到了，按教程做，结果————</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> git filter-branch --force --index-filter &#x27;git rm --cached --ignore-unmatch Library&#x27; --prune-empty --tag-name-filter cat -- --all</span><br><span class="line">WARNING: git-filter-branch has a glut of gotchas generating mangled history</span><br><span class="line">         rewrites.  Hit Ctrl-C before proceeding to abort, then use an</span><br><span class="line">         alternative filtering tool such as &#x27;git filter-repo&#x27;</span><br><span class="line">         (https://github.com/newren/git-filter-repo/) instead.  See the</span><br><span class="line">         filter-branch manual page for more details; to squelch this warning,</span><br><span class="line">         set FILTER_BRANCH_SQUELCH_WARNING=1.</span><br><span class="line">Proceeding with filter-branch...</span><br><span class="line"></span><br><span class="line">Cannot rewrite branches: You have unstaged changes.</span><br></pre></td></tr></table></figure>
-<p>嗯。。。但是我没保存的那些没用的东西，真是又多又没用。</p>
-<h2 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h2><p>那就按这他给的<a target="_blank" rel="noopener" href="https://github.com/newren/git-filter-repo/">链接</a>搜索了。</p>
-<p>在保证什么什么环境变量没问题的情况下。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install git-filter-repo</span><br></pre></td></tr></table></figure>
-<p>接下来，cd或者进入到文件夹，右键git bash。<br>这里教程也写了备份，但是我胆子大，没备份。不能这样。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cp</span> -r your_repo your_repo_backup</span><br></pre></td></tr></table></figure>
-<p>然后就可以愉快地删除了。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git filter-repo --force --invert-paths --path <span class="string">&#x27;Library&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>清理并优化本地仓库</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git reflog expire --all --expire-unreachable=now --update-reflogs</span><br><span class="line">git gc --prune=now --aggressive</span><br></pre></td></tr></table></figure>
-<p>推送更改到远程仓库</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin &lt;仓库URL&gt;</span><br><span class="line">或者</span><br><span class="line">git remote set-url origin &lt;仓库URL&gt;</span><br><span class="line"></span><br><span class="line">git push origin --force --all</span><br><span class="line">git push origin --force --tags</span><br></pre></td></tr></table></figure>
-<p>重新clone，好好设置gitignore啊喂！终于理解去年为什么学长禁止我把美术资源的工程文件也push上了，唉。。。</p>
-<p>于是去copy了学长的gitignore文件，以后就不会这么逆天了。仅针对unity引擎。</p>
-<details>
-<summary>Unity gitignore模板</summary>
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># This .gitignore file should be placed at the root of your Unity project directory</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">/[Ll]ibrary/</span><br><span class="line">/[Tt]emp/</span><br><span class="line">/[Oo]bj/</span><br><span class="line">/[Bb]uild/</span><br><span class="line">/[Bb]uilds/</span><br><span class="line">/[Ll]ogs/</span><br><span class="line">/[Uu]ser[Ss]ettings/</span><br><span class="line"></span><br><span class="line"><span class="comment"># MemoryCaptures can get excessive in size.</span></span><br><span class="line"><span class="comment"># They also could contain extremely sensitive data</span></span><br><span class="line">/[Mm]emoryCaptures/</span><br><span class="line"></span><br><span class="line"><span class="comment"># Recordings can get excessive in size</span></span><br><span class="line">/[Rr]ecordings/</span><br><span class="line"></span><br><span class="line"><span class="comment"># Uncomment this line if you wish to ignore the asset store tools plugin</span></span><br><span class="line"><span class="comment"># /[Aa]ssets/AssetStoreTools*</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Autogenerated Jetbrains Rider plugin</span></span><br><span class="line">/[Aa]ssets/Plugins/Editor/JetBrains*</span><br><span class="line"></span><br><span class="line"><span class="comment"># Visual Studio cache directory</span></span><br><span class="line">.vs/</span><br><span class="line"></span><br><span class="line"><span class="comment"># Gradle cache directory</span></span><br><span class="line">.gradle/</span><br><span class="line"></span><br><span class="line"><span class="comment"># Autogenerated VS/MD/Consulo solution and project files</span></span><br><span class="line">ExportedObj/</span><br><span class="line">.consulo/</span><br><span class="line">*.csproj</span><br><span class="line">*.unityproj</span><br><span class="line">*.sln</span><br><span class="line">*.suo</span><br><span class="line">*.tmp</span><br><span class="line">*.user</span><br><span class="line">*.userprefs</span><br><span class="line">*.pidb</span><br><span class="line">*.booproj</span><br><span class="line">*.svd</span><br><span class="line">*.pdb</span><br><span class="line">*.mdb</span><br><span class="line">*.opendb</span><br><span class="line">*.VC.db</span><br><span class="line"></span><br><span class="line"><span class="comment"># Unity3D generated meta files</span></span><br><span class="line">*.pidb.meta</span><br><span class="line">*.pdb.meta</span><br><span class="line">*.mdb.meta</span><br><span class="line"></span><br><span class="line"><span class="comment"># Unity3D generated file on crash reports</span></span><br><span class="line">sysinfo.txt</span><br><span class="line"></span><br><span class="line"><span class="comment"># Builds</span></span><br><span class="line">*.apk</span><br><span class="line">*.aab</span><br><span class="line">*.unitypackage</span><br><span class="line">*.app</span><br><span class="line"><span class="comment"># Crashlytics generated file</span></span><br><span class="line">crashlytics-build.properties</span><br><span class="line"></span><br><span class="line"><span class="comment"># Packed Addressables</span></span><br><span class="line">/[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*</span><br><span class="line"></span><br><span class="line"><span class="comment"># Temporary auto-generated Android Assets</span></span><br><span class="line">/[Aa]ssets/[Ss]treamingAssets/aa.meta</span><br><span class="line">/[Aa]ssets/[Ss]treamingAssets/aa/*</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-</details>
-
-<h2 id="小剧场"><a href="#小剧场" class="headerlink" title="小剧场"></a>小剧场</h2><p>大佬：不过这 直接把library放进去了有点离谱<br>小w：草率了QAQ<br>大佬：其实有一个比较稳妥的办法，就是新创一个分支，没问题了再合并。这样做还可以减少多余的commit，就是比较麻烦。<br>小w：我多余的commit估计有几千个文件改动。。。毕竟那可是把library装进去了<br>大佬：哈哈</p>
-<h2 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h2><p><a target="_blank" rel="noopener" href="https://github.com/newren/git-filter-repo/blob/main/INSTALL.md">github上的安装说明</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44871531/article/details/136802516?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522171586782016800213099308%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&amp;request_id=171586782016800213099308&amp;biz_id=0&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduend~default-1-136802516-null-null.142^v100^pc_search_result_base7&amp;utm_term=git-filter-repo&amp;spm=1018.2226.3001.4187">csdn的一篇博客</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/52885189">知乎教怎么用gitignore的</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.misaka-xxw.github.io/2024/01/22/pyqt6-sqlite3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Misaka-xxw">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Misaka-xxw的博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Misaka-xxw的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/01/22/pyqt6-sqlite3/" class="post-title-link" itemprop="url">pyqt6与sqlite3的微记录</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-01-22 22:19:57" itemprop="dateCreated datePublished" datetime="2024-01-22T22:19:57+08:00">2024-01-22</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-01-21 15:27:26" itemprop="dateModified" datetime="2025-01-21T15:27:26+08:00">2025-01-21</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>563</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">super</span>()._init__()</span><br></pre></td></tr></table></figure>
-<p>super()用来调用父类(基类)的方法，<strong>init</strong>()是类的构造方法， super().<strong>init</strong>() 就是调用父类的init方法， 同样可以使用super()去调用父类的其他方法。</p>
-<h1 id="pyqt6"><a href="#pyqt6" class="headerlink" title="pyqt6"></a>pyqt6</h1><h2 id="命令行"><a href="#命令行" class="headerlink" title="命令行"></a>命令行</h2><ol>
-<li>编译<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Pyinstaller -F -w -i cat.ico main.py</span><br></pre></td></tr></table></figure></li>
-<li>ui文件转换成py文件<br>先进入相应文件夹，然后打开cmd，输入<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m PyQt6.uic.pyuic window.ui -o window.py</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<hr>
-<h1 id="sqlite3"><a href="#sqlite3" class="headerlink" title="sqlite3"></a>sqlite3</h1><p>直接将字符串插入到SQL语句中，这可能会导致SQL注入的问题。SQL注入是一种攻击，攻击者可以通过在输入字段中插入恶意的SQL代码来操纵数据库。<br>在代码中，如果传入的数据包含SQL语句，那么这些语句将会被执行，这可能会导致数据库中的数据被修改或者删除。<br>为了防止这种情况，应该使用参数化查询。</p>
-<p>错误代码：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">self</span>.cur.execute(<span class="string">f&#x27;INSERT INTO <span class="subst">&#123;self.name&#125;</span> (id, English, Chinese, Phonetic) VALUES(NULL, <span class="subst">&#123;English&#125;</span>, <span class="subst">&#123;Chinese&#125;</span>, <span class="subst">&#123;Phonetic&#125;</span>)&#x27;</span>)</span><br></pre></td></tr></table></figure></p>
-<p>正确代码：</p>
-<h2 id=""><a href="#" class="headerlink" title=""></a><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">self</span>.cur.execute(<span class="string">f&#x27;INSERT INTO <span class="subst">&#123;self.name&#125;</span> (id, English, Chinese, Phonetic) VALUES(NULL, ?, ?, ?)&#x27;</span>, (English, Chinese, Phonetic))</span><br></pre></td></tr></table></figure></h2><h1 id="英语单词小程序——项目实现任务"><a href="#英语单词小程序——项目实现任务" class="headerlink" title="英语单词小程序——项目实现任务"></a>英语单词小程序——项目实现任务</h1><p><del>做成能用的半成品也不背单词</del></p>
-<p>一. 数据库</p>
-<p>(1). 单词</p>
-<p>1). 增</p>
-<ul>
-<li>[x] 增加一个单词</li>
-<li>[ ] 并且注意英语不重复</li>
-<li>[ ] 根据excel表格，往单词本增加一堆单词</li>
-<li>[ ] 根据相同或不同的数据库，别的单词本合并进选定的单词本</li>
-</ul>
-<p>2). 删</p>
-<ul>
-<li>[x] 在单词概览中删除一个单词，并更新</li>
-<li>[ ] 在单词卡片中删除一个单词，并更新</li>
-</ul>
-<p>3). 改</p>
-<ul>
-<li>[ ] 在单词概览中点击，进入单词卡片模式，再点击可修改和保存</li>
-<li>[ ] 在默写三模式中，根据对错情况修改权值</li>
-</ul>
-<p>4). 查</p>
-<ul>
-<li>[ ] 本地查询中英文</li>
-<li>[ ] 联网查询中英文</li>
-<li>[x] 查询全部单词</li>
-</ul>
-<p>(2). 单词本</p>
-<p>1). 增</p>
-<ul>
-<li>[x] 新建一个单词本</li>
-<li>[ ] 并且注意单词本名不重复</li>
-<li>[ ] 根据excel表格，新建一个单词本</li>
-<li>[ ] 根据相同或不同的数据库，新建一个单词本</li>
-</ul>
-<p>2). 删</p>
-<ul>
-<li>[x] 删除一个单词本</li>
-</ul>
-<p>3). 改</p>
-<ul>
-<li>[ ] 修改单词本名</li>
-</ul>
-<p>4). 查</p>
-<ul>
-<li>[x] 查询所有单词本名字</li>
-<li>[ ] 查询单词本单词总数</li>
-<li>[ ] 根据权重，随机选取单词本中单词</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>
@@ -2537,14 +2999,14 @@ h1 {
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">58k</span>
+    <span title="站点总字数">60k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">3:32</span>
+    <span title="站点阅读时长">3:40</span>
   </span>
 </div>
 <div class="busuanzi-count">
