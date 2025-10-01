@@ -259,7 +259,7 @@ mjx-container[display="true"] + br {
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-count">34</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -270,7 +270,7 @@ mjx-container[display="true"] + br {
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">39</span>
+        <span class="site-state-item-count">40</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -287,6 +287,167 @@ mjx-container[display="true"] + br {
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.misaka-xxw.github.io/2025/05/12/math-mod/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Misaka-xxw">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Misaka-xxw的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Misaka-xxw的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/05/12/math-mod/" class="post-title-link" itemprop="url">求模，求余</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-05-12 22:38:24" itemprop="dateCreated datePublished" datetime="2025-05-12T22:38:24+08:00">2025-05-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-05-13 00:00:40" itemprop="dateModified" datetime="2025-05-13T00:00:40+08:00">2025-05-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>575</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><em>%%%</em><br><em>计算机系统结构的GCD法引发的深思</em></p>
+<h1 id="求模与求余的区别"><a href="#求模与求余的区别" class="headerlink" title="求模与求余的区别"></a>求模与求余的区别</h1><p>这是我们小学二年级就会的除法运算。</p>
+<p>$<br>\begin{aligned}<br>5\div3&amp;=1\cdots2\\<br>(-5)\div3&amp;=(-1)\cdots(-2)\\<br>(-5)\div(-3)&amp;=1\cdots(-2)\\<br>5\div(-3)&amp;=(-1)\cdots2<br>\end{aligned}<br>$</p>
+<h2 id="数学定义"><a href="#数学定义" class="headerlink" title="数学定义"></a>数学定义</h2><p>求模和求余的主要区别在于<strong>处理负数</strong>的方式。<br>首先，商的符号永远由被除数和除数一起决定。</p>
+<ul>
+<li><strong>求余操作 (a % b)</strong>：<ul>
+<li><mark>余</mark>数的符号与<mark>被除数</mark>相同</li>
+<li><code>商 = abs(a)/abs(b)*sign(a)*sign(b)</code> </li>
+<li><code>余数 = a-b*商 = abs(a)%abs(b)*sign(a)</code></li>
+</ul>
+</li>
+<li><strong>求模操作 (a mod b)</strong>：<ul>
+<li><mark>模</mark>的符号与<mark>除数</mark>相同</li>
+<li><code>商 = abs(a)/abs(b)-(sign(a)*sign(b)==1?0:abs(b))</code> </li>
+<li><code>模 = a-b*商 = abs(abs(a)%abs(b)-(sign(a)*sign(b)==1?0:abs(b))*sign(b)</code></li>
+</ul>
+</li>
+</ul>
+<p>其中<code>sign(a)</code>为取<code>a</code>的正负符号,正为1，负为-1，0为0</p>
+<h3 id="实际对比"><a href="#实际对比" class="headerlink" title="实际对比"></a>实际对比</h3><p>对于正数，两者结果相同：<br>对于负数，结果可能不同：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">//求余</span></span><br><span class="line">    <span class="type">int</span> a[]=&#123;<span class="number">5</span>,<span class="number">-5</span>,<span class="number">-5</span>,<span class="number">5</span>&#125;,b[]=&#123;<span class="number">3</span>,<span class="number">3</span>,<span class="number">-3</span>,<span class="number">-3</span>&#125;;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">4</span>;++i)&#123;</span><br><span class="line">        cout&lt;&lt;a[i]&lt;&lt;<span class="string">&quot; div &quot;</span>&lt;&lt;b[i]&lt;&lt;<span class="string">&quot; = &quot;</span>&lt;&lt;a[i]/b[i]&lt;&lt;<span class="string">&quot;···&quot;</span>&lt;&lt;a[i]%b[i]&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//result</span></span><br><span class="line"><span class="number">5</span> div <span class="number">3</span> = <span class="number">1</span>···<span class="number">2</span></span><br><span class="line"><span class="number">-5</span> div <span class="number">3</span> = <span class="number">-1</span>···<span class="number">-2</span></span><br><span class="line"><span class="number">-5</span> div <span class="number">-3</span> = <span class="number">1</span>···<span class="number">-2</span></span><br><span class="line"><span class="number">5</span> div <span class="number">-3</span> = <span class="number">-1</span>···<span class="number">2</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 求模</span></span><br><span class="line">a=[<span class="number">5</span>,-<span class="number">5</span>,-<span class="number">5</span>,<span class="number">5</span>]</span><br><span class="line">b=[<span class="number">3</span>,<span class="number">3</span>,-<span class="number">3</span>,-<span class="number">3</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&#x27;<span class="subst">&#123;a[i]&#125;</span> div <span class="subst">&#123;b[i]&#125;</span> = <span class="subst">&#123;a[i]//b[i]&#125;</span>···<span class="subst">&#123;a[i]%b[i]&#125;</span>&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># result</span></span><br><span class="line"><span class="number">5</span> div <span class="number">3</span> = <span class="number">1</span>···<span class="number">2</span></span><br><span class="line">-<span class="number">5</span> div <span class="number">3</span> = -<span class="number">2</span>···<span class="number">1</span></span><br><span class="line">-<span class="number">5</span> div -<span class="number">3</span> = <span class="number">1</span>···-<span class="number">2</span></span><br><span class="line"><span class="number">5</span> div -<span class="number">3</span> = -<span class="number">2</span>···-<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<h3 id="表格对比"><a href="#表格对比" class="headerlink" title="表格对比"></a>表格对比</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>表达式</th>
+<th>求余 (C/Java)</th>
+<th>求模 (Python)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5 % 3</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>-5 % 3</td>
+<td>-2</td>
+<td>1</td>
+</tr>
+<tr>
+<td>-5 % -3</td>
+<td>-2</td>
+<td>-2</td>
+</tr>
+<tr>
+<td>5 % -3</td>
+<td>2</td>
+<td>-1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="转换公式"><a href="#转换公式" class="headerlink" title="转换公式"></a>转换公式</h2><p>默认求模的程序语言：Python, Ruby<br>默认求余的程序语言：C, C++, Java, JavaScript</p>
+<p>如果想在求余的语言中实现求模：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">mod</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> &#123;</span><br><span class="line">    <span class="type">int</span> r = a % b;</span><br><span class="line">    <span class="keyword">return</span> r &lt; <span class="number">0</span> ? r + <span class="built_in">abs</span>(b) : r;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如果想在求模的语言中实现求余：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">remainder</span>(<span class="params">a, b</span>):</span><br><span class="line">    r = a % b</span><br><span class="line">    <span class="keyword">if</span> (a &lt; <span class="number">0</span> <span class="keyword">and</span> b &gt; <span class="number">0</span>) <span class="keyword">or</span> (a &gt; <span class="number">0</span> <span class="keyword">and</span> b &lt; <span class="number">0</span>):</span><br><span class="line">        <span class="keyword">return</span> r - b</span><br><span class="line">    <span class="keyword">return</span> r</span><br></pre></td></tr></table></figure></p>
+<h1 id="模意义下的加减乘除"><a href="#模意义下的加减乘除" class="headerlink" title="模意义下的加减乘除"></a>模意义下的加减乘除</h1><p>$<br>(a+b)\bmod c=((a\bmod c)+(b\bmod c))\bmod c\\<br>(a-b)\bmod c=((a\bmod c)-(b\bmod c))\bmod c\\<br>(a\times b)\bmod c=((a\bmod c)\times (b\bmod c))\bmod c<br>$</p>
+<p>但是注意，除法就不是这样的了</p>
+<p>$<br>(a\div b)\bmod c=(a\times b^{-1})\bmod c=((a\bmod c)\times (b^{-1}\bmod c))\bmod c<br>$</p>
+<p>$b^{-1}$是逆元</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -3044,143 +3205,6 @@ cnt_r \times (cnt_r - 1) & \text{if } r = c.
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.misaka-xxw.github.io/2025/04/08/boot-esp-micropython/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Misaka-xxw">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Misaka-xxw的博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Misaka-xxw的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/04/08/boot-esp-micropython/" class="post-title-link" itemprop="url">windows环境下给esp8266刷Micropython</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-04-08 09:31:57" itemprop="dateCreated datePublished" datetime="2025-04-08T09:31:57+08:00">2025-04-08</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-05-10 22:17:49" itemprop="dateModified" datetime="2025-05-10T22:17:49+08:00">2025-05-10</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>867</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>3 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>网上的教程，包括官方的教程不太适用，自己摸索了一遍</p>
-<h1 id="下载安装驱动"><a href="#下载安装驱动" class="headerlink" title="下载安装驱动"></a>下载安装驱动</h1><p>有两种芯片，看你的小芯片上写的是CP2102还是CH340G👀（两个小按键之间），选择不同的驱动。</p>
-<h2 id="CP2102芯片"><a href="#CP2102芯片" class="headerlink" title="CP2102芯片"></a>CP2102芯片</h2><p>CP2102驱动下载地址：<br><a target="_blank" rel="noopener" href="https://www.silabs.com/developer-tools/usb-to-uart-bridge-vcp-drivers?tab=downloads">https://www.silabs.com/developer-tools/usb-to-uart-bridge-vcp-drivers?tab=downloads</a><br>选择<code>CP210x Windows Drivers</code>下载，解压。<br><img src="cp210.png" alt="图片"><br>然后安装。<br>笔记本电脑选：CP210xVCPInstaller_x64.exe<br>台式电脑（诶？）选：CP210xVCPInstaller_x86.exe</p>
-<h2 id="CH340G芯片"><a href="#CH340G芯片" class="headerlink" title="CH340G芯片"></a>CH340G芯片</h2><p>驱动下载地址：<br><a target="_blank" rel="noopener" href="https://www.arduined.eu/ch340-windows-10-driver-download/">https://www.arduined.eu/ch340-windows-10-driver-download/</a><br>点击蓝字CH340 driver for Windows 10下载，解压。点SETUP.EXE安装。</p>
-<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><p>如果你没有放大镜，看不清楚的话，你也可以两个都装，因为非常好装。</p>
-<h1 id="连接设备"><a href="#连接设备" class="headerlink" title="连接设备"></a>连接设备</h1><p>长按Esp板子上的<code>boot</code>按键，同时插上电脑，并抬起按键。<br>同时按下组合键：“Win + R”，打开“运行”对话框，在其中输入“devmgmt.msc”，点击“确定”即可打开“设备管理器”。点开端口。应该能看到包含芯片名称的一个端口，如图<br><img src="com.png" alt="图片"><br>如果没有的话，首先不要怀疑驱动，建议你先多换几个USB线，我换了<strong>三根</strong>啊<strong>三根</strong>。。。<br>然后记住是COM几，我的是COM4，下面的步骤记得替换。</p>
-<h1 id="下载固件"><a href="#下载固件" class="headerlink" title="下载固件"></a>下载固件</h1><p>最新固件网址：<br><a target="_blank" rel="noopener" href="https://micropython.org/download/ESP8266_GENERIC/">https://micropython.org/download/ESP8266_GENERIC/</a><br>直接找到<br><strong>Firmware</strong><br><strong>Releases</strong><br>初学者下载最上方的bin文件即可（带latest标识）。本人下载的时候版本是v1.24.1 (2024-11-29) .bin<br><img src="firmware.png" alt="图片"></p>
-<h1 id="下载python"><a href="#下载python" class="headerlink" title="下载python"></a>下载python</h1><p>确保已安装Python 3.7或更高版本。虽然官网说， Python 2.7和Python 3.4以上都可以，但是你也不希望被同学知道你还在用老版本的Python吧（不是）。</p>
-<p>Python官网：<a target="_blank" rel="noopener" href="https://www.python.org/">https://www.python.org/</a></p>
-<h1 id="用pip安装esptool"><a href="#用pip安装esptool" class="headerlink" title="用pip安装esptool"></a>用pip安装esptool</h1><p>首先你有可能要更新pip。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python.exe -m pip install --upgrade pip</span><br></pre></td></tr></table></figure></p>
-<p>接着<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install esptool</span><br></pre></td></tr></table></figure></p>
-<p>找到你Python的<code>Scripts</code>文件夹（里面应该有个<code>esptool.exe</code>），加上记住它的路径。再在后面加上<code>esptool</code>。</p>
-<details>
-<summary>找到esptool的一种方式</summary>
-
-<details>
-<summary>cmd怎么打开</summary>
-    win+R打开运行，输入cmd，回车
-</details>
-
-<p>在cmd，或者Vscode bash或者Pycharm bash或者powershell或者别的里，输入<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip --version</span><br></pre></td></tr></table></figure></p>
-<p>我这里显示了<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip 25.0.1 from D:\GitHub\Smart-Aquaculture-esp8266\.venv\lib\site-packages\pip (python 3.10)</span><br></pre></td></tr></table></figure></p>
-<p>看到这个<code>D:\GitHub\Smart-Aquaculture-esp8266\.venv\lib\site-packages\pip</code>，去掉<code>lib\site-packages\pip</code>，换成<code>Scripts\esptool</code>，即<code>D:\GitHub\Smart-Aquaculture-esp8266\.venv\Scripts\esptool</code>。等会儿要用。</p>
-<p>&lt;/details&gt;</p>
-<p>下面的<code>.venv/Scripts/esptool</code>替换成你的路径<br>因为我建了虚拟环境，就用相对路径了，所以后面就用<code>.venv/Scripts/esptool</code>简化写了。</p>
-<p>对于以下两个命令，你需要更改三个地方：</p>
-<ol>
-<li><code>.venv/Scripts/esptool</code>改成你在<strong>用pip安装esptool</strong>一步找到esptool的路径。</li>
-<li><code>COM4</code>改成在<strong>连接设备</strong>一步找到的COM几</li>
-<li><code>D:\software\ESP8266_GENERIC-20241129-v1.24.1.bin</code>改成你在<strong>下载固件</strong>一步下载的固件的路径。</li>
-</ol>
-<p>打开cmd，先擦除闪存<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.venv/Scripts/esptool --port COM4 erase_flash</span><br></pre></td></tr></table></figure><br>然后烧录固件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.venv/Scripts/esptool --port COM4  --baud 460800 write_flash --flash_size=detect 0  D:\software\ESP8266_GENERIC-20241129-v1.24.1.bin</span><br></pre></td></tr></table></figure></p>
-<h1 id="下载安装ide"><a href="#下载安装ide" class="headerlink" title="下载安装ide"></a>下载安装ide</h1><p>推荐thonny。<br>下载地址：<a target="_blank" rel="noopener" href="https://thonny.org/">https://thonny.org/</a><br>虽然这个软件某不可言说的方面有点抽象，但是是确实好用。也可以选择别的ide。</p>
-<p>如图：<br><img src="thonny1.png" alt="图片"></p>
-<p><img src="thonny2.png" alt="图片"></p>
-<h1 id="Hello-world"><a href="#Hello-world" class="headerlink" title="Hello world!"></a>Hello world!</h1><p>成功打开之后，Ctrl+N新建main.py文件，到了喜闻乐见的Hello world环节<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;hello world!&quot;</span>)</span><br></pre></td></tr></table></figure></p>
-<p>F5运行，看看能不能hello world。</p>
-<h1 id="Blink"><a href="#Blink" class="headerlink" title="Blink!"></a>Blink!</h1><h2 id=""><a href="#" class="headerlink" title=""></a><img src="blink.png" alt="图片"></h2><p>参考网址：<br><a target="_blank" rel="noopener" href="https://docs.micropython.org/en/latest/esp8266/tutorial/intro.html">https://docs.micropython.org/en/latest/esp8266/tutorial/intro.html</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
@@ -3212,7 +3236,7 @@ cnt_r \times (cnt_r - 1) & \text{if } r = c.
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">3:41</span>
+    <span title="站点阅读时长">3:43</span>
   </span>
 </div>
 <div class="busuanzi-count">
