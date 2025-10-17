@@ -147,7 +147,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-count">38</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -175,6 +175,113 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.misaka-xxw.github.io/2024/11/04/cx-Freeze/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Misaka-xxw">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Misaka-xxw的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Misaka-xxw的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/11/04/cx-Freeze/" class="post-title-link" itemprop="url">cx_Freeze:Python打包成可执行文件</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-11-04 18:20:46" itemprop="dateCreated datePublished" datetime="2024-11-04T18:20:46+08:00">2024-11-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-01-21 19:04:59" itemprop="dateModified" datetime="2025-01-21T19:04:59+08:00">2025-01-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>305</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>之前Pyinstaller打包失败，所以换成cx-Freeze打包。</p>
+<p><a target="_blank" rel="noopener" href="https://cx-freeze.readthedocs.io/en/latest/script.html">官网</a>写的很清楚。<br>最简单粗暴的打包是这样的，可执行文件和pyinstaller一样生成在dist文件夹里</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cxFreeze main.py</span><br></pre></td></tr></table></figure>
+<p>例如：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">cxfreeze --script hello.py --target-dir dist</span><br><span class="line"></span><br><span class="line">--script=要打包的主py文件</span><br><span class="line">--init-script=开始启动的文件，如果没写绝对路径的话，会去cx_Freeze package的根目录里找</span><br><span class="line">--base=NAME, --base-name=NAME</span><br><span class="line">--target-name=生成可执行文件的名字，不要包含路径</span><br><span class="line">--target-dir=生成可执行文件所在目录，默认为dist</span><br><span class="line">--icon=图标</span><br><span class="line">--shortcut-name=快捷方式的名字（MSI）</span><br><span class="line">--shortcut-dir=MSI安装包</span><br></pre></td></tr></table></figure>
+<p>如果不想出现控制台窗口的话：就加上<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--base-name=&quot;win32gui&quot;</span><br></pre></td></tr></table></figure><br>e.g.<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cxfreeze --script main.py --target-dir dist --base-name=&quot;win32gui&quot;</span><br></pre></td></tr></table></figure></p>
+<p>只打包了main.py,其它文件没有被打包上。copy到<br>每次都要敲命令行非常麻烦，新建一个bat文件批量复制，例如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> <span class="string">&quot;root_path=%~dp0&quot;</span></span><br><span class="line">cxFreeze --script main.py --icon=%root_path%Assets\icons\logo_orange.ico  --target-dir dist --base-name=<span class="string">&quot;win32gui&quot;</span></span><br><span class="line"><span class="built_in">set</span> exe_path=%root_path%dist</span><br><span class="line">XCOPY %root_path%\Assets\ %exe_path%\Assets\ /E /I</span><br><span class="line">XCOPY %root_path%\Temp\ %exe_path%\Temp\ /E /I</span><br><span class="line">XCOPY %root_path%\Templates\ %exe_path%\Templates\ /E /I</span><br><span class="line">XCOPY %root_path%\Views\ %exe_path%\Views\ /E /I</span><br><span class="line">XCOPY %root_path%\Sqlite\ %exe_path%\Sqlite\ /E /I</span><br><span class="line">XCOPY %root_path%\.venv\Lib\site-packages\sqlalchemy\ %exe_path%\lib\sqlalchemy\/E /I</span><br><span class="line"><span class="built_in">echo</span> END!</span><br><span class="line">pause</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1100,7 +1207,7 @@
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">3:49</span>
+    <span title="站点阅读时长">3:50</span>
   </span>
 </div>
 <div class="busuanzi-count">

@@ -19,27 +19,27 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"www.misaka-xxw.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="git分支操作git分支操作 可以当速查表看看 新建一个空白分支 1git checkout --orphan newBranchName 签名认证待填坑 git commit message标准基本格式type + 描述 type类型 feat 新功能 fix&#x2F;to  fix 产生diff并自动修复问题。适合一次提交直接修复格式 to 只产生diff不自动修复此问题。适合于多次提交。最终修复问题">
+    <meta name="description" content="conda命令速查表    功能类别 核心命令 说明&#x2F;示例     环境管理 conda create -n &lt;env_name&gt; python&#x3D;&lt;version&gt; 创建指定Python版本的新环境    conda activate &lt;env_name&gt; 激活进入指定环境    conda deactivate 退出当前环境    conda env list">
 <meta property="og:type" content="article">
-<meta property="og:title" content="git速查表和提交标准">
-<meta property="og:url" content="http://www.misaka-xxw.github.io/2024/05/16/git-standard/index.html">
+<meta property="og:title" content="conda基本食用方式">
+<meta property="og:url" content="http://www.misaka-xxw.github.io/2025/10/17/conda/index.html">
 <meta property="og:site_name" content="Misaka-xxw的博客">
-<meta property="og:description" content="git分支操作git分支操作 可以当速查表看看 新建一个空白分支 1git checkout --orphan newBranchName 签名认证待填坑 git commit message标准基本格式type + 描述 type类型 feat 新功能 fix&#x2F;to  fix 产生diff并自动修复问题。适合一次提交直接修复格式 to 只产生diff不自动修复此问题。适合于多次提交。最终修复问题">
+<meta property="og:description" content="conda命令速查表    功能类别 核心命令 说明&#x2F;示例     环境管理 conda create -n &lt;env_name&gt; python&#x3D;&lt;version&gt; 创建指定Python版本的新环境    conda activate &lt;env_name&gt; 激活进入指定环境    conda deactivate 退出当前环境    conda env list">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-05-16T15:44:56.000Z">
-<meta property="article:modified_time" content="2025-01-21T07:45:53.800Z">
+<meta property="article:published_time" content="2025-10-17T12:51:10.000Z">
+<meta property="article:modified_time" content="2025-10-17T12:54:21.960Z">
 <meta property="article:author" content="Misaka-xxw">
-<meta property="article:tag" content="Git">
+<meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://www.misaka-xxw.github.io/2024/05/16/git-standard/">
+<link rel="canonical" href="http://www.misaka-xxw.github.io/2025/10/17/conda/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://www.misaka-xxw.github.io/2024/05/16/git-standard/","path":"2024/05/16/git-standard/","title":"git速查表和提交标准"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://www.misaka-xxw.github.io/2025/10/17/conda/","path":"2025/10/17/conda/","title":"conda基本食用方式"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>git速查表和提交标准 | Misaka-xxw的博客</title>
+<title>conda基本食用方式 | Misaka-xxw的博客</title>
   
 
 
@@ -139,7 +139,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#git%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C"><span class="nav-number">1.</span> <span class="nav-text">git分支操作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AD%BE%E5%90%8D%E8%AE%A4%E8%AF%81"><span class="nav-number">2.</span> <span class="nav-text">签名认证</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#git-commit-message%E6%A0%87%E5%87%86"><span class="nav-number">3.</span> <span class="nav-text">git commit message标准</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A0%BC%E5%BC%8F"><span class="nav-number">3.1.</span> <span class="nav-text">基本格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#type%E7%B1%BB%E5%9E%8B"><span class="nav-number">3.2.</span> <span class="nav-text">type类型</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#conda%E5%91%BD%E4%BB%A4%E9%80%9F%E6%9F%A5%E8%A1%A8"><span class="nav-number">1.</span> <span class="nav-text">conda命令速查表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85anaconda"><span class="nav-number">2.</span> <span class="nav-text">下载安装anaconda</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E9%95%9C%E5%83%8F%E6%BA%90"><span class="nav-number">3.</span> <span class="nav-text">配置镜像源</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -190,7 +190,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.misaka-xxw.github.io/2024/05/16/git-standard/">
+    <link itemprop="mainEntityOfPage" href="http://www.misaka-xxw.github.io/2025/10/17/conda/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -203,12 +203,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="git速查表和提交标准 | Misaka-xxw的博客">
+      <meta itemprop="name" content="conda基本食用方式 | Misaka-xxw的博客">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          git速查表和提交标准
+          conda基本食用方式
         </h1>
 
         <div class="post-meta-container">
@@ -218,15 +218,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2024-05-16 23:44:56" itemprop="dateCreated datePublished" datetime="2024-05-16T23:44:56+08:00">2024-05-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-01-21 15:45:53" itemprop="dateModified" datetime="2025-01-21T15:45:53+08:00">2025-01-21</time>
+      <time title="创建时间：2025-10-17 20:51:10 / 修改时间：20:54:21" itemprop="dateCreated datePublished" datetime="2025-10-17T20:51:10+08:00">2025-10-17</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -234,7 +228,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a>
+          <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
         </span>
     </span>
 
@@ -252,14 +246,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>182</span>
+      <span>461</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>2 分钟</span>
     </span>
 </div>
 
@@ -269,28 +263,114 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h1 id="git分支操作"><a href="#git分支操作" class="headerlink" title="git分支操作"></a>git分支操作</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/chen134225/article/details/95475960">git分支操作 可以当速查表看看</a></p>
-<p>新建一个空白分支</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout --orphan newBranchName</span><br></pre></td></tr></table></figure>
-<h1 id="签名认证"><a href="#签名认证" class="headerlink" title="签名认证"></a>签名认证</h1><p>待填坑</p>
-<h1 id="git-commit-message标准"><a href="#git-commit-message标准" class="headerlink" title="git commit message标准"></a>git commit message标准</h1><h2 id="基本格式"><a href="#基本格式" class="headerlink" title="基本格式"></a>基本格式</h2><p><strong>type</strong> + 描述</p>
-<h2 id="type类型"><a href="#type类型" class="headerlink" title="type类型"></a>type类型</h2><ul>
-<li><strong>feat</strong> 新功能</li>
-<li>fix/to <ul>
-<li>fix <strong>产生diff</strong>并自动修复问题。适合一次提交直接修复格式</li>
-<li>to <strong>只产生diff</strong>不自动修复此问题。适合于多次提交。最终修复问题提交时使用fix</li>
-</ul>
-</li>
-<li>docs 提交文档</li>
-<li>style 格式 不影响代码运行的变动 </li>
-<li>refactor 重构</li>
-<li>perf 优化</li>
-<li>test 测试 单元测试</li>
-<li>chore 构建过程或辅助工具的变动</li>
-<li>revert 回滚到上一个版本</li>
-<li>merge 代码合并</li>
-<li>sync 同步主线或分支的bug</li>
-</ul>
+    <div class="post-body" itemprop="articleBody"><h1 id="conda命令速查表"><a href="#conda命令速查表" class="headerlink" title="conda命令速查表"></a>conda命令速查表</h1><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">功能类别</th>
+<th style="text-align:left">核心命令</th>
+<th style="text-align:left">说明/示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>环境管理</strong></td>
+<td style="text-align:left"><code>conda create -n &lt;env_name&gt; python=&lt;version&gt;</code></td>
+<td style="text-align:left">创建指定Python版本的新环境</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>conda activate &lt;env_name&gt;</code></td>
+<td style="text-align:left">激活进入指定环境</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>conda deactivate</code></td>
+<td style="text-align:left">退出当前环境</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>conda env list</code> 或 <code>conda info --envs</code></td>
+<td style="text-align:left">列出所有已创建的环境</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>conda remove -n &lt;env_name&gt; --all</code></td>
+<td style="text-align:left">删除整个环境及其所有包</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>conda create --name &lt;new_env&gt; --clone &lt;old_env&gt;</code></td>
+<td style="text-align:left">克隆一个已存在的环境</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>包管理</strong></td>
+<td style="text-align:left"><code>conda install &lt;package_name&gt;</code></td>
+<td style="text-align:left">在当前环境安装包</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>conda install &lt;package_name&gt;=&lt;version&gt;</code></td>
+<td style="text-align:left">安装指定版本的包</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>conda install -n &lt;env_name&gt; &lt;package_name&gt;</code></td>
+<td style="text-align:left">在指定环境安装包</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>conda list</code></td>
+<td style="text-align:left">列出当前环境下所有已安装的包</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>conda update &lt;package_name&gt;</code></td>
+<td style="text-align:left">更新特定包</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>conda update --all</code></td>
+<td style="text-align:left">更新当前环境下所有包</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>conda remove &lt;package_name&gt;</code></td>
+<td style="text-align:left">从当前环境卸载包</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>环境配置共享</strong></td>
+<td style="text-align:left"><code>conda env export &gt; environment.yml</code></td>
+<td style="text-align:left">导出当前环境的精确配置（包括版本号）</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>conda env create -f environment.yml</code></td>
+<td style="text-align:left">根据 YAML 文件创建一模一样的环境</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>conda env export --from-history &gt; environment.yml</code></td>
+<td style="text-align:left">导出环境（仅包含明确安装的包，不包含依赖）</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>配置与清理</strong></td>
+<td style="text-align:left"><code>conda config --add channels &lt;channel_url&gt;</code></td>
+<td style="text-align:left">添加镜像源以加速下载</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>conda clean --all</code> 或 <code>conda clean -y --all</code></td>
+<td style="text-align:left">清理所有安装包和索引缓存</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="下载安装anaconda"><a href="#下载安装anaconda" class="headerlink" title="下载安装anaconda"></a>下载安装anaconda</h1><p>anaconda的下载安装参考此链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/zwLoneranger/article/details/138743242">https://blog.csdn.net/zwLoneranger/article/details/138743242</a></p>
+<p>下载anaconda：<a target="_blank" rel="noopener" href="https://www.anaconda.com/download/success">https://www.anaconda.com/download/success</a></p>
+<p>和教程一模一样的下载安装</p>
+<h1 id="配置镜像源"><a href="#配置镜像源" class="headerlink" title="配置镜像源"></a>配置镜像源</h1><p>查看镜像源<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conda config --show-sources</span><br><span class="line">conda config --get channels</span><br></pre></td></tr></table></figure></p>
+<p>选择喜欢的镜像源，选一行填，例如<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/</span><br><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/</span><br><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/</span><br><span class="line"></span><br><span class="line">conda config --add channels https://mirrors.ustc.edu.cn/anaconda/pkgs/main/</span><br><span class="line">conda config --add channels https://mirrors.ustc.edu.cn/anaconda/pkgs/free/</span><br><span class="line">conda config --add channels https://mirrors.ustc.edu.cn/anaconda/cloud/conda-forge/</span><br><span class="line"></span><br><span class="line">conda config --add channels https://mirrors.sjtug.sjtu.edu.cn/anaconda/pkgs/main/</span><br><span class="line">conda config --add channels https://mirrors.sjtug.sjtu.edu.cn/anaconda/pkgs/free/</span><br><span class="line">conda config --add channels https://mirrors.sjtug.sjtu.edu.cn/anaconda/cloud/conda-forge/</span><br></pre></td></tr></table></figure></p>
 
     </div>
 
@@ -300,21 +380,18 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Git/" rel="tag"># Git</a>
+              <a href="/tags/Python/" rel="tag"># Python</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2024/05/16/pip/" rel="prev" title="pip微记录：更新、设置镜像源和依赖">
-                  <i class="fa fa-angle-left"></i> pip微记录：更新、设置镜像源和依赖
+                <a href="/2025/10/11/git-merge/" rel="prev" title="git技巧探索">
+                  <i class="fa fa-angle-left"></i> git技巧探索
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2024/09/27/markdown/" rel="next" title="Markdown最基础格式">
-                  Markdown最基础格式 <i class="fa fa-angle-right"></i>
-                </a>
             </div>
           </div>
     </footer>
@@ -427,7 +504,7 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"misaka-xxw","repo":"misaka-xxw.github.io","client_id":"Ov23liNWqCyoWMWQ8Qrm","client_secret":"2972e4f4b47100b82f2aaf4023919d3f8d22b7cd","admin_user":"misaka-xxw","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"a11dc5429b2195ee53199e8e0bb7b97d"}</script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"misaka-xxw","repo":"misaka-xxw.github.io","client_id":"Ov23liNWqCyoWMWQ8Qrm","client_secret":"2972e4f4b47100b82f2aaf4023919d3f8d22b7cd","admin_user":"misaka-xxw","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"0156c2a9692dcd9e1890c68922cf6888"}</script>
 <script src="/js/third-party/comments/gitalk.js"></script>
 
 </body>
