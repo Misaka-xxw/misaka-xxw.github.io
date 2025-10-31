@@ -332,7 +332,7 @@ mjx-container[display="true"] + br {
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-10-29 21:44:47" itemprop="dateModified" datetime="2025-10-29T21:44:47+08:00">2025-10-29</time>
+      <time title="修改时间：2025-10-31 21:23:35" itemprop="dateModified" datetime="2025-10-31T21:23:35+08:00">2025-10-31</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -351,14 +351,14 @@ mjx-container[display="true"] + br {
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.8k</span>
+      <span>1.9k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>6 分钟</span>
+      <span>7 分钟</span>
     </span>
 </div>
 
@@ -433,14 +433,14 @@ mjx-container[display="true"] + br {
 
 <p>望着奇奇怪怪的计算几何算法，我一筹莫展。考虑的特殊情况和问题太多了！机器学习倒是能跑。导师让我做个小汇报，我自己快把自己说糊涂了。后面我可能要碰一点点前后端，自己跑成功了再留下文档。</p>
 <hr>
-<h1 id="C-未定义行为"><a href="#C-未定义行为" class="headerlink" title="C++ 未定义行为"></a>C++ 未定义行为</h1><div class="date-card compact">
+<h1 id="C-未定义行为打赏"><a href="#C-未定义行为打赏" class="headerlink" title="C++ 未定义行为打赏"></a>C++ 未定义行为打赏</h1><div class="date-card compact">
   <span class="date-year">2025 年</span>
   <span class="date-main">10月29日</span>
   <span class="date-weekday">星期三</span>
   <span class="date-caption">野指针领域大神</span>
 </div>
 
-<p>今天写 <code>c++</code>，主要把之前写的几乎没法维护的代码，简化一下。之前完全按照大牛的论文来复现了，伪代码变成真代码太难了。</p>
+<p>今天写 <code>c++</code>，主要把之前写的几乎没法维护的代码，简化一下。之前完全按照大牛的论文来复现了，伪代码变成真代码太难了。然而，简化却出现了更多的问题。</p>
 <h2 id="比较键导致优先队列出现未定义行为"><a href="#比较键导致优先队列出现未定义行为" class="headerlink" title="比较键导致优先队列出现未定义行为"></a>比较键导致优先队列出现未定义行为</h2><p>虽然<code>std::set</code>的比较键<code>comp</code>，当<code>comp(a,b)</code>和<code>comp(b,a)</code>都返回<code>false</code>时，<code>a</code>和<code>b</code>视为一样的值，不重复插入，但是，<code>std::set</code>的<code>comp(a,b)</code>和<code>comp(b,a)</code>不能都返回<code>false</code>，否则会出现诡计多端的未定义行为。这还是我自己的逻辑问题，不会报错，糟糕极了。</p>
 <p>无论是 <code>comp(a, b)</code> 和 <code>comp(b, a)</code> 都返回 <code>false</code>，还是都返回 <code>true</code>，都破坏了优先队列依赖的严格弱序关系，会导致<strong>未定义行为</strong>。</p>
 <p>比较器必须同时满足：</p>
@@ -489,7 +489,8 @@ mjx-container[display="true"] + br {
 </div>
 <p>对于整数等基本类型，最安全的方法是使用标准库提供的比较函数对象（如 <code>std::less</code>）或避免使用可能产生歧义的自定义比较逻辑。对于自定义类型，可以使用 <code>std::tie</code> 来构造可靠的比较器。</p>
 <p>我犯的错误是双<code>false</code>,有的时候它正常排序了，有的时候第一个元素的一个重要值给我替换成了一个接近零的浮点数？十分诡异。而且一开始我优先队列里还装指针，雪上加霜了</p>
-<h2 id="迭代器加指针是画蛇添足"><a href="#迭代器加指针是画蛇添足" class="headerlink" title="迭代器加指针是画蛇添足"></a>迭代器加指针是画蛇添足</h2><p>迭代器已经很智能了，外部再记录不需要再使用“迭代器指针”了。<br>相当于<code>stl</code>已经帮你封装好了优化的迭代器。迭代器对象生命周期与所属的对象自然绑定，迭代器对象本身也不大。我却没事干搞了个双重指针，一个<code>erase</code>还没有<code>delete</code>，一不小心就把堆给破坏掉了，弊远大于利。 </p>
+<h2 id="迭代器加指针是画蛇添足"><a href="#迭代器加指针是画蛇添足" class="headerlink" title="迭代器加指针是画蛇添足"></a>迭代器加指针是画蛇添足</h2><p>迭代器已经很智能了，外部再记录不需要再使用“迭代器指针”了。<br>相当于<code>stl</code>已经帮你封装好了优化的迭代器。迭代器对象生命周期与所属的对象自然绑定，迭代器对象本身也不大。我却没事干搞了个双重指针，一个<code>erase</code>还没有<code>delete</code>，一不小心就把堆给破坏掉了，弊远大于利。</p>
+<h2 id="std-vector可能导致原来的内存失效"><a href="#std-vector可能导致原来的内存失效" class="headerlink" title="std::vector可能导致原来的内存失效"></a>std::vector可能导致原来的内存失效</h2><p>我将指针指向了<code>std::vector</code>里装的东西，因为<code>push_back</code>扩容时，需要新开辟一块空间再复制进去，原空间废弃无主，所以原来的指针就变成了不美味的野生指针。<code>std::list</code>作为权宜之计，可以规避这个问题,但也要小心指针。</p>
 <style>
 :root{
   --card-w:180px;
