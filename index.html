@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Misaka-xxw | 个人主页</title>
+    <meta name="description" content="计算机科学与技术学生 | 热爱编程和技术探索">
+    <meta name="keywords" content="Misaka-xxw, 个人主页, 计算机科学">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./styles/main.css">
+    <!-- <link rel="icon" type="image/x-icon" href="./assets/favicon.ico"> -->
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <h1>Misaka-xxw</h1>
+                <span class="tagline">⚡ 计算机科学与技术</span>
+            </div>
+            <div class="nav-links">
+                <a href="#home" class="nav-link active">首页</a>
+                <a href="#about" class="nav-link">关于</a>
+                <a href="#projects" class="nav-link">项目</a>
+                <a href="#skills" class="nav-link">技能</a>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- 移动端菜单 -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#home" class="mobile-nav-link">首页</a>
+        <a href="#about" class="mobile-nav-link">关于</a>
+        <a href="#projects" class="mobile-nav-link">项目</a>
+        <a href="#skills" class="mobile-nav-link">技能</a>
+    </div>
+
+    <!-- 英雄区域 -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="avatar-container">
+                    <img src="https://avatars.githubusercontent.com/u/110085579?v=4?s=100" alt="Misaka-xxw" class="avatar">
+                </div>
+                <h2 class="greeting">👋 你好，我是 <span class="highlight">Misaka-xxw</span></h2>
+                <p class="subtitle">计算机科学与技术专业学生</p>
+                <p class="description">热爱编程和技术探索</p>
+                <div class="hero-buttons">
+                    <a href="https://github.com/Misaka-xxw" target="_blank" class="btn btn-primary">
+                        <i class="fab fa-github"></i> GitHub主页
+                    </a>
+                    <a href="https://misaka-xxw.github.io/blog" target="_blank" class="btn btn-secondary">
+                        <i class="fas fa-blog"></i> 访问博客
+                    </a>
+                </div>
+                <!-- <div class="social-links">
+                    <a href="https://github.com/Misaka-xxw" target="_blank" class="social-link">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://space.bilibili.com/351363102" class="social-link">
+                        <i class="fab fa-bilibili"></i>
+                    </a>
+                </div> -->
+                <p class="description">🚧网页正在施工中🚧</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于我 -->
+    <section id="about" class="section about">
+        <div class="container">
+            <h2 class="section-title">关于我</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>我是厦门大学计算机科学与技术专业的学生，对编程和技术充满热情。专注于以下领域：</p>
+                    <!-- 改天再改吧 -->
+                    <div class="interests">
+                        <div class="interest-card">
+                            <div class="interest-icon">
+                                <i class="fas fa-gamepad"></i>
+                            </div>
+                            <h3>游戏开发</h3>
+                            <p>使用Unity 2D进行游戏开发</p>
+                        </div>
+                        <div class="interest-card">
+                            <div class="interest-icon">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <h3>系统编程</h3>
+                            <p>熟悉C/C++和嵌入式开发</p>
+                        </div>
+                        
+                        <div class="interest-card">
+                            <div class="interest-icon">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <h3>AI/ML</h3>
+                            <p>探索机器学习、计算机视觉等AI技术</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 项目展示 -->
+    <section id="projects" class="section projects">
+        <div class="container">
+            <h2 class="section-title">我的项目</h2>
+            <div class="projects-grid">
+                
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>XMU-CS-exam</h3>
+                        <span class="project-tag cpp">C++</span>
+                    </div>
+                    <p class="project-description">厦门大学计算机科学与技术专业课程答案互助库，包含数据结构、操作系统、计算机网络等课程的复习资料和代码示例。</p>
+                    <div class="project-stats">
+                        <!-- <span><i class="fas fa-star"></i> 45 Stars</span> -->
+                        <!-- <span><i class="fas fa-code-branch"></i> 12 Forks</span> -->
+                    </div>
+                    <a href="https://github.com/Misaka-xxw/XMU-CS-exam" target="_blank" class="project-link">
+                        查看项目 <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Toaru-Majutsu-no-Index-Title</h3>
+                        <span class="project-tag python">Python</span>
+                    </div>
+                    <p class="project-description">《某魔法与科学的超电磁炮》风格字体生成器，可以生成类似动漫片头曲风格的标题文字效果。</p>
+                    <div class="project-stats">
+                        <!-- <span><i class="fas fa-star"></i> 28 Stars</span> -->
+                        <!-- <span><i class="fas fa-code-branch"></i> 5 Forks</span> -->
+                    </div>
+                    <a href="https://github.com/Misaka-xxw/Toaru-Majutsu-no-Index-Title" target="_blank" class="project-link">
+                        查看项目 <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 技能展示 -->
+    <section id="skills" class="section skills">
+        <div class="container">
+            <h2 class="section-title">技术栈</h2>
+            <div class="skills-grid">
+                
+                <div class="skill-category">
+                    <h3><i class="fas fa-laptop-code"></i> 编程语言</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag expert">C/C++</span>
+                        <span class="skill-tag advanced">Python</span>
+                        <span class="skill-tag beginner">HTML/CSS/JavaScript</span>
+                        <span class="skill-tag intermediate">C#</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>Misaka-xxw</h3>
+                    <p>⚡计算机科学与技术</p>
+                </div>
+                
+                <div class="footer-links">
+                    <a href="#home">首页</a>
+                    <a href="#about">关于</a>
+                    <a href="#projects">项目</a>
+                    <a href="#skills">技能</a>
+                </div>
+                
+                <div class="footer-social">
+                    <a href="https://github.com/Misaka-xxw" target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://space.bilibili.com/351363102" target="_blank">
+                        <i class="fab fa-bilibili"></i>
+                    </a>
+                    <!-- <a href="#" target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a> -->
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 Misaka-xxw. 版权所有.</p>
+                <p>基于 ❤️ 和 ☕️ 构建</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 返回顶部按钮 -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="./js/main.js"></script>
+</body>
+</html>
