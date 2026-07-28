@@ -1,0 +1,1 @@
+import{A as e,V as t,et as n}from"./chunks/framework.CvAYAKkB.js";var r=JSON.parse(`{"title":"Misaka-xxw","description":"","frontmatter":{"layout":"home","title":"Misaka-xxw"},"headers":[],"relativePath":"index.md","filePath":"index.md"}`),i={name:`index.md`};function a(e,r,i,a,o,s){return n(),t(`div`)}var o=e(i,[[`render`,a]]);export{r as __pageData,o as default};

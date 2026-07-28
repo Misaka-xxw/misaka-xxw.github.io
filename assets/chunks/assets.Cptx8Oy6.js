@@ -1,0 +1,1 @@
+var e=`/media/button_phone_link.svg`;export{e as t};
