@@ -161,4 +161,33 @@ dist
 .ionide
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,node
-doc/plan/*
+plan/
+
+# VitePress generated files
+docs/.vitepress/cache/
+docs/.vitepress/dist/
+docs/.vitepress/temp/
+
+# Local preview and test output
+playwright-report/
+test-results/
+
+# IDEs
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Operating system files
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Local-only configuration
+*.local
+!.env.example
