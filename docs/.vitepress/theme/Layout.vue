@@ -18,7 +18,7 @@ const isHome = computed(() => frontmatter.value.layout === 'home')
 const periods = [
   {
     name: '黎明',
-    video: '/media/1morning.mp4',
+    video: '/media/1morning.webm',
     accent: '#2c5f96',
     accentSoft: '#b9d8ec',
     heroInk: '#dfcbbd',
@@ -27,7 +27,7 @@ const periods = [
   },
   {
     name: '正午',
-    video: '/media/2noon.mp4',
+    video: '/media/2noon.webm',
     accent: '#3e83b9',
     accentSoft: '#b1c0d1',
     heroInk: '#0e254d',
@@ -36,7 +36,7 @@ const periods = [
   },
   {
     name: '黄昏',
-    video: '/media/3afternoon.mp4',
+    video: '/media/3afternoon.webm',
     accent: '#b04f31',
     accentSoft: '#ee904e',
     heroInk: '#fff8e7',
@@ -45,7 +45,7 @@ const periods = [
   },
   {
     name: '午夜',
-    video: '/media/4night.mp4',
+    video: '/media/4night.webm',
     accent: '#31628e',
     accentSoft: '#789ab5',
     heroInk: '#f2f7ff',
@@ -56,9 +56,9 @@ const periods = [
 
 const currentPeriod = computed(() => periods[activePeriod.value])
 const heroLogo = computed(() => {
-  if (activePeriod.value === 1) return '/media/某普通的个人主页-魔法.png'
-  if (activePeriod.value === 3) return '/media/某普通的个人主页-白色.png'
-  return '/media/某普通的个人主页-科学.png'
+  if (activePeriod.value === 1) return '/media/某普通的个人主页-魔法.webp'
+  if (activePeriod.value === 3) return '/media/某普通的个人主页-白色.webp'
+  return '/media/某普通的个人主页-科学.webp'
 })
 const themeVars = computed(() => ({
   '--accent': currentPeriod.value.accent,
