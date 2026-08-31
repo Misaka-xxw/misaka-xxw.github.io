@@ -1,19 +1,26 @@
 <script setup lang="ts">
-import { computed, nextTick, onMounted, ref } from 'vue'
+import { computed, nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
 import { useData } from 'vitepress'
+import DefaultTheme from 'vitepress/theme'
+import NotesLayout from './NotesLayout.vue'
+import { data as posts } from './posts.data'
 
 const { frontmatter } = useData()
 const entered = ref(false)
 const menuOpen = ref(false)
 const linkActivated = ref(false)
-const activePeriod = ref(getBeijingPeriod())
+const activePeriod = ref(0)
+const periodReady = ref(false)
 const activeVideoSlot = ref(0)
-const videoSlots = ref<Array<number | null>>([activePeriod.value, null])
+const videoSlots = ref<Array<number | null>>([null, null])
 const videoElements: Array<HTMLVideoElement | null> = [null, null]
 const heroMedia = ref<HTMLElement | null>(null)
 const VIDEO_SYNC_OFFSET_SECONDS = -5 / 30
 let videoSwitching = false
+let periodTimer: number | undefined
+let manuallySelectedPeriod = false
 const isHome = computed(() => frontmatter.value.layout === 'home')
+const recentPosts = computed(() => posts.slice(0, 3))
 
 const periods = [
   {
@@ -83,6 +90,11 @@ const nav = [
 function enterSite() {
   entered.value = true
   setTimeout(() => document.querySelector('#profile')?.scrollIntoView({ behavior: 'smooth' }), 460)
+}
+
+function formatPostMonth(date: string) {
+  const [year, month] = date.split('-')
+  return `${year}.${month}`
 }
 
 function activateHeroLink() {
@@ -171,15 +183,12 @@ async function switchPeriod(targetPeriod: number) {
 }
 
 function cyclePeriod() {
+  manuallySelectedPeriod = true
   void switchPeriod((activePeriod.value + 1) % periods.length)
 }
 
 function getBeijingPeriod() {
-  const hour = Number(new Intl.DateTimeFormat('en-GB', {
-    timeZone: 'Asia/Shanghai',
-    hour: '2-digit',
-    hourCycle: 'h23'
-  }).format(new Date()))
+  const hour = new Date(Date.now() + 8 * 60 * 60 * 1000).getUTCHours()
 
   if (hour >= 5 && hour < 10) return 0
   if (hour >= 10 && hour < 16) return 1
@@ -187,15 +196,41 @@ function getBeijingPeriod() {
   return 3
 }
 
+async function initializePeriod() {
+  const period = getBeijingPeriod()
+  activePeriod.value = period
+  videoSlots.value[0] = period
+  await nextTick()
+
+  const video = videoElements[0]
+  if (video) {
+    video.load()
+    await video.play().catch(() => undefined)
+  }
+  periodReady.value = true
+}
+
+function syncPeriodWithBeijingTime() {
+  if (manuallySelectedPeriod || document.hidden) return
+  const period = getBeijingPeriod()
+  if (period !== activePeriod.value) void switchPeriod(period)
+}
+
 onMounted(() => {
   entered.value = window.scrollY > 240
-  const beijingPeriod = getBeijingPeriod()
-  if (beijingPeriod !== activePeriod.value) void switchPeriod(beijingPeriod)
+  void initializePeriod()
+  periodTimer = window.setInterval(syncPeriodWithBeijingTime, 60_000)
+  document.addEventListener('visibilitychange', syncPeriodWithBeijingTime)
+})
+
+onBeforeUnmount(() => {
+  if (periodTimer !== undefined) window.clearInterval(periodTimer)
+  document.removeEventListener('visibilitychange', syncPeriodWithBeijingTime)
 })
 </script>
 
 <template>
-  <div v-if="isHome" class="site-shell" :class="{ entered }" :style="themeVars">
+  <div v-if="isHome" class="site-shell" :class="{ entered, 'period-ready': periodReady }" :style="themeVars">
     <header class="topbar">
       <a class="brand" href="#home" aria-label="返回首页">
         <span class="brand-mark">M</span>
@@ -235,7 +270,7 @@ onMounted(() => {
             <source
               v-if="videoSlots[slot] !== null"
               :src="periods[videoSlots[slot] as number].video"
-              type="video/mp4"
+              type="video/webm"
             >
           </video>
         </div>
@@ -287,25 +322,24 @@ onMounted(() => {
       <section id="blog" class="content-section section-wrap">
         <div class="section-heading">
           <div><span>02 / BLOG</span><h2>最近记录</h2></div>
-          <a href="/notes/">查看全部 ↗</a>
+          <a href="/journal/">查看全部 ↗</a>
         </div>
         <div class="post-grid">
-          <article class="featured-post">
-            <span class="post-index">01</span>
-            <p>随笔 · 2026.07</p>
-            <h3>随笔1占位</h3>
-            <span>阅读全文 →</span>
-          </article>
-          <article>
-            <p>随笔 · 2026.07</p>
-            <h3>随笔2占位，依旧没写</h3>
-            <span>阅读全文 →</span>
-          </article>
-          <article>
-            <p>技术 · VitePress</p>
-            <h3>随笔3占位，其实这个博客不会有技术的（）</h3>
-            <span>阅读全文 →</span>
-          </article>
+          <a
+            v-for="(post, index) in recentPosts"
+            :key="post.url"
+            class="post-card"
+            :class="{ 'featured-post': index === 0 }"
+            :href="post.url"
+          >
+            <span v-if="index === 0" class="post-index">01</span>
+            <div class="home-post-copy">
+              <p>{{ post.category }} · {{ formatPostMonth(post.date) }}</p>
+              <h3>{{ post.title }}</h3>
+              <span v-if="index === 0" class="home-post-description">{{ post.description }}</span>
+            </div>
+            <span class="read-more">阅读全文 →</span>
+          </a>
         </div>
       </section>
 
@@ -329,5 +363,6 @@ onMounted(() => {
       <span>© 2026 MISAKA-XXW</span>
     </footer>
   </div>
-  <Theme.Layout v-else />
+  <NotesLayout v-else-if="frontmatter.layout === 'notes'" />
+  <DefaultTheme.Layout v-else />
 </template>
